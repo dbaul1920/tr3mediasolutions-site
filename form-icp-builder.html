@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ICP Builder — Marketing That Pays</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:           #0D0D0D;
+      --surface:      #161616;
+      --surface-2:    #1E1E1E;
+      --border:       #2A2A2A;
+      --border-focus: #F59E0B;
+      --text:         #F0F0F0;
+      --text-muted:   #888888;
+      --text-label:   #CCCCCC;
+      --accent:       #F59E0B;
+      --accent-dim:   rgba(245,158,11,0.12);
+      --success:      #22C55E;
+      --font:         'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --radius:       6px;
+      --radius-lg:    10px;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      font-size: 16px;
+      line-height: 1.6;
+      min-height: 100vh;
+      padding: 48px 24px 80px;
+    }
+
+    .form-shell { max-width: 720px; margin: 0 auto; }
+
+    .form-header { margin-bottom: 48px; }
+    .form-badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-dim);
+      border: 1px solid rgba(245,158,11,0.3);
+      border-radius: 4px;
+      padding: 4px 10px;
+      margin-bottom: 20px;
+    }
+    .form-title {
+      font-size: clamp(26px, 4vw, 36px);
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 14px;
+    }
+    .form-desc {
+      font-size: 15px;
+      color: var(--text-muted);
+      max-width: 560px;
+      line-height: 1.7;
+    }
+    .form-step {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-top: 12px;
+    }
+
+    .divider { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 24px;
+    }
+
+    .field { margin-bottom: 28px; }
+    .field-row { display: grid; gap: 16px; }
+    .field-row-2 { grid-template-columns: 1fr 1fr; }
+
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-label);
+      letter-spacing: 0.02em;
+      margin-bottom: 8px;
+    }
+    .label-hint { font-weight: 400; color: var(--text-muted); font-size: 12px; margin-left: 6px; }
+    .label-guidance {
+      display: block;
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--text-muted);
+      margin-top: 4px;
+      margin-bottom: 8px;
+      line-height: 1.5;
+    }
+    .required-star { color: var(--accent); margin-left: 2px; }
+
+    input[type="text"],
+    input[type="number"],
+    input[type="url"],
+    select,
+    textarea {
+      width: 100%;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--text);
+      font-family: var(--font);
+      font-size: 15px;
+      padding: 12px 14px;
+      transition: border-color 0.15s, box-shadow 0.15s;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: var(--border-focus);
+      box-shadow: 0 0 0 3px rgba(245,158,11,0.12);
+    }
+    input::placeholder, textarea::placeholder { color: #444; }
+
+    select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 36px;
+      cursor: pointer;
+    }
+    select option { background: #1E1E1E; }
+    textarea { resize: vertical; }
+
+    /* ── Multi-select pills ── */
+    .pill-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 4px;
+    }
+    .pill-option { display: none; }
+    .pill-label {
+      display: inline-flex;
+      align-items: center;
+      padding: 7px 14px;
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.15s;
+      user-select: none;
+    }
+    .pill-label:hover {
+      border-color: var(--accent);
+      color: var(--text);
+    }
+    .pill-option:checked + .pill-label {
+      background: var(--accent-dim);
+      border-color: var(--accent);
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    /* ── Goal number ── */
+    .currency-wrapper {
+      position: relative;
+    }
+    .currency-wrapper::before {
+      content: '$';
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      font-size: 15px;
+      pointer-events: none;
+    }
+    .currency-wrapper input {
+      padding-left: 26px;
+    }
+
+    /* ── Context callout ── */
+    .context-callout {
+      background: var(--surface-2);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      padding: 14px 18px;
+      margin-bottom: 28px;
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+    .context-callout strong { color: var(--text-label); }
+
+    .submit-area { margin-top: 40px; padding-top: 40px; border-top: 1px solid var(--border); }
+    .submit-note { font-size: 13px; color: var(--text-muted); margin-bottom: 20px; line-height: 1.6; }
+
+    .btn-submit {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: var(--accent);
+      color: #000;
+      border: none;
+      border-radius: var(--radius);
+      font-family: var(--font);
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      padding: 15px 32px;
+      cursor: pointer;
+      transition: background 0.15s, transform 0.1s;
+      width: 100%;
+    }
+    .btn-submit:hover { background: #FBBF24; }
+    .btn-submit:active { transform: scale(0.99); }
+
+    .success-message {
+      display: none;
+      background: var(--surface);
+      border: 1px solid rgba(34,197,94,0.3);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      text-align: center;
+      margin-top: 32px;
+    }
+    .success-message.visible { display: block; }
+    .success-icon { font-size: 40px; margin-bottom: 16px; }
+    .success-message h3 { font-size: 22px; font-weight: 700; color: var(--success); margin-bottom: 10px; }
+    .success-message p { color: var(--text-muted); font-size: 15px; }
+
+    @media (max-width: 600px) {
+      .field-row-2 { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<div class="form-shell">
+
+  <header class="form-header">
+    <div class="form-badge">Marketing That Pays — Client Intake</div>
+    <h1 class="form-title">ICP Builder</h1>
+    <p class="form-desc">The Ideal Customer Profile is the foundation of every marketing decision we make. Answer these honestly — specific beats vague every time.</p>
+    <p class="form-step">Form 3 of 4 &nbsp;·&nbsp; ~12 minutes</p>
+  </header>
+
+  <form id="mtp-form-3" action="[FORMSPREE_ENDPOINT]" method="POST">
+    <input type="hidden" name="_subject" value="MTP Intake: ICP Builder">
+    <input type="hidden" name="form_type" value="icp_builder">
+
+    <!-- Identity -->
+    <p class="section-label">Your Details</p>
+    <div class="field-row field-row-2">
+      <div class="field">
+        <label for="client_name">Client Name <span class="required-star">*</span></label>
+        <input type="text" id="client_name" name="client_name" placeholder="Your full name" required autocomplete="name">
+      </div>
+      <div class="field">
+        <label for="company_name">Company Name <span class="required-star">*</span></label>
+        <input type="text" id="company_name" name="company_name" placeholder="Business name" required autocomplete="organization">
+      </div>
+    </div>
+
+    <!-- Offer -->
+    <hr class="divider">
+    <p class="section-label">Your Offer</p>
+
+    <div class="field">
+      <label for="what_you_sell">What do you sell? <span class="required-star">*</span></label>
+      <span class="label-guidance">Describe your offer in plain language. Skip the jargon. What does someone actually get when they pay you?</span>
+      <textarea id="what_you_sell" name="what_you_sell" rows="4" placeholder="e.g. We help residential contractors close more jobs by rebuilding their follow-up process — usually a 3-month engagement, includes done-for-you scripts and CRM setup." required></textarea>
+    </div>
+
+    <div class="field-row field-row-2">
+      <div class="field">
+        <label for="revenue_range">Your Revenue Range</label>
+        <select id="revenue_range" name="revenue_range">
+          <option value="">Select range</option>
+          <option>$150K–$300K</option>
+          <option>$300K–$500K</option>
+          <option>$500K–$1M</option>
+          <option>$1M+</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="revenue_goal">Revenue Goal — Next 12 Months</label>
+        <div class="currency-wrapper">
+          <input type="number" id="revenue_goal" name="revenue_goal" placeholder="0" min="0" step="1000">
+        </div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Industry</label>
+      <span class="label-guidance">Select all that apply.</span>
+      <div class="pill-group">
+        <input type="checkbox" id="ind-retail"    name="industry[]" value="Retail"                 class="pill-option">
+        <label for="ind-retail"    class="pill-label">Retail</label>
+
+        <input type="checkbox" id="ind-proserv"   name="industry[]" value="Professional Services"  class="pill-option">
+        <label for="ind-proserv"   class="pill-label">Professional Services</label>
+
+        <input type="checkbox" id="ind-health"    name="industry[]" value="Health &amp; Wellness"  class="pill-option">
+        <label for="ind-health"    class="pill-label">Health &amp; Wellness</label>
+
+        <input type="checkbox" id="ind-fnb"       name="industry[]" value="Food &amp; Bev"         class="pill-option">
+        <label for="ind-fnb"       class="pill-label">Food &amp; Bev</label>
+
+        <input type="checkbox" id="ind-realestate" name="industry[]" value="Real Estate"           class="pill-option">
+        <label for="ind-realestate" class="pill-label">Real Estate</label>
+
+        <input type="checkbox" id="ind-construct" name="industry[]" value="Construction"           class="pill-option">
+        <label for="ind-construct" class="pill-label">Construction</label>
+
+        <input type="checkbox" id="ind-tech"      name="industry[]" value="Tech"                   class="pill-option">
+        <label for="ind-tech"      class="pill-label">Tech</label>
+
+        <input type="checkbox" id="ind-nonprofit" name="industry[]" value="Nonprofit"              class="pill-option">
+        <label for="ind-nonprofit" class="pill-label">Nonprofit</label>
+
+        <input type="checkbox" id="ind-other"     name="industry[]" value="Other"                  class="pill-option">
+        <label for="ind-other"     class="pill-label">Other</label>
+      </div>
+    </div>
+
+    <!-- Best Client -->
+    <hr class="divider">
+    <p class="section-label">Your Best Client</p>
+
+    <div class="context-callout">
+      <strong>Think about your single best client.</strong> Not the biggest — the one you'd clone if you could. The one who paid well, got results, referred others, and was easy to work with. These questions are about them.
+    </div>
+
+    <div class="field">
+      <label for="best_client">Describe your best client</label>
+      <span class="label-guidance">Who are they? Industry, size, role, situation. What made them great to work with?</span>
+      <textarea id="best_client" name="best_client" rows="4" placeholder="e.g. A solo real estate agent doing $800K/yr who was already motivated — she just needed a system, not convincing. Showed up to every call prepared."></textarea>
+    </div>
+
+    <div class="field">
+      <label for="pain_brought_them">What pain brought them to you?</label>
+      <span class="label-guidance">What was the specific problem or frustration that made them reach out?</span>
+      <textarea id="pain_brought_them" name="pain_brought_them" rows="3" placeholder="e.g. She was doing everything through referrals and word of mouth but leads were drying up. Felt invisible online."></textarea>
+    </div>
+
+    <div class="field">
+      <label for="result_delivered">What result did you deliver?</label>
+      <span class="label-guidance">Be specific. Numbers, timeframes, before/after.</span>
+      <textarea id="result_delivered" name="result_delivered" rows="3" placeholder="e.g. In 90 days she had 3 new listings from organic Instagram alone. First time in 2 years she had inbound."></textarea>
+    </div>
+
+    <!-- Voice & Referrals -->
+    <hr class="divider">
+    <p class="section-label">Customer Language</p>
+
+    <div class="field">
+      <label for="referral_language">What do clients say when they refer you?</label>
+      <span class="label-guidance">Think about the actual words they use — not what you wish they'd say. This is gold for marketing copy.</span>
+      <textarea id="referral_language" name="referral_language" rows="3" placeholder='e.g. "You need to call Dom — he actually looks at your numbers and tells you what to stop doing."'></textarea>
+    </div>
+
+    <!-- Anti-ICP -->
+    <hr class="divider">
+    <p class="section-label">Who You Don't Serve</p>
+
+    <div class="field">
+      <label for="not_your_client">Who is NOT your client?</label>
+      <span class="label-guidance">Who do you turn away, fire, or regret taking on? Being clear here makes targeting dramatically easier.</span>
+      <textarea id="not_your_client" name="not_your_client" rows="3" placeholder="e.g. Startups with no revenue looking for marketing to save them. Anyone who thinks paid ads are a magic button."></textarea>
+    </div>
+
+    <!-- Pricing & Barriers -->
+    <hr class="divider">
+    <p class="section-label">Pricing & Growth</p>
+
+    <div class="field">
+      <label for="pricing_structure">Current pricing / offer structure</label>
+      <span class="label-guidance">How do you charge? Retainer, project, packages, hourly? What's the range?</span>
+      <textarea id="pricing_structure" name="pricing_structure" rows="3" placeholder="e.g. $3,500/mo retainer, 3-month minimum. One-time strategy sprint at $2,500. No hourly."></textarea>
+    </div>
+
+    <div class="field">
+      <label for="biggest_barrier">Biggest barrier to hitting your revenue goal</label>
+      <span class="label-guidance">Be honest. Is it lead volume? Conversion? Pricing? Capacity? Something else?</span>
+      <textarea id="biggest_barrier" name="biggest_barrier" rows="4" placeholder="e.g. I have the clients but I'm spending 70% of my time on delivery, not sales. I can't grow without fixing the bottleneck."></textarea>
+    </div>
+
+    <div class="submit-area">
+      <p class="submit-note">This data feeds your ICP one-pager and value proposition rewrite. The more specific you are, the better the output.</p>
+      <button type="submit" class="btn-submit">
+        Submit ICP Profile
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+  </form>
+
+  <div class="success-message" id="success-msg">
+    <div class="success-icon">✓</div>
+    <h3>ICP Profile Received</h3>
+    <p>One more to go — Form 4 is the Access Checklist. Takes 5 minutes.</p>
+  </div>
+
+  <footer style="display:flex;align-items:center;justify-content:space-between;margin-top:48px;padding-top:24px;border-top:1px solid var(--border);">
+    <span style="font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);">Marketing That Pays</span>
+    <span style="font-size:12px;color:var(--text-muted);">Form 3 of 4</span>
+  </footer>
+
+</div>
+<script>
+  document.getElementById('mtp-form-3').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const form = e.target;
+    const btn = form.querySelector('.btn-submit');
+    btn.textContent = 'Submitting…';
+    btn.disabled = true;
+
+    fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    })
+    .then(res => {
+      if (res.ok) {
+        form.style.display = 'none';
+        document.getElementById('success-msg').classList.add('visible');
+      } else {
+        btn.textContent = 'Submission failed — try again';
+        btn.disabled = false;
+      }
+    })
+    .catch(() => {
+      btn.textContent = 'Network error — try again';
+      btn.disabled = false;
+    });
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marketing Spend Inventory — Marketing That Pays</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:           #0D0D0D;
+      --surface:      #161616;
+      --surface-2:    #1E1E1E;
+      --border:       #2A2A2A;
+      --border-focus: #F59E0B;
+      --text:         #F0F0F0;
+      --text-muted:   #888888;
+      --text-label:   #CCCCCC;
+      --accent:       #F59E0B;
+      --accent-dim:   rgba(245,158,11,0.12);
+      --danger:       #EF4444;
+      --success:      #22C55E;
+      --font:         'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --radius:       6px;
+      --radius-lg:    10px;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      font-size: 16px;
+      line-height: 1.6;
+      min-height: 100vh;
+      padding: 48px 24px 80px;
+    }
+
+    .form-shell {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    /* ── Header ── */
+    .form-header {
+      margin-bottom: 48px;
+    }
+    .form-badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-dim);
+      border: 1px solid rgba(245,158,11,0.3);
+      border-radius: 4px;
+      padding: 4px 10px;
+      margin-bottom: 20px;
+    }
+    .form-title {
+      font-size: clamp(26px, 4vw, 36px);
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 14px;
+    }
+    .form-desc {
+      font-size: 15px;
+      color: var(--text-muted);
+      max-width: 560px;
+      line-height: 1.7;
+    }
+    .form-step {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-top: 12px;
+    }
+
+    /* ── Divider ── */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 40px 0;
+    }
+
+    /* ── Section ── */
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 24px;
+    }
+
+    /* ── Field ── */
+    .field {
+      margin-bottom: 28px;
+    }
+    .field-row {
+      display: grid;
+      gap: 16px;
+    }
+    .field-row-2 { grid-template-columns: 1fr 1fr; }
+
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-label);
+      letter-spacing: 0.02em;
+      margin-bottom: 8px;
+    }
+    .label-hint {
+      font-weight: 400;
+      color: var(--text-muted);
+      font-size: 12px;
+      margin-left: 6px;
+    }
+    .required-star {
+      color: var(--accent);
+      margin-left: 2px;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    input[type="date"],
+    input[type="url"],
+    select,
+    textarea {
+      width: 100%;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--text);
+      font-family: var(--font);
+      font-size: 15px;
+      padding: 12px 14px;
+      transition: border-color 0.15s, box-shadow 0.15s;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+    input:focus,
+    select:focus,
+    textarea:focus {
+      outline: none;
+      border-color: var(--border-focus);
+      box-shadow: 0 0 0 3px rgba(245,158,11,0.12);
+    }
+    input::placeholder,
+    textarea::placeholder { color: #444; }
+
+    select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 36px;
+      cursor: pointer;
+    }
+    select option { background: #1E1E1E; }
+
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    /* ── Date Range ── */
+    .date-range-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-label);
+      margin-bottom: 12px;
+      display: block;
+    }
+    .date-range-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      align-items: end;
+    }
+    .date-range-grid .sub-label {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+      display: block;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .date-separator {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 13px;
+      padding-top: 34px;
+      display: none; /* hidden, grid handles it */
+    }
+
+    /* ── Repeating Rows ── */
+    .repeat-wrapper {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+    .repeat-header {
+      display: grid;
+      grid-template-columns: 2fr 2fr 1.5fr 1.2fr 40px;
+      gap: 0;
+      background: var(--surface-2);
+      border-bottom: 1px solid var(--border);
+    }
+    .repeat-header span {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      padding: 10px 12px;
+      border-right: 1px solid var(--border);
+    }
+    .repeat-header span:last-child { border-right: none; }
+
+    .repeat-row {
+      display: grid;
+      grid-template-columns: 2fr 2fr 1.5fr 1.2fr 40px;
+      gap: 0;
+      border-bottom: 1px solid var(--border);
+      align-items: center;
+    }
+    .repeat-row:last-child { border-bottom: none; }
+
+    .repeat-cell {
+      border-right: 1px solid var(--border);
+      padding: 8px;
+    }
+    .repeat-cell:last-child { border-right: none; padding: 0; text-align: center; }
+
+    .repeat-cell input,
+    .repeat-cell select {
+      background: transparent;
+      border: none;
+      border-radius: 0;
+      padding: 8px 6px;
+      font-size: 14px;
+      box-shadow: none;
+    }
+    .repeat-cell input:focus,
+    .repeat-cell select:focus {
+      background: var(--accent-dim);
+      box-shadow: none;
+      border: none;
+    }
+    .repeat-cell select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23888' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 8px center;
+      background-color: transparent;
+      padding-right: 24px;
+    }
+
+    /* Radio inline */
+    .radio-inline {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .radio-inline label {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-muted);
+      cursor: pointer;
+      white-space: nowrap;
+      margin-bottom: 0;
+    }
+    .radio-inline input[type="radio"] {
+      width: auto;
+      accent-color: var(--accent);
+    }
+
+    .repeat-footer {
+      background: var(--surface-2);
+      border-top: 1px solid var(--border);
+      padding: 10px 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .btn-add-row {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--accent);
+      font-family: var(--font);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: var(--radius);
+      cursor: pointer;
+      letter-spacing: 0.02em;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .btn-add-row:hover {
+      background: var(--accent-dim);
+      border-color: var(--accent);
+    }
+
+    .btn-remove-row {
+      background: none;
+      border: none;
+      color: #444;
+      font-size: 16px;
+      cursor: pointer;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--radius);
+      transition: color 0.15s, background 0.15s;
+    }
+    .btn-remove-row:hover { color: var(--danger); background: rgba(239,68,68,0.08); }
+
+    /* ── Total Display ── */
+    .total-display {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 28px;
+    }
+    .total-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+    }
+    .total-value {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: -0.02em;
+      font-feature-settings: "tnum";
+    }
+
+    /* ── Submit ── */
+    .submit-area {
+      margin-top: 40px;
+      padding-top: 40px;
+      border-top: 1px solid var(--border);
+    }
+    .submit-note {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+
+    .btn-submit {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: var(--accent);
+      color: #000;
+      border: none;
+      border-radius: var(--radius);
+      font-family: var(--font);
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      padding: 15px 32px;
+      cursor: pointer;
+      transition: background 0.15s, transform 0.1s;
+      width: 100%;
+    }
+    .btn-submit:hover { background: #FBBF24; }
+    .btn-submit:active { transform: scale(0.99); }
+
+    /* ── Success State ── */
+    .success-message {
+      display: none;
+      background: var(--surface);
+      border: 1px solid rgba(34,197,94,0.3);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      text-align: center;
+      margin-top: 32px;
+    }
+    .success-message.visible { display: block; }
+    .success-icon {
+      font-size: 40px;
+      margin-bottom: 16px;
+    }
+    .success-message h3 {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--success);
+      margin-bottom: 10px;
+    }
+    .success-message p {
+      color: var(--text-muted);
+      font-size: 15px;
+    }
+
+    /* ── Footer ── */
+    .form-footer {
+      margin-top: 60px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: gap;
+    }
+    .footer-brand {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .footer-step-nav {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    @media (max-width: 600px) {
+      .field-row-2 { grid-template-columns: 1fr; }
+      .date-range-grid { grid-template-columns: 1fr; }
+      .repeat-header,
+      .repeat-row {
+        grid-template-columns: 1fr;
+      }
+      .repeat-header { display: none; }
+      .repeat-cell {
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+        padding: 8px 12px;
+      }
+      .repeat-cell:last-child { border-bottom: none; }
+    }
+  </style>
+</head>
+<body>
+<div class="form-shell">
+
+  <!-- Header -->
+  <header class="form-header">
+    <div class="form-badge">Marketing That Pays — Client Intake</div>
+    <h1 class="form-title">Marketing Spend<br>Inventory</h1>
+    <p class="form-desc">List every dollar you spend on marketing. Be thorough — we can't fix what we can't see. This data feeds directly into your cost-per-lead audit.</p>
+    <p class="form-step">Form 1 of 4 &nbsp;·&nbsp; ~8 minutes</p>
+  </header>
+
+  <!-- Form -->
+  <form id="mtp-form-1" action="[FORMSPREE_ENDPOINT]" method="POST">
+    <!-- Hidden meta -->
+    <input type="hidden" name="_subject" value="MTP Intake: Marketing Spend Inventory">
+    <input type="hidden" name="form_type" value="spend_inventory">
+
+    <!-- Section: Identity -->
+    <p class="section-label">Your Details</p>
+
+    <div class="field-row field-row-2">
+      <div class="field">
+        <label for="client_name">Client Name <span class="required-star">*</span></label>
+        <input type="text" id="client_name" name="client_name" placeholder="Your full name" required autocomplete="name">
+      </div>
+      <div class="field">
+        <label for="company_name">Company Name <span class="required-star">*</span></label>
+        <input type="text" id="company_name" name="company_name" placeholder="Business name" required autocomplete="organization">
+      </div>
+    </div>
+
+    <!-- Section: Reporting Period -->
+    <hr class="divider">
+    <p class="section-label">Reporting Period</p>
+    <div class="field">
+      <span class="date-range-label">What time period should we analyze? <span class="label-hint">Default: last 90 days</span></span>
+      <div class="date-range-grid">
+        <div>
+          <span class="sub-label">Start Date</span>
+          <input type="date" id="period_start" name="period_start">
+        </div>
+        <div>
+          <span class="sub-label">End Date</span>
+          <input type="date" id="period_end" name="period_end">
+        </div>
+      </div>
+    </div>
+
+    <!-- Section: Expense Rows -->
+    <hr class="divider">
+    <p class="section-label">Marketing Expenses</p>
+    <p style="font-size:14px;color:var(--text-muted);margin-bottom:20px;">Add every marketing expense — recurring or one-off. Use monthly cost as your unit. Up to 10 rows.</p>
+
+    <div class="repeat-wrapper" id="expense-table">
+      <div class="repeat-header">
+        <span>Expense Name</span>
+        <span>Category</span>
+        <span>Monthly Cost</span>
+        <span>Keep or Cut?</span>
+        <span></span>
+      </div>
+
+      <!-- Row 1 -->
+      <div class="repeat-row" id="row-1">
+        <div class="repeat-cell">
+          <input type="text" name="expense_name_1" placeholder="e.g. Meta Ads" aria-label="Expense name">
+        </div>
+        <div class="repeat-cell">
+          <select name="expense_category_1" aria-label="Category">
+            <option value="">Category</option>
+            <option>Paid Ads</option>
+            <option>Social Media</option>
+            <option>Email</option>
+            <option>SEO</option>
+            <option>Events</option>
+            <option>PR</option>
+            <option>Tools &amp; Software</option>
+            <option>Agency / Freelance</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="repeat-cell">
+          <input type="number" name="expense_cost_1" placeholder="$0" min="0" step="1" aria-label="Monthly cost" data-cost>
+        </div>
+        <div class="repeat-cell">
+          <div class="radio-inline">
+            <label><input type="radio" name="expense_decision_1" value="Keep"> Keep</label>
+            <label><input type="radio" name="expense_decision_1" value="Cut"> Cut</label>
+            <label><input type="radio" name="expense_decision_1" value="Unsure"> Unsure</label>
+          </div>
+        </div>
+        <div class="repeat-cell">
+          <button type="button" class="btn-remove-row" onclick="removeRow('row-1')" aria-label="Remove row">×</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="repeat-footer">
+      <button type="button" class="btn-add-row" id="btn-add" onclick="addRow()">+ Add Expense</button>
+      <span id="row-count-label" style="font-size:12px;color:var(--text-muted);">1 of 10</span>
+    </div>
+
+    <!-- Total -->
+    <hr class="divider">
+    <div class="total-display">
+      <span class="total-label">Total Estimated Monthly Spend</span>
+      <span class="total-value" id="total-spend">$0</span>
+    </div>
+    <input type="hidden" name="total_monthly_spend" id="total-hidden">
+
+    <!-- Notes -->
+    <hr class="divider">
+    <p class="section-label">Anything Else?</p>
+    <div class="field">
+      <label for="notes">Notes <span class="label-hint">Additional context, seasonal variation, one-time costs</span></label>
+      <textarea id="notes" name="notes" rows="4" placeholder="e.g. We ran a trade show in Q4 that added $8K — not our usual spend..."></textarea>
+    </div>
+
+    <!-- Submit -->
+    <div class="submit-area">
+      <p class="submit-note">Your data is used exclusively by the Marketing That Pays audit process. We don't share it.</p>
+      <button type="submit" class="btn-submit">
+        Submit Spend Inventory
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+  </form>
+
+  <!-- Success -->
+  <div class="success-message" id="success-msg">
+    <div class="success-icon">✓</div>
+    <h3>Spend Inventory Received</h3>
+    <p>We've got your data. Move on to Form 2 — Lead Source Tracker — when you're ready.</p>
+  </div>
+
+  <!-- Footer -->
+  <footer class="form-footer" style="display:flex;align-items:center;justify-content:space-between;margin-top:48px;padding-top:24px;border-top:1px solid var(--border);">
+    <span class="footer-brand">Marketing That Pays</span>
+    <span class="footer-step-nav">Form 1 of 4</span>
+  </footer>
+
+</div>
+
+<script>
+  // ── Date defaults (last 90 days)
+  (function() {
+    const end = new Date();
+    const start = new Date();
+    start.setDate(start.getDate() - 90);
+    const fmt = d => d.toISOString().split('T')[0];
+    document.getElementById('period_start').value = fmt(start);
+    document.getElementById('period_end').value = fmt(end);
+  })();
+
+  // ── Repeating rows
+  let rowCount = 1;
+  const MAX_ROWS = 10;
+
+  function addRow() {
+    if (rowCount >= MAX_ROWS) return;
+    rowCount++;
+    const table = document.getElementById('expense-table');
+    const div = document.createElement('div');
+    div.className = 'repeat-row';
+    div.id = 'row-' + rowCount;
+    div.innerHTML = `
+      <div class="repeat-cell">
+        <input type="text" name="expense_name_${rowCount}" placeholder="Expense name" aria-label="Expense name">
+      </div>
+      <div class="repeat-cell">
+        <select name="expense_category_${rowCount}" aria-label="Category">
+          <option value="">Category</option>
+          <option>Paid Ads</option>
+          <option>Social Media</option>
+          <option>Email</option>
+          <option>SEO</option>
+          <option>Events</option>
+          <option>PR</option>
+          <option>Tools &amp; Software</option>
+          <option>Agency / Freelance</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="repeat-cell">
+        <input type="number" name="expense_cost_${rowCount}" placeholder="$0" min="0" step="1" aria-label="Monthly cost" data-cost>
+      </div>
+      <div class="repeat-cell">
+        <div class="radio-inline">
+          <label><input type="radio" name="expense_decision_${rowCount}" value="Keep"> Keep</label>
+          <label><input type="radio" name="expense_decision_${rowCount}" value="Cut"> Cut</label>
+          <label><input type="radio" name="expense_decision_${rowCount}" value="Unsure"> Unsure</label>
+        </div>
+      </div>
+      <div class="repeat-cell">
+        <button type="button" class="btn-remove-row" onclick="removeRow('row-${rowCount}')" aria-label="Remove row">×</button>
+      </div>
+    `;
+    table.appendChild(div);
+    updateRowCount();
+    recalcTotal();
+    div.querySelector('input[type="number"]').addEventListener('input', recalcTotal);
+    div.querySelector('input[type="text"]').focus();
+  }
+
+  function removeRow(id) {
+    const rows = document.querySelectorAll('#expense-table .repeat-row');
+    if (rows.length <= 1) return; // keep at least 1
+    const el = document.getElementById(id);
+    if (el) el.remove();
+    rowCount = document.querySelectorAll('#expense-table .repeat-row').length;
+    updateRowCount();
+    recalcTotal();
+  }
+
+  function updateRowCount() {
+    const current = document.querySelectorAll('#expense-table .repeat-row').length;
+    document.getElementById('row-count-label').textContent = current + ' of ' + MAX_ROWS;
+    document.getElementById('btn-add').disabled = current >= MAX_ROWS;
+  }
+
+  function recalcTotal() {
+    const inputs = document.querySelectorAll('[data-cost]');
+    let total = 0;
+    inputs.forEach(inp => { total += parseFloat(inp.value) || 0; });
+    document.getElementById('total-spend').textContent = '$' + total.toLocaleString('en-US', {minimumFractionDigits: 0});
+    document.getElementById('total-hidden').value = total;
+  }
+
+  // Attach listener to initial row
+  document.querySelector('[data-cost]').addEventListener('input', recalcTotal);
+
+  // ── Form submit via fetch (Formspree)
+  document.getElementById('mtp-form-1').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const form = e.target;
+    const btn = form.querySelector('.btn-submit');
+    btn.textContent = 'Submitting…';
+    btn.disabled = true;
+
+    fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    })
+    .then(res => {
+      if (res.ok) {
+        form.style.display = 'none';
+        document.getElementById('success-msg').classList.add('visible');
+      } else {
+        btn.textContent = 'Submission failed — try again';
+        btn.disabled = false;
+      }
+    })
+    .catch(() => {
+      btn.textContent = 'Network error — try again';
+      btn.disabled = false;
+    });
+  });
+</script>
+</body>
+</html>

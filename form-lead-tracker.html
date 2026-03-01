@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lead Source Tracker — Marketing That Pays</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:           #0D0D0D;
+      --surface:      #161616;
+      --surface-2:    #1E1E1E;
+      --border:       #2A2A2A;
+      --border-focus: #F59E0B;
+      --text:         #F0F0F0;
+      --text-muted:   #888888;
+      --text-label:   #CCCCCC;
+      --accent:       #F59E0B;
+      --accent-dim:   rgba(245,158,11,0.12);
+      --danger:       #EF4444;
+      --success:      #22C55E;
+      --font:         'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --radius:       6px;
+      --radius-lg:    10px;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      font-size: 16px;
+      line-height: 1.6;
+      min-height: 100vh;
+      padding: 48px 24px 80px;
+    }
+
+    .form-shell { max-width: 720px; margin: 0 auto; }
+
+    .form-header { margin-bottom: 48px; }
+    .form-badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-dim);
+      border: 1px solid rgba(245,158,11,0.3);
+      border-radius: 4px;
+      padding: 4px 10px;
+      margin-bottom: 20px;
+    }
+    .form-title {
+      font-size: clamp(26px, 4vw, 36px);
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 14px;
+    }
+    .form-desc {
+      font-size: 15px;
+      color: var(--text-muted);
+      max-width: 560px;
+      line-height: 1.7;
+    }
+    .form-step {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-top: 12px;
+    }
+
+    .divider { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 24px;
+    }
+
+    .field { margin-bottom: 28px; }
+    .field-row { display: grid; gap: 16px; }
+    .field-row-2 { grid-template-columns: 1fr 1fr; }
+
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-label);
+      letter-spacing: 0.02em;
+      margin-bottom: 8px;
+    }
+    .label-hint { font-weight: 400; color: var(--text-muted); font-size: 12px; margin-left: 6px; }
+    .required-star { color: var(--accent); margin-left: 2px; }
+
+    input[type="text"],
+    input[type="number"],
+    input[type="url"],
+    select,
+    textarea {
+      width: 100%;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--text);
+      font-family: var(--font);
+      font-size: 15px;
+      padding: 12px 14px;
+      transition: border-color 0.15s, box-shadow 0.15s;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: var(--border-focus);
+      box-shadow: 0 0 0 3px rgba(245,158,11,0.12);
+    }
+    input::placeholder, textarea::placeholder { color: #444; }
+
+    select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 36px;
+      cursor: pointer;
+    }
+    select option { background: #1E1E1E; }
+    textarea { resize: vertical; min-height: 100px; }
+
+    /* ── Lead Table ── */
+    .repeat-wrapper {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+    .repeat-header {
+      display: grid;
+      grid-template-columns: 2fr 1.2fr 1.5fr 1.5fr 40px;
+      background: var(--surface-2);
+      border-bottom: 1px solid var(--border);
+    }
+    .repeat-header span {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      padding: 10px 12px;
+      border-right: 1px solid var(--border);
+    }
+    .repeat-header span:last-child { border-right: none; }
+
+    .repeat-row {
+      display: grid;
+      grid-template-columns: 2fr 1.2fr 1.5fr 1.5fr 40px;
+      border-bottom: 1px solid var(--border);
+      align-items: stretch;
+    }
+    .repeat-row:last-child { border-bottom: none; }
+
+    .repeat-cell {
+      border-right: 1px solid var(--border);
+    }
+    .repeat-cell:last-child { border-right: none; display: flex; align-items: center; justify-content: center; }
+
+    .repeat-cell input {
+      background: transparent;
+      border: none;
+      border-radius: 0;
+      padding: 10px 12px;
+      font-size: 14px;
+      width: 100%;
+      box-shadow: none;
+    }
+    .repeat-cell input:focus {
+      background: var(--accent-dim);
+      box-shadow: none;
+      border: none;
+    }
+
+    /* Computed CPL cell */
+    .cpl-display {
+      padding: 10px 12px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent);
+      font-feature-settings: "tnum";
+      display: flex;
+      align-items: center;
+      min-height: 44px;
+    }
+
+    .btn-remove-row {
+      background: none;
+      border: none;
+      color: #444;
+      font-size: 16px;
+      cursor: pointer;
+      width: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--radius);
+      transition: color 0.15s, background 0.15s;
+    }
+    .btn-remove-row:hover { color: var(--danger); background: rgba(239,68,68,0.08); }
+
+    .repeat-footer {
+      background: var(--surface-2);
+      border-top: 1px solid var(--border);
+      padding: 10px 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .btn-add-row {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--accent);
+      font-family: var(--font);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .btn-add-row:hover { background: var(--accent-dim); border-color: var(--accent); }
+
+    /* ── Insight bar ── */
+    .insight-bar {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 18px 24px;
+      margin-bottom: 28px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .insight-item { text-align: center; }
+    .insight-num {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: -0.02em;
+      font-feature-settings: "tnum";
+    }
+    .insight-lbl {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .submit-area { margin-top: 40px; padding-top: 40px; border-top: 1px solid var(--border); }
+    .submit-note { font-size: 13px; color: var(--text-muted); margin-bottom: 20px; line-height: 1.6; }
+
+    .btn-submit {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: var(--accent);
+      color: #000;
+      border: none;
+      border-radius: var(--radius);
+      font-family: var(--font);
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      padding: 15px 32px;
+      cursor: pointer;
+      transition: background 0.15s, transform 0.1s;
+      width: 100%;
+    }
+    .btn-submit:hover { background: #FBBF24; }
+    .btn-submit:active { transform: scale(0.99); }
+
+    .success-message {
+      display: none;
+      background: var(--surface);
+      border: 1px solid rgba(34,197,94,0.3);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      text-align: center;
+      margin-top: 32px;
+    }
+    .success-message.visible { display: block; }
+    .success-icon { font-size: 40px; margin-bottom: 16px; }
+    .success-message h3 { font-size: 22px; font-weight: 700; color: var(--success); margin-bottom: 10px; }
+    .success-message p { color: var(--text-muted); font-size: 15px; }
+
+    @media (max-width: 600px) {
+      .field-row-2 { grid-template-columns: 1fr; }
+      .repeat-header { display: none; }
+      .repeat-row { grid-template-columns: 1fr; }
+      .repeat-cell { border-right: none; border-bottom: 1px solid var(--border); }
+      .insight-bar { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<div class="form-shell">
+
+  <header class="form-header">
+    <div class="form-badge">Marketing That Pays — Client Intake</div>
+    <h1 class="form-title">Lead Source<br>Tracker</h1>
+    <p class="form-desc">Where do your leads actually come from? Cross-referencing this with your spend inventory reveals which channels are pulling their weight — and which aren't.</p>
+    <p class="form-step">Form 2 of 4 &nbsp;·&nbsp; ~6 minutes</p>
+  </header>
+
+  <form id="mtp-form-2" action="[FORMSPREE_ENDPOINT]" method="POST">
+    <input type="hidden" name="_subject" value="MTP Intake: Lead Source Tracker">
+    <input type="hidden" name="form_type" value="lead_tracker">
+
+    <!-- Identity -->
+    <p class="section-label">Your Details</p>
+    <div class="field-row field-row-2">
+      <div class="field">
+        <label for="client_name">Client Name <span class="required-star">*</span></label>
+        <input type="text" id="client_name" name="client_name" placeholder="Your full name" required autocomplete="name">
+      </div>
+      <div class="field">
+        <label for="company_name">Company Name <span class="required-star">*</span></label>
+        <input type="text" id="company_name" name="company_name" placeholder="Business name" required autocomplete="organization">
+      </div>
+    </div>
+
+    <!-- Timeframe -->
+    <hr class="divider">
+    <p class="section-label">Timeframe</p>
+    <div class="field" style="max-width:280px;">
+      <label for="timeframe">Reporting Window</label>
+      <select id="timeframe" name="timeframe">
+        <option value="Last 30 days">Last 30 days</option>
+        <option value="Last 60 days">Last 60 days</option>
+        <option value="Last 90 days" selected>Last 90 days</option>
+      </select>
+    </div>
+
+    <!-- Lead Rows -->
+    <hr class="divider">
+    <p class="section-label">Leads by Channel</p>
+    <p style="font-size:14px;color:var(--text-muted);margin-bottom:20px;">Add every channel generating leads in the period above. Be honest — rough numbers are fine. Up to 8 channels.</p>
+
+    <div class="repeat-wrapper" id="lead-table">
+      <div class="repeat-header">
+        <span>Channel</span>
+        <span>Leads</span>
+        <span>Customers Closed</span>
+        <span>Avg Deal Value</span>
+        <span></span>
+      </div>
+      <div class="repeat-row" id="lead-row-1">
+        <div class="repeat-cell">
+          <input type="text" name="channel_name_1" placeholder="e.g. Instagram" aria-label="Channel name">
+        </div>
+        <div class="repeat-cell">
+          <input type="number" name="leads_1" placeholder="0" min="0" step="1" aria-label="Leads generated" data-leads>
+        </div>
+        <div class="repeat-cell">
+          <input type="number" name="closed_1" placeholder="0" min="0" step="1" aria-label="Customers closed" data-closed>
+        </div>
+        <div class="repeat-cell">
+          <input type="number" name="deal_value_1" placeholder="$0" min="0" step="1" aria-label="Avg deal value" data-deal>
+        </div>
+        <div class="repeat-cell">
+          <button type="button" class="btn-remove-row" onclick="removeLeadRow('lead-row-1')" aria-label="Remove">×</button>
+        </div>
+      </div>
+    </div>
+    <div class="repeat-footer">
+      <button type="button" class="btn-add-row" id="btn-add-lead" onclick="addLeadRow()">+ Add Channel</button>
+      <span id="lead-row-count" style="font-size:12px;color:var(--text-muted);">1 of 8</span>
+    </div>
+
+    <!-- Live insights -->
+    <hr class="divider">
+    <p class="section-label">Live Snapshot</p>
+    <div class="insight-bar">
+      <div class="insight-item">
+        <div class="insight-num" id="total-leads-display">0</div>
+        <div class="insight-lbl">Total Leads</div>
+      </div>
+      <div class="insight-item">
+        <div class="insight-num" id="close-rate-display">—</div>
+        <div class="insight-lbl">Close Rate</div>
+      </div>
+      <div class="insight-item">
+        <div class="insight-num" id="pipeline-display">$0</div>
+        <div class="insight-lbl">Est. Pipeline</div>
+      </div>
+    </div>
+    <input type="hidden" name="total_leads" id="total-leads-hidden">
+    <input type="hidden" name="overall_close_rate" id="close-rate-hidden">
+    <input type="hidden" name="estimated_pipeline" id="pipeline-hidden">
+
+    <!-- Primary channel + challenge -->
+    <hr class="divider">
+    <p class="section-label">Context</p>
+
+    <div class="field">
+      <label for="primary_channel">Primary Revenue Channel <span class="required-star">*</span></label>
+      <input type="text" id="primary_channel" name="primary_channel" placeholder="Where does MOST of your money actually come from?" required>
+    </div>
+
+    <div class="field">
+      <label for="lead_challenge">Biggest Lead Generation Challenge</label>
+      <textarea id="lead_challenge" name="lead_challenge" rows="4" placeholder="What's the #1 thing making it hard to grow your lead volume or quality right now?"></textarea>
+    </div>
+
+    <div class="submit-area">
+      <p class="submit-note">Your numbers stay private. This data is analyzed by your audit team only.</p>
+      <button type="submit" class="btn-submit">
+        Submit Lead Data
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+  </form>
+
+  <div class="success-message" id="success-msg">
+    <div class="success-icon">✓</div>
+    <h3>Lead Data Received</h3>
+    <p>Next: Form 3 — ICP Builder. This one takes a bit more thought. Set aside 10–15 minutes.</p>
+  </div>
+
+  <footer style="display:flex;align-items:center;justify-content:space-between;margin-top:48px;padding-top:24px;border-top:1px solid var(--border);">
+    <span style="font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);">Marketing That Pays</span>
+    <span style="font-size:12px;color:var(--text-muted);">Form 2 of 4</span>
+  </footer>
+
+</div>
+
+<script>
+  let leadRowCount = 1;
+  const MAX_LEAD_ROWS = 8;
+
+  function addLeadRow() {
+    if (leadRowCount >= MAX_LEAD_ROWS) return;
+    leadRowCount++;
+    const table = document.getElementById('lead-table');
+    const div = document.createElement('div');
+    div.className = 'repeat-row';
+    div.id = 'lead-row-' + leadRowCount;
+    div.innerHTML = `
+      <div class="repeat-cell">
+        <input type="text" name="channel_name_${leadRowCount}" placeholder="Channel name" aria-label="Channel name">
+      </div>
+      <div class="repeat-cell">
+        <input type="number" name="leads_${leadRowCount}" placeholder="0" min="0" step="1" aria-label="Leads" data-leads>
+      </div>
+      <div class="repeat-cell">
+        <input type="number" name="closed_${leadRowCount}" placeholder="0" min="0" step="1" aria-label="Closed" data-closed>
+      </div>
+      <div class="repeat-cell">
+        <input type="number" name="deal_value_${leadRowCount}" placeholder="$0" min="0" step="1" aria-label="Avg deal" data-deal>
+      </div>
+      <div class="repeat-cell">
+        <button type="button" class="btn-remove-row" onclick="removeLeadRow('lead-row-${leadRowCount}')" aria-label="Remove">×</button>
+      </div>
+    `;
+    table.appendChild(div);
+    div.querySelectorAll('input[type="number"]').forEach(i => i.addEventListener('input', recalcInsights));
+    updateLeadRowCount();
+    recalcInsights();
+    div.querySelector('input[type="text"]').focus();
+  }
+
+  function removeLeadRow(id) {
+    const rows = document.querySelectorAll('#lead-table .repeat-row');
+    if (rows.length <= 1) return;
+    const el = document.getElementById(id);
+    if (el) el.remove();
+    leadRowCount = document.querySelectorAll('#lead-table .repeat-row').length;
+    updateLeadRowCount();
+    recalcInsights();
+  }
+
+  function updateLeadRowCount() {
+    const current = document.querySelectorAll('#lead-table .repeat-row').length;
+    document.getElementById('lead-row-count').textContent = current + ' of ' + MAX_LEAD_ROWS;
+    document.getElementById('btn-add-lead').disabled = current >= MAX_LEAD_ROWS;
+  }
+
+  function recalcInsights() {
+    let totalLeads = 0, totalClosed = 0, totalPipeline = 0;
+    const rows = document.querySelectorAll('#lead-table .repeat-row');
+    rows.forEach(row => {
+      const leads  = parseFloat(row.querySelector('[data-leads]').value)  || 0;
+      const closed = parseFloat(row.querySelector('[data-closed]').value) || 0;
+      const deal   = parseFloat(row.querySelector('[data-deal]').value)   || 0;
+      totalLeads   += leads;
+      totalClosed  += closed;
+      totalPipeline += closed * deal;
+    });
+
+    const closeRate = totalLeads > 0 ? ((totalClosed / totalLeads) * 100).toFixed(1) + '%' : '—';
+
+    document.getElementById('total-leads-display').textContent = totalLeads.toLocaleString();
+    document.getElementById('close-rate-display').textContent  = closeRate;
+    document.getElementById('pipeline-display').textContent    = '$' + totalPipeline.toLocaleString('en-US', {minimumFractionDigits:0});
+
+    document.getElementById('total-leads-hidden').value   = totalLeads;
+    document.getElementById('close-rate-hidden').value    = closeRate;
+    document.getElementById('pipeline-hidden').value      = totalPipeline;
+  }
+
+  // Attach listeners to initial row
+  document.querySelectorAll('[data-leads],[data-closed],[data-deal]').forEach(i => i.addEventListener('input', recalcInsights));
+
+  // Submit
+  document.getElementById('mtp-form-2').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const form = e.target;
+    const btn = form.querySelector('.btn-submit');
+    btn.textContent = 'Submitting…';
+    btn.disabled = true;
+
+    fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    })
+    .then(res => {
+      if (res.ok) {
+        form.style.display = 'none';
+        document.getElementById('success-msg').classList.add('visible');
+      } else {
+        btn.textContent = 'Submission failed — try again';
+        btn.disabled = false;
+      }
+    })
+    .catch(() => {
+      btn.textContent = 'Network error — try again';
+      btn.disabled = false;
+    });
+  });
+</script>
+</body>
+</html>

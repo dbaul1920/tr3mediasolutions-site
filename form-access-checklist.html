@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Access Checklist — Marketing That Pays</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:           #0D0D0D;
+      --surface:      #161616;
+      --surface-2:    #1E1E1E;
+      --border:       #2A2A2A;
+      --border-focus: #F59E0B;
+      --text:         #F0F0F0;
+      --text-muted:   #888888;
+      --text-label:   #CCCCCC;
+      --accent:       #F59E0B;
+      --accent-dim:   rgba(245,158,11,0.12);
+      --success:      #22C55E;
+      --success-dim:  rgba(34,197,94,0.12);
+      --warn:         #F97316;
+      --warn-dim:     rgba(249,115,22,0.12);
+      --neutral-dim:  rgba(255,255,255,0.04);
+      --font:         'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --radius:       6px;
+      --radius-lg:    10px;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      font-size: 16px;
+      line-height: 1.6;
+      min-height: 100vh;
+      padding: 48px 24px 80px;
+    }
+
+    .form-shell { max-width: 720px; margin: 0 auto; }
+
+    .form-header { margin-bottom: 48px; }
+    .form-badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-dim);
+      border: 1px solid rgba(245,158,11,0.3);
+      border-radius: 4px;
+      padding: 4px 10px;
+      margin-bottom: 20px;
+    }
+    .form-title {
+      font-size: clamp(26px, 4vw, 36px);
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 14px;
+    }
+    .form-desc {
+      font-size: 15px;
+      color: var(--text-muted);
+      max-width: 560px;
+      line-height: 1.7;
+    }
+    .form-step {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-top: 12px;
+    }
+
+    .divider { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 24px;
+    }
+
+    .field { margin-bottom: 28px; }
+    .field-row { display: grid; gap: 16px; }
+    .field-row-2 { grid-template-columns: 1fr 1fr; }
+
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-label);
+      letter-spacing: 0.02em;
+      margin-bottom: 8px;
+    }
+    .label-hint { font-weight: 400; color: var(--text-muted); font-size: 12px; margin-left: 6px; }
+    .label-guidance {
+      display: block;
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--text-muted);
+      margin-top: 4px;
+      margin-bottom: 8px;
+    }
+    .required-star { color: var(--accent); margin-left: 2px; }
+
+    input[type="text"],
+    input[type="number"],
+    input[type="url"],
+    select,
+    textarea {
+      width: 100%;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--text);
+      font-family: var(--font);
+      font-size: 15px;
+      padding: 12px 14px;
+      transition: border-color 0.15s, box-shadow 0.15s;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: var(--border-focus);
+      box-shadow: 0 0 0 3px rgba(245,158,11,0.12);
+    }
+    input::placeholder, textarea::placeholder { color: #444; }
+
+    select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 36px;
+      cursor: pointer;
+    }
+    select option { background: #1E1E1E; }
+    textarea { resize: vertical; min-height: 90px; }
+
+    /* ── Access Checklist Items ── */
+    .access-list { display: flex; flex-direction: column; gap: 0; border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
+
+    .access-item {
+      border-bottom: 1px solid var(--border);
+      padding: 0;
+    }
+    .access-item:last-child { border-bottom: none; }
+
+    .access-item-header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 20px;
+    }
+
+    .access-tool-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-label);
+    }
+    .access-tool-desc {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .access-options {
+      display: flex;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+
+    .access-radio { display: none; }
+    .access-btn {
+      padding: 6px 12px;
+      font-size: 12px;
+      font-weight: 600;
+      border-radius: 100px;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.15s;
+      white-space: nowrap;
+      user-select: none;
+      line-height: 1.4;
+    }
+    .access-btn:hover { border-color: #555; color: var(--text); }
+
+    /* Have it + share */
+    .access-radio.opt-yes:checked ~ .access-options .btn-yes,
+    label.btn-yes:has(~ input.access-radio.opt-yes:checked) { /* fallback handled by JS */ }
+
+    /* State colors driven by JS class on .access-item */
+    .access-item.state-yes  { background: linear-gradient(90deg, rgba(34,197,94,0.04) 0%, transparent 100%); }
+    .access-item.state-no   { background: transparent; }
+    .access-item.state-cant { background: linear-gradient(90deg, rgba(249,115,22,0.04) 0%, transparent 100%); }
+
+    .btn-yes  { }
+    .btn-cant { }
+    .btn-no   { }
+
+    .access-item.state-yes  .btn-yes  { background: var(--success-dim); border-color: rgba(34,197,94,0.5); color: var(--success); }
+    .access-item.state-cant .btn-cant { background: var(--warn-dim);    border-color: rgba(249,115,22,0.5); color: var(--warn); }
+    .access-item.state-no   .btn-no   { background: var(--neutral-dim); border-color: #444; color: var(--text); }
+
+    /* Conditional name field */
+    .access-name-field {
+      display: none;
+      padding: 0 20px 16px;
+    }
+    .access-name-field.visible { display: block; }
+    .access-name-field input {
+      font-size: 14px;
+      padding: 9px 12px;
+    }
+
+    /* ── Progress indicator ── */
+    .access-progress {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+    .progress-bar-wrap {
+      flex: 1;
+      height: 4px;
+      background: var(--border);
+      border-radius: 2px;
+      margin: 0 12px;
+    }
+    .progress-bar-fill {
+      height: 100%;
+      background: var(--accent);
+      border-radius: 2px;
+      width: 0%;
+      transition: width 0.3s;
+    }
+
+    .submit-area { margin-top: 40px; padding-top: 40px; border-top: 1px solid var(--border); }
+    .submit-note { font-size: 13px; color: var(--text-muted); margin-bottom: 20px; line-height: 1.6; }
+
+    .btn-submit {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: var(--accent);
+      color: #000;
+      border: none;
+      border-radius: var(--radius);
+      font-family: var(--font);
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      padding: 15px 32px;
+      cursor: pointer;
+      transition: background 0.15s, transform 0.1s;
+      width: 100%;
+    }
+    .btn-submit:hover { background: #FBBF24; }
+    .btn-submit:active { transform: scale(0.99); }
+
+    .success-message {
+      display: none;
+      background: var(--surface);
+      border: 1px solid rgba(34,197,94,0.3);
+      border-radius: var(--radius-lg);
+      padding: 48px 40px;
+      text-align: center;
+      margin-top: 32px;
+    }
+    .success-message.visible { display: block; }
+    .success-icon { font-size: 48px; margin-bottom: 16px; }
+    .success-message h3 { font-size: 22px; font-weight: 700; color: var(--success); margin-bottom: 10px; }
+    .success-message p { color: var(--text-muted); font-size: 15px; max-width: 420px; margin: 0 auto; line-height: 1.7; }
+    .success-message .next-step {
+      display: inline-block;
+      margin-top: 24px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: 0.04em;
+    }
+
+    @media (max-width: 580px) {
+      .field-row-2 { grid-template-columns: 1fr; }
+      .access-item-header { grid-template-columns: 1fr; gap: 10px; }
+      .access-options { flex-wrap: wrap; }
+      .access-btn { font-size: 11px; padding: 5px 10px; }
+    }
+  </style>
+</head>
+<body>
+<div class="form-shell">
+
+  <header class="form-header">
+    <div class="form-badge">Marketing That Pays — Client Intake</div>
+    <h1 class="form-title">Access Checklist</h1>
+    <p class="form-desc">We need to know what tools you have and what we can get into. This maps your current infrastructure so we can assess gaps and build your audit plan.</p>
+    <p class="form-step">Form 4 of 4 &nbsp;·&nbsp; ~5 minutes</p>
+  </header>
+
+  <form id="mtp-form-4" action="[FORMSPREE_ENDPOINT]" method="POST">
+    <input type="hidden" name="_subject" value="MTP Intake: Access Checklist">
+    <input type="hidden" name="form_type" value="access_checklist">
+
+    <!-- Identity -->
+    <p class="section-label">Your Details</p>
+    <div class="field-row field-row-2">
+      <div class="field">
+        <label for="client_name">Client Name <span class="required-star">*</span></label>
+        <input type="text" id="client_name" name="client_name" placeholder="Your full name" required autocomplete="name">
+      </div>
+      <div class="field">
+        <label for="company_name">Company Name <span class="required-star">*</span></label>
+        <input type="text" id="company_name" name="company_name" placeholder="Business name" required autocomplete="organization">
+      </div>
+    </div>
+
+    <div class="field-row field-row-2">
+      <div class="field">
+        <label for="website_url">Website URL <span class="required-star">*</span></label>
+        <input type="url" id="website_url" name="website_url" placeholder="https://yoursite.com" required autocomplete="url">
+      </div>
+      <div class="field">
+        <label for="website_platform">Website Platform</label>
+        <select id="website_platform" name="website_platform">
+          <option value="">Select platform</option>
+          <option>WordPress</option>
+          <option>Squarespace</option>
+          <option>Webflow</option>
+          <option>Wix</option>
+          <option>Shopify</option>
+          <option>Custom / Coded</option>
+          <option>Other</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Access Section -->
+    <hr class="divider">
+    <p class="section-label">Tool Access</p>
+    <p style="font-size:14px;color:var(--text-muted);margin-bottom:20px;">For each tool, select your access status. "Can Share" means you can give us read access or add us as a user.</p>
+
+    <div class="access-progress">
+      <span id="progress-text">0 of 8 confirmed</span>
+      <div class="progress-bar-wrap"><div class="progress-bar-fill" id="progress-fill"></div></div>
+      <span id="progress-pct">0%</span>
+    </div>
+
+    <div class="access-list" id="access-list">
+
+      <!-- GA4 -->
+      <div class="access-item" id="item-ga4" data-tool="ga4">
+        <div class="access-item-header">
+          <div>
+            <div class="access-tool-name">Google Analytics 4</div>
+            <div class="access-tool-desc">We'll review traffic sources, events, and conversion tracking</div>
+          </div>
+          <div class="access-options">
+            <button type="button" class="access-btn btn-yes"  onclick="setAccess('ga4','yes')">Have it + can share</button>
+            <button type="button" class="access-btn btn-cant" onclick="setAccess('ga4','cant')">Have it, can't share</button>
+            <button type="button" class="access-btn btn-no"   onclick="setAccess('ga4','no')">Don't have it</button>
+          </div>
+        </div>
+        <input type="hidden" name="access_ga4" id="val-ga4">
+      </div>
+
+      <!-- Search Console -->
+      <div class="access-item" id="item-gsc" data-tool="gsc">
+        <div class="access-item-header">
+          <div>
+            <div class="access-tool-name">Google Search Console</div>
+            <div class="access-tool-desc">We'll check indexing, search queries, and SEO opportunities</div>
+          </div>
+          <div class="access-options">
+            <button type="button" class="access-btn btn-yes"  onclick="setAccess('gsc','yes')">Have it + can share</button>
+            <button type="button" class="access-btn btn-cant" onclick="setAccess('gsc','cant')">Have it, can't share</button>
+            <button type="button" class="access-btn btn-no"   onclick="setAccess('gsc','no')">Don't have it</button>
+          </div>
+        </div>
+        <input type="hidden" name="access_gsc" id="val-gsc">
+      </div>
+
+      <!-- CRM -->
+      <div class="access-item" id="item-crm" data-tool="crm">
+        <div class="access-item-header">
+          <div>
+            <div class="access-tool-name">CRM</div>
+            <div class="access-tool-desc">We'll look at pipeline health, lead stages, and follow-up gaps</div>
+          </div>
+          <div class="access-options">
+            <button type="button" class="access-btn btn-yes"  onclick="setAccess('crm','yes')">Have it + can share</button>
+            <button type="button" class="access-btn btn-cant" onclick="setAccess('crm','cant')">Have it, can't share</button>
+            <button type="button" class="access-btn btn-no"   onclick="setAccess('crm','no')">Don't have it</button>
+          </div>
+        </div>
+        <input type="hidden" name="access_crm" id="val-crm">
+        <div class="access-name-field" id="name-crm">
+          <input type="text" name="crm_name" placeholder="Which CRM? (e.g. HubSpot, Go High Level, Salesforce)">
+        </div>
+      </div>
+
+      <!-- Email Platform -->
+      <div class="access-item" id="item-email" data-tool="email">
+        <div class="access-item-header">
+          <div>
+            <div class="access-tool-name">Email Marketing Platform</div>
+            <div class="access-tool-desc">We'll review list health, open rates, and automation sequences</div>
+          </div>
+          <div class="access-options">
+            <button type="button" class="access-btn btn-yes"  onclick="setAccess('email','yes')">Have it + can share</button>
+            <button type="button" class="access-btn btn-cant" onclick="setAccess('email','cant')">Have it, can't share</button>
+            <button type="button" class="access-btn btn-no"   onclick="setAccess('email','no')">Don't have it</button>
+          </div>
+        </div>
+        <input type="hidden" name="access_email_platform" id="val-email">
+        <div class="access-name-field" id="name-email">
+          <input type="text" name="email_platform_name" placeholder="Which platform? (e.g. Klaviyo, Mailchimp, ActiveCampaign)">
+        </div>
+      </div>
+
+      <!-- Paid Ads -->
+      <div class="access-item" id="item-ads" data-tool="ads">
+        <div class="access-item-header">
+          <div>
+            <div class="access-tool-name">Paid Ads Account</div>
+            <div class="access-tool-desc">Google Ads, Meta Ads Manager, or others — we'll audit performance</div>
+          </div>
+          <div class="access-options">
+            <button type="button" class="access-btn btn-yes"  onclick="setAccess('ads','yes')">Have it + can share</button>
+            <button type="button" class="access-btn btn-cant" onclick="setAccess('ads','cant')">Have it, can't share</button>
+            <button type="button" class="access-btn btn-no"   onclick="setAccess('ads','no')">Don't have it</button>
+          </div>
+        </div>
+        <input type="hidden" name="access_paid_ads" id="val-ads">
+        <div class="access-name-field" id="name-ads">
+          <input type="text" name="paid_ads_platforms" placeholder="Which platforms? (e.g. Google + Meta, just Meta)">
+        </div>
+      </div>
+
+      <!-- Scheduling -->
+      <div class="access-item" id="item-sched" data-tool="sched">
+        <div class="access-item-header">
+          <div>
+            <div class="access-tool-name">Scheduling Tool</div>
+            <div class="access-tool-desc">Calendly, Acuity, Cal.com, etc.</div>
+          </div>
+          <div class="access-options">
+            <button type="button" class="access-btn btn-yes"  onclick="setAccess('sched','yes')">Have it + can share</button>
+            <button type="button" class="access-btn btn-cant" onclick="setAccess('sched','cant')">Have it, can't share</button>
+            <button type="button" class="access-btn btn-no"   onclick="setAccess('sched','no')">Don't have it</button>
+          </div>
+        </div>
+        <input type="hidden" name="access_scheduling" id="val-sched">
+        <div class="access-name-field" id="name-sched">
+          <input type="text" name="scheduling_tool_name" placeholder="Which tool? (e.g. Calendly, Acuity)">
+        </div>
+      </div>
+
+      <!-- Proposals / Invoicing -->
+      <div class="access-item" id="item-prop" data-tool="prop">
+        <div class="access-item-header">
+          <div>
+            <div class="access-tool-name">Proposal / Invoicing Tool</div>
+            <div class="access-tool-desc">Dubsado, HoneyBook, Bonsai, QuickBooks, etc.</div>
+          </div>
+          <div class="access-options">
+            <button type="button" class="access-btn btn-yes"  onclick="setAccess('prop','yes')">Have it + can share</button>
+            <button type="button" class="access-btn btn-cant" onclick="setAccess('prop','cant')">Have it, can't share</button>
+            <button type="button" class="access-btn btn-no"   onclick="setAccess('prop','no')">Don't have it</button>
+          </div>
+        </div>
+        <input type="hidden" name="access_proposals" id="val-prop">
+        <div class="access-name-field" id="name-prop">
+          <input type="text" name="proposal_tool_name" placeholder="Which tool? (e.g. Dubsado, HoneyBook)">
+        </div>
+      </div>
+
+      <!-- Project Management -->
+      <div class="access-item" id="item-pm" data-tool="pm">
+        <div class="access-item-header">
+          <div>
+            <div class="access-tool-name">Project Management Tool</div>
+            <div class="access-tool-desc">Notion, Asana, Monday, ClickUp, etc.</div>
+          </div>
+          <div class="access-options">
+            <button type="button" class="access-btn btn-yes"  onclick="setAccess('pm','yes')">Have it + can share</button>
+            <button type="button" class="access-btn btn-cant" onclick="setAccess('pm','cant')">Have it, can't share</button>
+            <button type="button" class="access-btn btn-no"   onclick="setAccess('pm','no')">Don't have it</button>
+          </div>
+        </div>
+        <input type="hidden" name="access_pm" id="val-pm">
+        <div class="access-name-field" id="name-pm">
+          <input type="text" name="pm_tool_name" placeholder="Which tool? (e.g. Notion, ClickUp)">
+        </div>
+      </div>
+
+    </div><!-- /access-list -->
+
+    <!-- Tracking context -->
+    <hr class="divider">
+    <p class="section-label">How You Track</p>
+
+    <div class="field">
+      <label for="track_leads">How do you currently track leads?</label>
+      <span class="label-guidance">Walk us through your actual process — spreadsheet, CRM, sticky notes, whatever it is.</span>
+      <textarea id="track_leads" name="track_leads" rows="3" placeholder="e.g. We track new inquiries in a Google Sheet — name, date, source, status. Nothing automated."></textarea>
+    </div>
+
+    <div class="field">
+      <label for="track_revenue">How do you currently track revenue by source?</label>
+      <span class="label-guidance">Do you know which marketing channel brought in each sale? How?</span>
+      <textarea id="track_revenue" name="track_revenue" rows="3" placeholder="e.g. We ask 'How did you hear about us?' in discovery calls but don't record it anywhere consistently."></textarea>
+    </div>
+
+    <div class="field">
+      <label for="stack_gap">Biggest gap in your current tech stack?</label>
+      <span class="label-guidance">What's the most frustrating limitation or missing piece in your tools right now?</span>
+      <textarea id="stack_gap" name="stack_gap" rows="3" placeholder="e.g. Nothing talks to anything else. Our CRM, email, and scheduling tools are totally disconnected."></textarea>
+    </div>
+
+    <div class="submit-area">
+      <p class="submit-note">This is the final form. Once submitted, your audit team has everything needed to begin the analysis — you'll hear back within 2 business days.</p>
+      <button type="submit" class="btn-submit" id="submit-btn">
+        Submit Access Checklist
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+  </form>
+
+  <div class="success-message" id="success-msg">
+    <div class="success-icon">✓</div>
+    <h3>All Forms Complete</h3>
+    <p>Your intake package is in. Your audit team will review everything and reach out within 2 business days with next steps.</p>
+    <span class="next-step">Marketing That Pays — Intake Complete</span>
+  </div>
+
+  <footer style="display:flex;align-items:center;justify-content:space-between;margin-top:48px;padding-top:24px;border-top:1px solid var(--border);">
+    <span style="font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);">Marketing That Pays</span>
+    <span style="font-size:12px;color:var(--text-muted);">Form 4 of 4</span>
+  </footer>
+
+</div>
+
+<script>
+  // Tools that reveal a name-entry field when "yes" or "cant" is selected
+  const nameFieldTools = ['crm', 'email', 'ads', 'sched', 'prop', 'pm'];
+  const totalTools = 8;
+  let confirmedCount = 0;
+  const accessStates = {};
+
+  function setAccess(tool, state) {
+    const item   = document.getElementById('item-' + tool);
+    const hidden = document.getElementById('val-' + tool);
+
+    // Remove all state classes
+    item.classList.remove('state-yes', 'state-cant', 'state-no');
+
+    // Was previously confirmed? Track count properly
+    const wasConfirmed = !!accessStates[tool];
+    const isNowConfirmed = true;
+
+    accessStates[tool] = state;
+    hidden.value = state === 'yes' ? 'Have it + can share' : state === 'cant' ? 'Have it, cannot share' : 'Do not have it';
+
+    if (state === 'yes')  item.classList.add('state-yes');
+    if (state === 'cant') item.classList.add('state-cant');
+    if (state === 'no')   item.classList.add('state-no');
+
+    // Show/hide name field (for yes or cant on name-field tools)
+    if (nameFieldTools.includes(tool)) {
+      const nameField = document.getElementById('name-' + tool);
+      if (nameField) {
+        if (state === 'yes' || state === 'cant') {
+          nameField.classList.add('visible');
+          nameField.querySelector('input').focus();
+        } else {
+          nameField.classList.remove('visible');
+        }
+      }
+    }
+
+    updateProgress();
+  }
+
+  function updateProgress() {
+    const count = Object.keys(accessStates).length;
+    const pct   = Math.round((count / totalTools) * 100);
+    document.getElementById('progress-text').textContent = count + ' of ' + totalTools + ' confirmed';
+    document.getElementById('progress-pct').textContent  = pct + '%';
+    document.getElementById('progress-fill').style.width = pct + '%';
+  }
+
+  // Form submit
+  document.getElementById('mtp-form-4').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const form = e.target;
+    const btn  = document.getElementById('submit-btn');
+    btn.textContent = 'Submitting…';
+    btn.disabled = true;
+
+    fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    })
+    .then(res => {
+      if (res.ok) {
+        form.style.display = 'none';
+        document.getElementById('success-msg').classList.add('visible');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        btn.textContent = 'Submission failed — try again';
+        btn.disabled = false;
+      }
+    })
+    .catch(() => {
+      btn.textContent = 'Network error — try again';
+      btn.disabled = false;
+    });
+  });
+</script>
+</body>
+</html>
