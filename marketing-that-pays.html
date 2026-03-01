@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marketing That Pays — Revenue Architecture for $150K+ Founders</title>
+  <meta name="description" content="Marketing That Pays is an accelerated 4-week intensive that gives $150K+ founders the exact revenue architecture to cut wasted spend, build a measurable pipeline, and turn marketing into a compounding asset.">
+  <meta property="og:title" content="Marketing That Pays — Build a Revenue System That Pays for Itself">
+  <meta property="og:description" content="4 weeks. 6 modules. A complete revenue system. $19,500 in value for $5,000. Built for $150K+ business owners who are done guessing.">
+  <meta property="og:image" content="assets/images/dom-headshot.jpg">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="TR3 Media Solutions">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/logos/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/logos/apple-touch-icon.png">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* ============================================
+       MTP PAGE-SPECIFIC STYLES
+       ============================================ */
+
+    /* 3.1 — Minimal LP footer */
+    .site-footer--minimal {
+      background: var(--color-footer-dark);
+      padding: var(--space-2xl) 0;
+      text-align: center;
+    }
+    .site-footer--minimal p {
+      color: rgba(255,255,255,0.5);
+      font-size: var(--size-sm);
+      margin-bottom: var(--space-sm);
+    }
+    .site-footer--minimal nav {
+      display: flex;
+      justify-content: center;
+      gap: var(--space-lg);
+      flex-wrap: wrap;
+    }
+    .site-footer--minimal nav a {
+      color: rgba(255,255,255,0.5);
+      font-size: var(--size-sm);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .site-footer--minimal nav a:hover {
+      color: var(--color-white);
+    }
+
+    /* 3.3 — Sticky enrollment CTA */
+    .mtp-sticky {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      z-index: 999;
+      background: var(--color-green-dark);
+      padding: var(--space-sm) 0;
+      transform: translateY(100%);
+      transition: transform 0.3s ease;
+      display: flex;
+      align-items: center;
+    }
+    .mtp-sticky--visible {
+      transform: translateY(0);
+    }
+    .mtp-sticky--hidden {
+      transform: translateY(100%) !important;
+    }
+    .mtp-sticky .container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-lg);
+    }
+    .mtp-sticky__text {
+      color: var(--color-white);
+      font-size: var(--size-sm);
+      font-weight: 600;
+      margin: 0;
+    }
+    .mtp-sticky__close {
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.6);
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 0 var(--space-xs);
+      line-height: 1;
+    }
+    .mtp-sticky__close:hover {
+      color: var(--color-white);
+    }
+    @media (max-width: 768px) {
+      .mtp-sticky .container {
+        flex-wrap: wrap;
+        gap: var(--space-sm);
+      }
+      .mtp-sticky__text {
+        font-size: var(--size-xs);
+        flex: 1;
+      }
+    }
+
+    /* 3.4 — Anchor navigation */
+    .lp-anchor-nav {
+      position: sticky;
+      top: 0;
+      z-index: 90;
+      background: rgba(245,240,232,0.95);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      padding: var(--space-sm) 0;
+      display: flex;
+      justify-content: center;
+      gap: var(--space-lg);
+      border-bottom: 1px solid var(--color-gray-200);
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .lp-anchor-nav a {
+      color: var(--color-gray-600);
+      font-size: var(--size-xs);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      text-decoration: none;
+      white-space: nowrap;
+      padding: var(--space-xs) 0;
+      transition: color 0.2s ease;
+    }
+    .lp-anchor-nav a:hover {
+      color: var(--color-green-dark);
+    }
+    @media (max-width: 768px) {
+      .lp-anchor-nav {
+        justify-content: flex-start;
+        padding: var(--space-sm) var(--space-md);
+        gap: var(--space-md);
+      }
+    }
+
+    /* 3.5 — Guarantee visual box */
+    .lp-guarantee {
+      border: 2px solid var(--color-green-dark);
+      border-radius: 8px;
+      padding: var(--space-2xl);
+      position: relative;
+    }
+    .lp-guarantee::before {
+      content: "90-Day Guarantee";
+      position: absolute;
+      top: -14px;
+      left: 24px;
+      background: var(--color-cream);
+      padding: 0 12px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-green-dark);
+    }
+
+    /* 1.5 — Micro case study card */
+    .lp-case-micro {
+      background: var(--color-black);
+      border-left: 4px solid var(--color-green-dark);
+      border-radius: 8px;
+      padding: var(--space-xl) var(--space-2xl);
+      margin-top: var(--space-2xl);
+      color: var(--color-white);
+    }
+    .lp-case-micro__label {
+      font-size: var(--size-xs);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: var(--space-md);
+    }
+    .lp-case-micro__list {
+      list-style: none;
+      padding: 0;
+    }
+    .lp-case-micro__list li {
+      padding: var(--space-xs) 0;
+      font-size: var(--size-sm);
+      color: rgba(255,255,255,0.8);
+      line-height: 1.6;
+    }
+    .lp-case-micro__list li strong {
+      color: var(--color-white);
+    }
+
+    /* 4.1 — Brand separation note */
+    .lp-meet__separator-note {
+      font-size: var(--size-sm);
+      color: var(--color-gray-400);
+      font-style: italic;
+      margin-top: var(--space-md);
+      line-height: 1.6;
+    }
+
+    /* 2.6 — Guarantee terms link */
+    .lp-guarantee__terms-link {
+      display: inline-block;
+      margin-top: var(--space-md);
+      font-size: var(--size-sm);
+      color: var(--color-green-dark);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .lp-guarantee__terms-link:hover {
+      text-decoration: underline;
+    }
+
+    /* 1.2 — Hero micro sourcing */
+    .lp-hero__micro-source {
+      font-size: var(--size-xs);
+      color: rgba(255,255,255,0.45);
+      margin-top: var(--space-xs);
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <!-- HEADER — 3.1 Stripped to LP mode -->
+  <header class="site-header" role="banner">
+    <div class="container">
+      <a href="index.html" class="site-header__logo" aria-label="TR3 Media Solutions — Home">
+        <img src="assets/logos/tr3-logo-white.svg" alt="TR3 Media Solutions">
+      </a>
+      <nav class="site-nav" role="navigation" aria-label="Primary navigation">
+        <div class="site-nav__cta">
+          <a href="#enroll" class="btn btn--header">Enroll Now <span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main id="main">
+
+    <!-- ============================================
+         SECTION 1 — HERO (2.1 rewrite)
+         ============================================ -->
+    <section class="lp-hero" aria-labelledby="lp-hero-heading">
+      <div class="container">
+        <p class="lp-hero__eyebrow">For $150K+ Business Owners Ready to Replace Guesswork with a System</p>
+        <h1 class="lp-hero__headline" id="lp-hero-heading">Build a Revenue System That Pays for Itself.</h1>
+        <p class="lp-hero__headline-sub">In 4 weeks.</p>
+        <p class="lp-hero__body">Marketing That Pays is an accelerated 4-week intensive that gives $150K+ founders the exact revenue architecture to cut wasted spend, build a measurable pipeline, and turn marketing from an expense into a compounding asset.</p>
+        <p class="lp-hero__body">If you complete the program and implement the system &mdash; your marketing pays for itself. That's not a pitch. That's the math.</p>
+        <!-- 1.2 — Source the $14,400/year claim at first use -->
+        <p class="lp-hero__micro-source">Based on the average $1,200/month in wasted spend clients identify during Module 1 &mdash; multiplied across 12 months.</p>
+        <div class="lp-hero__actions">
+          <a href="https://buy.stripe.com/6oU4gs9MUaaX2FH12d6Zy00" class="btn btn--primary btn--large">Enroll Now &mdash; Strategy + Execution &mdash; $5,000 <span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
+          <a href="https://buy.stripe.com/4gMdR28IQ82P6VX9yJ6Zy01" class="btn btn--outline-white btn--large">Enroll &mdash; Strategy Only &mdash; $3,000</a>
+        </div>
+        <!-- 2.4 — Rewritten scarcity line -->
+        <p class="lp-hero__micro">Cohorts are intentionally capped at 8&ndash;10 businesses to maintain implementation depth and direct access during group calls.</p>
+        <p class="lp-hero__micro">Secure checkout via Stripe.</p>
+      </div>
+    </section>
+
+    <!-- 3.4 — Anchor navigation -->
+    <nav class="lp-anchor-nav" aria-label="Page sections">
+      <a href="#pain-heading">The Problem</a>
+      <a href="#modules-heading">What's Inside</a>
+      <a href="#levels">Pricing</a>
+      <a href="#guarantee-heading">Guarantee</a>
+      <a href="#faq-heading">FAQ</a>
+      <a href="#enroll">Enroll</a>
+    </nav>
+
+    <!-- ============================================
+         SECTION 2 — THE PAIN MIRROR (2.2 headline rewrite)
+         ============================================ -->
+    <section class="lp-section" aria-labelledby="pain-heading">
+      <div class="container">
+        <div class="lp-section__header">
+          <span class="section__eyebrow">The Real Cost of Doing Nothing</span>
+          <h2 id="pain-heading">If You Can't Measure It, You Can't Scale It.</h2>
+        </div>
+        <ul class="pain-list">
+          <li><strong>$3K&ndash;$4K/month on marketing</strong> and you can't point to a single client it brought in. That's $36K&ndash;$48K/year &mdash; gone.</li>
+          <li><strong>You've hired agencies</strong> that delivered beautiful decks, slick social posts, and zero pipeline. You paid for aesthetics, not outcomes.</li>
+          <li><strong>15&ndash;20 hours/week</strong> on marketing tasks. At your rate, that's $75K+/year in lost productivity doing work that isn't working.</li>
+          <li><strong>Your website doesn't convert.</strong> People visit. People leave. It doesn't reflect the quality of what you actually deliver.</li>
+          <li><strong>Your competitor &mdash; with a worse product &mdash;</strong> is fully booked, charging more than you, and growing. The difference isn't talent. It's their system.</li>
+          <li><strong>You're making decisions based on hope,</strong> not data. No dashboards. No conversion tracking. No idea what's actually driving revenue.</li>
+        </ul>
+        <div class="lp-roi-callout">
+          <p class="lp-roi-callout__text">Add it up: <strong>$48K in wasted spend + $75K in lost time = $123K/year you're leaving on the table.</strong> This program costs $5,000. Do the math.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         SECTION 3 — THE PROMISE (BEFORE / AFTER)
+         1.3 — Replace "43+ qualified conversations"
+         ============================================ -->
+    <section class="lp-section lp-section--tinted" aria-labelledby="promise-heading">
+      <div class="container">
+        <div class="lp-section__header">
+          <span class="section__eyebrow">The Transformation</span>
+          <h2 id="promise-heading">Here's What Changes in 4 Weeks</h2>
+          <p class="section__subtitle" style="margin-top: var(--space-md);">This isn't theory. This isn't "inspiration." This is a system you build &mdash; with me &mdash; that starts producing results before the program ends.</p>
+        </div>
+
+        <div class="before-after">
+          <div class="before-after__col before-after__col--before">
+            <div class="before-after__label">Where You Are Now</div>
+            <ul class="before-after__list">
+              <li>$4K/month in spend &mdash; can't track a single dollar to revenue</li>
+              <li>15&ndash;20 hrs/week on the marketing hamster wheel</li>
+              <li>~12 qualified conversations/month (if that)</li>
+              <li>No pipeline visibility &mdash; revenue is a guessing game</li>
+              <li>Decisions based on gut feelings, not data</li>
+              <li>Every month feels like starting over from zero</li>
+            </ul>
+          </div>
+          <div class="before-after__col before-after__col--after">
+            <div class="before-after__label">Where You'll Be in 30 Days</div>
+            <ul class="before-after__list">
+              <li>Cut $1,200+/month in wasted spend ($14,400/year saved)</li>
+              <li>5 focused hours/week with a system doing the rest</li>
+              <li>A predictable weekly lead flow you can forecast, plan around, and replicate</li>
+              <li>Predictable revenue forecast you can actually plan around</li>
+              <li>Dashboards showing exactly what's working and what to cut</li>
+              <li>A compounding system that gets better every month</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="lp-roi-callout lp-roi-callout--centered" style="margin-top: var(--space-2xl);">
+          <p class="lp-roi-callout__text">The $14,400/year in recovered waste alone pays for the program <strong>nearly 3x over.</strong> Everything else is upside.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         SECTION 4 — HOW IT WORKS
+         ============================================ -->
+    <section class="lp-section" aria-labelledby="how-heading">
+      <div class="container">
+        <div class="lp-section__header">
+          <span class="section__eyebrow">How It Works</span>
+          <h2 id="how-heading">From Scattered to Systematic in 4 Weeks</h2>
+        </div>
+
+        <div class="lp-timeline">
+          <div class="lp-timeline__phase">
+            <div class="lp-timeline__label">Weeks 1&ndash;2</div>
+            <h3 class="lp-timeline__title">Build the Machine</h3>
+            <p class="lp-timeline__text">We audit your spend, identify the waste, sharpen your positioning, and build the conversion infrastructure. You'll know exactly where every dollar is going &mdash; and what to cut immediately.</p>
+          </div>
+          <div class="lp-timeline__phase">
+            <div class="lp-timeline__label">Weeks 3&ndash;4</div>
+            <h3 class="lp-timeline__title">Launch &amp; Optimize</h3>
+            <p class="lp-timeline__text">We activate your campaigns, build your sales system, and set up the dashboards so you can see what's working in real time. Group calls + community keep you accountable and moving.</p>
+          </div>
+          <div class="lp-timeline__phase">
+            <div class="lp-timeline__label">Month 2+</div>
+            <h3 class="lp-timeline__title">Scale What Works</h3>
+            <p class="lp-timeline__text">Stay in the community ($50/month, cancel anytime), keep refining your system, and watch it compound. Or add premium 1-on-1 time with Dom for $1,000.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         SECTION 5 — WHAT'S INSIDE: THE 6 MODULES
+         ============================================ -->
+    <section class="lp-section lp-section--tinted" aria-labelledby="modules-heading">
+      <div class="container">
+        <div class="lp-section__header--centered">
+          <span class="section__eyebrow">What You Get</span>
+          <h2 id="modules-heading">6 Modules. 4 Weeks. A Complete Conversion System.</h2>
+          <p class="section__subtitle" style="margin-top: var(--space-md);">Every module is designed to produce a specific, measurable outcome. No filler. No fluff. Just the system.</p>
+        </div>
+
+        <div class="lp-modules">
+          <div class="lp-module">
+            <div class="lp-module__number">01</div>
+            <div class="lp-module__title">The Revenue Audit</div>
+            <p class="lp-module__text">We map every dollar you're spending and identify exactly what's producing revenue &mdash; and what isn't. Most clients find $1K&ndash;$3K/month in waste in this module alone.</p>
+            <p class="lp-module__value">Standalone value: $3,000</p>
+          </div>
+          <div class="lp-module">
+            <div class="lp-module__number">02</div>
+            <div class="lp-module__title">Strategic Clarity &amp; Positioning</div>
+            <p class="lp-module__text">We define your ideal client, sharpen your messaging, and align your brand so it attracts buyers &mdash; not just followers. This is the difference between "posting content" and generating demand.</p>
+            <p class="lp-module__value">Standalone value: $2,500</p>
+          </div>
+          <div class="lp-module">
+            <div class="lp-module__number">03</div>
+            <div class="lp-module__title">Conversion Infrastructure</div>
+            <p class="lp-module__text">Dashboards, tracking, lead capture, attribution. We build the system so every marketing move is measurable and every dollar is accountable from day one.</p>
+            <p class="lp-module__value">Standalone value: $4,000</p>
+          </div>
+          <div class="lp-module">
+            <div class="lp-module__number">04</div>
+            <div class="lp-module__title">Revenue-Driven Campaigns</div>
+            <p class="lp-module__text">Campaigns built around conversion &mdash; not vanity metrics. Every tactic has a revenue purpose. Every asset has a job. Content for content's sake is over.</p>
+            <p class="lp-module__value">Standalone value: $3,500</p>
+          </div>
+          <div class="lp-module">
+            <div class="lp-module__number">05</div>
+            <div class="lp-module__title">Sales System Activation</div>
+            <p class="lp-module__text">A repeatable sales process: qualification framework, discovery call structure, objection handling, follow-up sequences. Leads come in &mdash; clients come out.</p>
+            <p class="lp-module__value">Standalone value: $2,500</p>
+          </div>
+          <div class="lp-module">
+            <div class="lp-module__number">06</div>
+            <div class="lp-module__title">Optimize &amp; Scale</div>
+            <p class="lp-module__text">We review what's working, cut what isn't, and set up the compounding system so your marketing gets more efficient over time &mdash; not more expensive.</p>
+            <p class="lp-module__value">Standalone value: $2,000</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         SECTION 6 — THE VALUE STACK (1.4 — fixed circular math)
+         ============================================ -->
+    <section class="lp-section lp-section--dark" aria-labelledby="value-heading">
+      <div class="container">
+        <div class="lp-section__header--centered">
+          <span class="section__eyebrow">The Real Value</span>
+          <h2 id="value-heading">Here's Everything You're Getting</h2>
+          <p class="section__subtitle" style="margin-top: var(--space-md); color: rgba(255,255,255,0.65);">If you hired someone to do each of these individually, here's what you'd pay.</p>
+        </div>
+
+        <div class="lp-value-stack">
+          <div class="lp-value-item">
+            <span class="lp-value-item__name">Module 1: Revenue Audit &amp; Waste Identification</span>
+            <span class="lp-value-item__value">$3,000</span>
+          </div>
+          <div class="lp-value-item">
+            <span class="lp-value-item__name">Module 2: Strategic Clarity &amp; Brand Positioning</span>
+            <span class="lp-value-item__value">$2,500</span>
+          </div>
+          <div class="lp-value-item">
+            <span class="lp-value-item__name">Module 3: Conversion Infrastructure &amp; Dashboard Build</span>
+            <span class="lp-value-item__value">$4,000</span>
+          </div>
+          <div class="lp-value-item">
+            <span class="lp-value-item__name">Module 4: Revenue-Driven Campaign Strategy</span>
+            <span class="lp-value-item__value">$3,500</span>
+          </div>
+          <div class="lp-value-item">
+            <span class="lp-value-item__name">Module 5: Sales System &amp; Closing Framework</span>
+            <span class="lp-value-item__value">$2,500</span>
+          </div>
+          <div class="lp-value-item">
+            <span class="lp-value-item__name">Module 6: Optimization &amp; Scaling Playbook</span>
+            <span class="lp-value-item__value">$2,000</span>
+          </div>
+          <!-- 1.4 — Removed "Done-With-You Execution (Level 2) — $5,000" to fix circular math -->
+          <div class="lp-value-item">
+            <span class="lp-value-item__name">2 Weeks Group Coaching &amp; Community Access</span>
+            <span class="lp-value-item__value">$1,500</span>
+          </div>
+          <div class="lp-value-item">
+            <span class="lp-value-item__name">Templates, Worksheets &amp; Frameworks Library</span>
+            <span class="lp-value-item__value">$500</span>
+          </div>
+
+          <div class="lp-value-total">
+            <span class="lp-value-total__label">Total Value</span>
+            <span class="lp-value-total__amount">$19,500</span>
+          </div>
+
+          <div class="lp-value-reveal">
+            <p class="lp-value-reveal__label">Your Investment Today</p>
+            <div class="lp-value-reveal__prices">
+              <div class="lp-value-reveal__tier">
+                <span class="lp-value-reveal__name">Strategy + Execution</span>
+                <span class="lp-value-reveal__price">$5,000</span>
+                <span class="lp-value-reveal__savings">You save $14,500</span>
+                <a href="https://buy.stripe.com/6oU4gs9MUaaX2FH12d6Zy00" class="btn btn--primary">Enroll Now &mdash; Best Value <span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
+              </div>
+              <div class="lp-value-reveal__tier">
+                <span class="lp-value-reveal__name">Strategy Only</span>
+                <span class="lp-value-reveal__price">$3,000</span>
+                <span class="lp-value-reveal__savings">You save $16,500</span>
+                <a href="https://buy.stripe.com/4gMdR28IQ82P6VX9yJ6Zy01" class="btn btn--outline-white">Enroll &mdash; Strategy Only</a>
+              </div>
+            </div>
+            <p class="lp-value-reveal__math">That's less than <strong>30 cents on the dollar.</strong> And the $14,400/year you'll save in waste pays for the entire program nearly 3x over.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         SECTION 7 — CHOOSE YOUR LEVEL (PRICING TABLE)
+         4.2 — Added cohort model language
+         ============================================ -->
+    <section class="lp-section" aria-labelledby="pricing-heading" id="levels">
+      <div class="container">
+        <div class="lp-section__header--centered">
+          <span class="section__eyebrow">Choose Your Path</span>
+          <h2 id="pricing-heading">Two Levels. Same System. You Decide How Deep We Go.</h2>
+        </div>
+
+        <div class="lp-pricing">
+          <!-- Header row -->
+          <div class="lp-pricing__header">
+            <div></div>
+            <div>
+              <div class="lp-pricing__tier-name">Level 1: Strategy</div>
+              <div class="lp-pricing__tier-price">$3,000</div>
+              <div class="lp-pricing__tier-desc">You execute with your team</div>
+            </div>
+            <div>
+              <div class="lp-pricing__badge">Most Popular</div>
+              <div class="lp-pricing__tier-name">Level 2: Strategy + Execution</div>
+              <div class="lp-pricing__tier-price">$5,000</div>
+              <div class="lp-pricing__tier-desc">We build it with you</div>
+            </div>
+          </div>
+
+          <!-- Feature rows -->
+          <div class="lp-pricing__row">
+            <div>4-Week Accelerated Program (all 6 modules)</div>
+            <div><span class="lp-pricing__check" aria-label="Included">&#10003;</span></div>
+            <div><span class="lp-pricing__check" aria-label="Included">&#10003;</span></div>
+          </div>
+          <div class="lp-pricing__row">
+            <div>Revenue Audit &amp; Waste Identification</div>
+            <div><span class="lp-pricing__check" aria-label="Included">&#10003;</span></div>
+            <div><span class="lp-pricing__check" aria-label="Included">&#10003;</span></div>
+          </div>
+          <div class="lp-pricing__row">
+            <div>Conversion System Blueprint</div>
+            <div><span class="lp-pricing__check" aria-label="Included">&#10003;</span></div>
+            <div><span class="lp-pricing__check" aria-label="Included">&#10003;</span></div>
+          </div>
+          <div class="lp-pricing__row">
+            <div>Marketing Strategy &amp; Campaign Plan</div>
+            <div><span class="lp-pricing__check" aria-label="Included">&#10003;</span></div>
+            <div><span class="lp-pricing__check" aria-label="Included">&#10003;</span></div>
+          </div>
+          <div class="lp-pricing__row">
+            <div>Sales System &amp; Closing Framework</div>
+            <div><span class="lp-pricing__check" aria-label="Included">&#10003;</span></div>
+            <div><span class="lp-pricing__check" aria-label="Included">&#10003;</span></div>
+          </div>
+          <div class="lp-pricing__row">
+            <div>Templates, Worksheets &amp; Frameworks</div>
+            <div><span class="lp-pricing__check" aria-label="Included">&#10003;</span></div>
+            <div><span class="lp-pricing__check" aria-label="Included">&#10003;</span></div>
+          </div>
+          <div class="lp-pricing__row">
+            <div>2-Week Group Support (calls + community)</div>
+            <div><span class="lp-pricing__check" aria-label="Included">&#10003;</span></div>
+            <div><span class="lp-pricing__check" aria-label="Included">&#10003;</span></div>
+          </div>
+          <div class="lp-pricing__row">
+            <div>Done-With-You Campaign &amp; Content Execution</div>
+            <div><span class="lp-pricing__dash" aria-label="Not included">&mdash;</span></div>
+            <div><span class="lp-pricing__check" aria-label="Included">&#10003;</span></div>
+          </div>
+          <div class="lp-pricing__row">
+            <div>Tracking &amp; Dashboard Build-Out</div>
+            <div><span class="lp-pricing__dash" aria-label="Not included">&mdash;</span></div>
+            <div><span class="lp-pricing__check" aria-label="Included">&#10003;</span></div>
+          </div>
+          <div class="lp-pricing__row">
+            <div>Full Implementation Support from TR3 Team</div>
+            <div><span class="lp-pricing__dash" aria-label="Not included">&mdash;</span></div>
+            <div><span class="lp-pricing__check" aria-label="Included">&#10003;</span></div>
+          </div>
+
+          <!-- CTA row -->
+          <div class="lp-pricing__row lp-pricing__row--cta">
+            <div></div>
+            <div><a href="https://buy.stripe.com/4gMdR28IQ82P6VX9yJ6Zy01" class="btn btn--secondary">Enroll &mdash; $3,000</a></div>
+            <div><a href="https://buy.stripe.com/6oU4gs9MUaaX2FH12d6Zy00" class="btn btn--primary">Enroll &mdash; $5,000 <span class="btn-arrow" aria-hidden="true">&rarr;</span></a></div>
+          </div>
+        </div>
+
+        <div class="lp-pricing__note">
+          <p><strong>Not sure?</strong> If you have an in-house team or a contractor who can execute, Level 1 gives you the playbook. If you want Dom and the TR3 team building, launching, and tracking alongside you &mdash; Level 2 is the obvious choice. Most clients choose Level 2.</p>
+          <p>Cohorts run 5&ndash;8 times per year. Each is intentionally limited to 10&ndash;12 businesses so every participant gets implementation depth, not just information.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Guarantee -->
+    <section class="lp-section" aria-labelledby="guarantee-heading">
+      <div class="container">
+        <div class="lp-guarantee">
+          <h2 class="lp-guarantee__title" id="guarantee-heading">"Your Marketing Will Pay for Itself &mdash; or I'll Keep Working Until It Does."</h2>
+          <p class="lp-guarantee__text">Complete all 6 modules. Implement the system within 90 days. If you don't see measurable improvement in your pipeline &mdash; more qualified conversations, better attribution, or confirmed spend reduction &mdash; I'll continue working with you at no additional cost until you do.</p>
+          <p class="lp-guarantee__text">The guarantee requires full program completion and documented implementation. It's not a refund policy. It's a results commitment.</p>
+          <p class="lp-guarantee__bold">I don't win unless you win.</p>
+          <a href="guarantee-terms.html" class="lp-guarantee__terms-link">View full guarantee terms &rarr;</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         SECTION 8 — PREMIUM ADD-ON + AFTER PROGRAM
+         ============================================ -->
+    <section class="lp-section lp-section--tinted" aria-labelledby="after-heading">
+      <div class="container">
+        <div class="lp-section__header--centered">
+          <span class="section__eyebrow">Keep Growing</span>
+          <h2 id="after-heading">The Program Ends. The Growth Doesn't.</h2>
+        </div>
+
+        <div class="lp-post-program">
+          <div class="lp-post-card">
+            <div class="lp-post-card__name">Premium 1-on-1 Access</div>
+            <div class="lp-post-card__price">$1,000</div>
+            <p class="lp-post-card__text">Add direct, personalized strategy sessions with Dom during your support window. Not coaching-at-scale &mdash; direct eyes on your specific business. Limited availability.</p>
+            <a href="https://buy.stripe.com/7sY7sE8IQ0Anfst12d6Zy02" class="btn btn--primary" style="margin-top: var(--space-md);">Add Premium Access</a>
+          </div>
+          <div class="lp-post-card">
+            <div class="lp-post-card__name">Community Membership</div>
+            <div class="lp-post-card__price">$50/month</div>
+            <p class="lp-post-card__text">Stay in the community group with ongoing group calls, peer accountability, and continued learning. Your system keeps compounding. Cancel anytime.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         SECTION 9 — WHO THIS IS FOR (2.5 — added disqualifiers)
+         ============================================ -->
+    <section class="lp-section" aria-labelledby="qualify-heading">
+      <div class="container">
+        <div class="lp-section__header--centered">
+          <span class="section__eyebrow">Is This You?</span>
+          <h2 id="qualify-heading">This Program Isn't for Everyone. It's for a Specific Kind of Business Owner.</h2>
+        </div>
+
+        <div class="lp-qualify">
+          <div class="lp-qualify__col lp-qualify__col--yes">
+            <div class="lp-qualify__label">This is for you if&hellip;</div>
+            <ul class="lp-qualify__list">
+              <li>You run a $150K+ business and you've hit a revenue ceiling you can't explain</li>
+              <li>You're spending money on marketing but can't tie it to a single new client</li>
+              <li>You've been burned by agencies that delivered reports instead of revenue</li>
+              <li>You're running on referrals and know it won't scale</li>
+              <li>You're spending 15+ hours/week on marketing and know it's not sustainable</li>
+              <li>You believe in your product &mdash; you just need a system that matches its quality</li>
+            </ul>
+          </div>
+          <div class="lp-qualify__col lp-qualify__col--no">
+            <div class="lp-qualify__label">This is NOT for you if&hellip;</div>
+            <ul class="lp-qualify__list">
+              <li>Your business is pre-revenue or under $100K (not the right time yet)</li>
+              <li>You want to hand everything off with zero involvement on your end</li>
+              <li>You're looking for "hacks" and shortcuts instead of a real system</li>
+              <li>You're not willing to make decisions and implement within 4 weeks</li>
+              <li>You don't have a validated offer with paying customers yet</li>
+              <li>You're looking for someone to hand this off to entirely &mdash; this requires your active involvement</li>
+              <li>You want a marketing course. This is a revenue system. The work is real.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         SECTION 11 — SOCIAL PROOF (1.1 stat fix + 1.5 micro case study + B2 testimonial hidden)
+         ============================================ -->
+    <section class="lp-section lp-section--tinted" aria-labelledby="proof-heading">
+      <div class="container">
+        <div class="lp-section__header--centered">
+          <span class="section__eyebrow">The Track Record</span>
+          <h2 id="proof-heading">This Isn't Theory. It's a Track Record.</h2>
+        </div>
+
+        <!-- 1.1 — Fixed stats to match boutique positioning -->
+        <div class="lp-stats">
+          <div class="lp-stat">
+            <div class="lp-stat__number">$100K+</div>
+            <div class="lp-stat__label">Raised through strategic campaigns for mission-driven clients</div>
+          </div>
+          <div class="lp-stat">
+            <div class="lp-stat__number">11+</div>
+            <div class="lp-stat__label">Years building revenue systems for nonprofits, civic orgs, and founders</div>
+          </div>
+          <div class="lp-stat">
+            <div class="lp-stat__number">50+</div>
+            <div class="lp-stat__label">Campaigns built across brand, digital, and event channels</div>
+          </div>
+          <div class="lp-stat">
+            <div class="lp-stat__number">0</div>
+            <div class="lp-stat__label">Clients who've quit mid-engagement in 11 years</div>
+          </div>
+        </div>
+
+        <!-- 1.5 — Micro case study (hidden until real client data provided) -->
+        <div class="lp-case-micro" style="display: none;">
+          <div class="lp-case-micro__label">Client Snapshot</div>
+          <ul class="lp-case-micro__list">
+            <li><strong>Client type:</strong> [Service business / Nonprofit / Founder]</li>
+            <li><strong>Revenue at start:</strong> $[X]K/year</li>
+            <li><strong>Problem:</strong> $[X]K/month in ad spend with no attribution</li>
+            <li><strong>What we built:</strong> Revenue dashboard + offer repositioning + campaign system</li>
+            <li><strong>Result:</strong> Cut spend by [X]%, closed [X] clients in [X] days</li>
+          </ul>
+        </div>
+
+        <div class="lp-testimonial" style="display: none; margin-top: var(--space-2xl);">
+          <p class="lp-testimonial__quote"></p>
+          <p class="lp-testimonial__author"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         SECTION 12 — MEET DOM (4.1 — brand separation)
+         ============================================ -->
+    <section class="lp-section" aria-labelledby="dom-heading">
+      <div class="container">
+        <div class="lp-section__header">
+          <span class="section__eyebrow">Your Guide</span>
+          <h2 id="dom-heading">Who's Behind the System</h2>
+        </div>
+
+        <div class="lp-meet">
+          <div class="lp-meet__photo">
+            <img src="assets/images/dom-headshot.jpg" alt="Dom Davis, Founder of TR3 Media Solutions" loading="lazy">
+          </div>
+          <div class="lp-meet__bio">
+            <p><strong>Dom Davis</strong> is a Detroit-based creative strategist and the founder of TR3 Media Solutions &mdash; a design and marketing agency with 11+ years of experience helping mission-driven organizations stop bleeding budget and start building systems that convert.</p>
+            <p>She's led campaigns for Detroit Public Schools, the City of Detroit Mayor's Office, Grey Box Properties, and dozens of small businesses across industries. The through-line? <strong>Marketing should produce revenue, not just content.</strong></p>
+            <p>Marketing That Pays is the system Dom built after watching too many great business owners bleed $50K+/year on marketing that looks busy but produces nothing. It's the same framework she uses with her own agency clients &mdash; now available as a focused 4-week program.</p>
+            <!-- 4.1 — Brand separation language -->
+            <p class="lp-meet__separator-note">Marketing That Pays distills the revenue systems Dom has built inside TR3 client engagements into a focused, accessible intensive &mdash; separate from TR3's ongoing Creative Direction retainers.</p>
+            <ul class="lp-meet__credentials">
+              <li>Goldman Sachs 10,000 Small Businesses Graduate</li>
+              <li>Founder, TR3 Media Solutions (est. 2013)</li>
+              <li>Former UX Designer, City of Detroit Mayor's Office</li>
+              <li>11+ years building brands, campaigns, and conversion systems</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         SECTION 13 — FAQ (3.6 — standardized question voice)
+         ============================================ -->
+    <section class="lp-section lp-section--tinted" aria-labelledby="faq-heading">
+      <div class="container">
+        <div class="lp-section__header--centered">
+          <span class="section__eyebrow">Still Have Questions?</span>
+          <h2 id="faq-heading">Let's Clear This Up</h2>
+        </div>
+
+        <div class="lp-faq">
+          <div class="lp-faq__item">
+            <button class="lp-faq__question" aria-expanded="false" onclick="this.parentElement.classList.toggle('lp-faq__item--open'); this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+              How is this different from other marketing programs I've tried?
+              <span class="lp-faq__icon" aria-hidden="true">+</span>
+            </button>
+            <div class="lp-faq__answer">
+              <p>Most programs teach you theory and leave you to figure out implementation. This one doesn't. You build the system <em>inside</em> the program with direct guidance. And if you choose Level 2, my team builds it with you. Plus &mdash; there's a 90-day guarantee. If it doesn't work, I keep working until it does.</p>
+            </div>
+          </div>
+
+          <div class="lp-faq__item">
+            <button class="lp-faq__question" aria-expanded="false" onclick="this.parentElement.classList.toggle('lp-faq__item--open'); this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+              How do I know this is worth $5,000?
+              <span class="lp-faq__icon" aria-hidden="true">+</span>
+            </button>
+            <div class="lp-faq__answer">
+              <p>It's $19,500 worth of deliverables for $5,000. You'll save $14,400/year in wasted spend alone &mdash; meaning the program pays for itself in 4 months and keeps paying you back every month after that. Compare that to spending $48K/year on marketing that can't prove it's working. The real question is: can you afford <em>not</em> to fix this?</p>
+            </div>
+          </div>
+
+          <div class="lp-faq__item">
+            <button class="lp-faq__question" aria-expanded="false" onclick="this.parentElement.classList.toggle('lp-faq__item--open'); this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+              What's the difference between Level 1 and Level 2?
+              <span class="lp-faq__icon" aria-hidden="true">+</span>
+            </button>
+            <div class="lp-faq__answer">
+              <p>Level 1 gives you the strategy, the blueprint, the system, and the frameworks. You (or your team) execute. Level 2 adds the TR3 team: we build campaigns, set up tracking, create assets, and launch alongside you. Most clients choose Level 2 because the execution is where the ROI actually happens.</p>
+            </div>
+          </div>
+
+          <div class="lp-faq__item">
+            <button class="lp-faq__question" aria-expanded="false" onclick="this.parentElement.classList.toggle('lp-faq__item--open'); this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+              How much time do I need to commit each week?
+              <span class="lp-faq__icon" aria-hidden="true">+</span>
+            </button>
+            <div class="lp-faq__answer">
+              <p>Plan for 4&ndash;6 hours/week during the program. That includes working through the modules, group calls, and implementation time. After the program, your marketing system will run on about 5 hours/week &mdash; compared to the 15&ndash;20 you're probably spending now.</p>
+            </div>
+          </div>
+
+          <div class="lp-faq__item">
+            <button class="lp-faq__question" aria-expanded="false" onclick="this.parentElement.classList.toggle('lp-faq__item--open'); this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+              What if I need more direct support from Dom?
+              <span class="lp-faq__icon" aria-hidden="true">+</span>
+            </button>
+            <div class="lp-faq__answer">
+              <p>During your 2-week support window, you can add premium 1-on-1 access for $1,000. This is direct strategy sessions with Dom, not group calls. Availability is limited to keep it high-touch.</p>
+            </div>
+          </div>
+
+          <div class="lp-faq__item">
+            <button class="lp-faq__question" aria-expanded="false" onclick="this.parentElement.classList.toggle('lp-faq__item--open'); this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+              Is this only for Detroit-based businesses?
+              <span class="lp-faq__icon" aria-hidden="true">+</span>
+            </button>
+            <div class="lp-faq__answer">
+              <p>No. Dom's roots are in Detroit, but the system works for any $150K+ business regardless of location or industry. Conversion math is conversion math.</p>
+            </div>
+          </div>
+
+          <div class="lp-faq__item">
+            <button class="lp-faq__question" aria-expanded="false" onclick="this.parentElement.classList.toggle('lp-faq__item--open'); this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+              What happens if I don't see results?
+              <span class="lp-faq__icon" aria-hidden="true">+</span>
+            </button>
+            <div class="lp-faq__answer">
+              <p>If you complete the program, implement the system, and don't see measurable pipeline improvement within 90 days &mdash; I keep working with you until you do. That's the guarantee. I don't win unless you win.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         SECTION 14 — FINAL CTA (2.3 rewrite + 2.4 scarcity + 3.7 id="enroll")
+         ============================================ -->
+    <section class="lp-final-cta" aria-labelledby="final-cta-heading" id="enroll">
+      <div class="container">
+        <p class="lp-final-cta__eyebrow">Cohorts are intentionally capped at 8&ndash;10 businesses to maintain implementation depth and direct access during group calls.</p>
+        <h2 class="lp-final-cta__headline" id="final-cta-heading">The System Exists. The Question Is Whether You'll Use It.</h2>
+        <p class="lp-final-cta__body">Most business owners already know their marketing isn't working. The gap isn't awareness. It's a repeatable system. In 4 weeks, you'll have one &mdash; built, tracked, and running. Or the guarantee applies and we keep working until it does.</p>
+        <div class="lp-final-cta__value-reminder">
+          <span class="lp-final-cta__crossed">$19,500 value</span>
+          <span class="lp-final-cta__actual">Yours for $5,000</span>
+        </div>
+        <div class="lp-final-cta__actions">
+          <a href="https://buy.stripe.com/6oU4gs9MUaaX2FH12d6Zy00" class="btn btn--primary btn--large">Enroll Now &mdash; Strategy + Execution &mdash; $5,000 <span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
+          <a href="https://buy.stripe.com/4gMdR28IQ82P6VX9yJ6Zy01" class="btn btn--outline-white btn--large">Enroll &mdash; Strategy Only &mdash; $3,000</a>
+        </div>
+        <p class="lp-final-cta__micro">Secure checkout via Stripe. Onboarding within 24 hours. 90-day guarantee.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 3.1 — Minimal LP footer -->
+  <footer class="site-footer site-footer--minimal" role="contentinfo">
+    <div class="container">
+      <p>&copy; 2026 TR3 Media Solutions. All Rights Reserved.</p>
+      <nav aria-label="Legal">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Use</a>
+        <a href="guarantee-terms.html">Guarantee Terms</a>
+      </nav>
+    </div>
+  </footer>
+
+  <!-- 3.3 — Sticky enrollment CTA -->
+  <div id="mtp-sticky-cta" class="mtp-sticky" aria-hidden="true">
+    <div class="container">
+      <p class="mtp-sticky__text">Marketing That Pays &mdash; 10&ndash;12 spots per cohort</p>
+      <a href="#enroll" class="btn btn--primary btn--small">Enroll Now &rarr;</a>
+      <button class="mtp-sticky__close" aria-label="Dismiss" onclick="document.getElementById('mtp-sticky-cta').classList.add('mtp-sticky--hidden'); sessionStorage.setItem('mtp-cta-dismissed','true');">&times;</button>
+    </div>
+  </div>
+
+  <script>
+    // 3.3 Sticky CTA — show after scrolling past hero
+    (function() {
+      var stickyCTA = document.getElementById('mtp-sticky-cta');
+      if (!stickyCTA || sessionStorage.getItem('mtp-cta-dismissed')) return;
+      var hero = document.querySelector('.lp-hero');
+      if (!hero) return;
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (!entry.isIntersecting) {
+            stickyCTA.classList.add('mtp-sticky--visible');
+            stickyCTA.setAttribute('aria-hidden', 'false');
+          } else {
+            stickyCTA.classList.remove('mtp-sticky--visible');
+            stickyCTA.setAttribute('aria-hidden', 'true');
+          }
+        });
+      }, { threshold: 0 });
+      observer.observe(hero);
+    })();
+  </script>
+</body>
+</html>

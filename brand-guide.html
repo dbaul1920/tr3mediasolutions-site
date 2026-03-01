@@ -1,0 +1,1183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>TR3 Media Solutions — Brand Guidelines</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ===== Reset & Base ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green-dark: #2C5F2D;
+      --green-mid: #5E8D4E;
+      --green-light: #EAF0E6;
+      --green-hover: #1E4A1F;
+      --charcoal: #333333;
+      --gray-800: #3D3D3D;
+      --gray-600: #555555;
+      --gray-400: #6B6B6B;
+      --gray-200: #E0DDD8;
+      --gray-100: #F0EDE8;
+      --cream: #F5F0E8;
+      --warm-bg: #F5E0C3;
+      --warm-bg-light: #F0E8DA;
+      --footer-dark: #2A2A2A;
+      --white: #FFFFFF;
+      --font-heading: 'Georgia', 'Times New Roman', serif;
+      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    }
+
+    html { font-size: 100%; scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      font-size: 1rem;
+      line-height: 1.7;
+      color: var(--charcoal);
+      background: var(--cream);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* ===== Layout ===== */
+    .page-wrapper { max-width: 1000px; margin: 0 auto; padding: 0 2rem; }
+
+    section {
+      padding: 3.5rem 0;
+      border-bottom: 1px solid var(--gray-200);
+    }
+    section:last-of-type { border-bottom: none; }
+
+    /* ===== Header / Cover ===== */
+    .brand-header {
+      background: var(--green-dark);
+      padding: 4rem 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .brand-header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        135deg,
+        transparent,
+        transparent 40px,
+        rgba(255,255,255,0.015) 40px,
+        rgba(255,255,255,0.015) 80px
+      );
+    }
+    .brand-header-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .brand-header .logo-text {
+      font-family: var(--font-heading);
+      font-size: 3rem;
+      font-weight: 400;
+      color: var(--white);
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-bottom: 0.5rem;
+    }
+    .brand-header .logo-text span { color: var(--green-mid); }
+    .brand-header .subtitle {
+      font-family: var(--font-body);
+      font-size: 1rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.7);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 2.5rem;
+    }
+    .brand-header .tagline {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      font-weight: 400;
+      color: rgba(255,255,255,0.85);
+      font-style: italic;
+      margin-bottom: 2rem;
+    }
+    .brand-header .meta {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.45);
+      letter-spacing: 0.05em;
+    }
+
+    /* ===== Navigation ===== */
+    .toc {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 2rem 2.5rem;
+      margin-top: -2rem;
+      position: relative;
+      z-index: 2;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+    }
+    .toc h2 {
+      font-family: var(--font-body);
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--gray-400);
+      margin-bottom: 1rem;
+    }
+    .toc-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 0.5rem;
+    }
+    .toc a {
+      font-size: 0.9rem;
+      color: var(--green-dark);
+      text-decoration: none;
+      padding: 0.4rem 0;
+      display: block;
+      border-bottom: 1px solid transparent;
+      transition: all 0.2s ease;
+    }
+    .toc a:hover { color: var(--green-hover); }
+    .toc a .num {
+      color: var(--gray-400);
+      font-size: 0.75rem;
+      margin-right: 0.4rem;
+      font-weight: 500;
+    }
+
+    /* ===== Typography ===== */
+    h1, h2, h3, h4 {
+      font-family: var(--font-heading);
+      font-weight: 400;
+      color: var(--charcoal);
+      line-height: 1.25;
+    }
+
+    .section-number {
+      font-family: var(--font-body);
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--green-mid);
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-title {
+      font-size: 2.25rem;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+
+    .section-intro {
+      font-size: 1.1rem;
+      color: var(--gray-600);
+      max-width: 600px;
+      margin-bottom: 2.5rem;
+      line-height: 1.8;
+    }
+
+    h3 {
+      font-size: 1.35rem;
+      margin-top: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    p { margin-bottom: 1rem; }
+    p:last-child { margin-bottom: 0; }
+
+    /* ===== Color Swatches ===== */
+    .color-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    .color-card {
+      background: var(--white);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .color-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    }
+    .color-swatch {
+      height: 100px;
+      position: relative;
+    }
+    .color-swatch .hex-overlay {
+      position: absolute;
+      bottom: 8px;
+      right: 10px;
+      font-family: var(--font-body);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      padding: 3px 8px;
+      border-radius: 4px;
+      background: rgba(0,0,0,0.2);
+      color: rgba(255,255,255,0.9);
+    }
+    .color-swatch.light-bg .hex-overlay {
+      background: rgba(0,0,0,0.08);
+      color: var(--gray-600);
+    }
+    .color-info {
+      padding: 0.85rem 1rem;
+    }
+    .color-name {
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--charcoal);
+      margin-bottom: 0.15rem;
+    }
+    .color-usage {
+      font-size: 0.75rem;
+      color: var(--gray-400);
+      line-height: 1.4;
+    }
+
+    /* ===== Typography Specimens ===== */
+    .type-specimen {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 2rem 2.5rem;
+      margin-top: 1.5rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    }
+    .type-specimen + .type-specimen { margin-top: 1rem; }
+    .type-label {
+      font-family: var(--font-body);
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--green-mid);
+      margin-bottom: 0.75rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+    .type-label .type-meta {
+      font-weight: 400;
+      letter-spacing: 0;
+      text-transform: none;
+      color: var(--gray-400);
+      font-size: 0.75rem;
+    }
+    .type-sample-heading {
+      font-family: var(--font-heading);
+      font-weight: 400;
+      color: var(--charcoal);
+      line-height: 1.25;
+    }
+    .type-sample-body {
+      font-family: var(--font-body);
+      color: var(--charcoal);
+      line-height: 1.7;
+    }
+
+    .type-scale-table {
+      width: 100%;
+      margin-top: 1.5rem;
+      border-collapse: collapse;
+    }
+    .type-scale-table th {
+      font-family: var(--font-body);
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--gray-400);
+      text-align: left;
+      padding: 0.75rem 1rem;
+      border-bottom: 2px solid var(--gray-200);
+    }
+    .type-scale-table td {
+      padding: 0.85rem 1rem;
+      border-bottom: 1px solid var(--gray-100);
+      font-size: 0.9rem;
+      vertical-align: middle;
+    }
+    .type-scale-table tr:last-child td { border-bottom: none; }
+    .type-scale-table .preview { color: var(--charcoal); }
+    .type-scale-table .spec {
+      font-size: 0.8rem;
+      color: var(--gray-400);
+      font-family: var(--font-body);
+    }
+    .type-scale-table code {
+      font-size: 0.78rem;
+      background: var(--gray-100);
+      padding: 2px 6px;
+      border-radius: 4px;
+      color: var(--gray-600);
+    }
+
+    /* ===== Voice Cards ===== */
+    .voice-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    .voice-card {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 1.75rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+      border-left: 3px solid var(--green-dark);
+    }
+    .voice-card h4 {
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--green-dark);
+      margin-bottom: 0.5rem;
+    }
+    .voice-card p {
+      font-size: 0.9rem;
+      color: var(--gray-600);
+      line-height: 1.6;
+    }
+
+    /* ===== Do / Don't ===== */
+    .do-dont {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    @media (max-width: 640px) {
+      .do-dont { grid-template-columns: 1fr; }
+    }
+    .do-col, .dont-col {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 1.75rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    }
+    .do-col { border-top: 3px solid var(--green-dark); }
+    .dont-col { border-top: 3px solid #C0392B; }
+    .do-col h4, .dont-col h4 {
+      font-family: var(--font-body);
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-bottom: 1rem;
+    }
+    .do-col h4 { color: var(--green-dark); }
+    .dont-col h4 { color: #C0392B; }
+    .do-col li, .dont-col li {
+      font-size: 0.9rem;
+      color: var(--gray-600);
+      margin-bottom: 0.65rem;
+      line-height: 1.5;
+      list-style: none;
+      padding-left: 1.4rem;
+      position: relative;
+    }
+    .do-col li::before {
+      content: '\2713';
+      position: absolute;
+      left: 0;
+      color: var(--green-dark);
+      font-weight: 700;
+    }
+    .dont-col li::before {
+      content: '\2717';
+      position: absolute;
+      left: 0;
+      color: #C0392B;
+      font-weight: 700;
+    }
+
+    /* ===== Phrase Callouts ===== */
+    .phrase-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+    }
+    .phrase {
+      background: var(--green-light);
+      border-radius: 8px;
+      padding: 1.15rem 1.35rem;
+      font-family: var(--font-heading);
+      font-size: 1.05rem;
+      color: var(--green-dark);
+      font-style: italic;
+      line-height: 1.4;
+    }
+
+    /* ===== Service Pillars ===== */
+    .pillars {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    .pillar {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 1.75rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+      text-align: center;
+    }
+    .pillar-num {
+      font-family: var(--font-heading);
+      font-size: 2.5rem;
+      color: var(--green-dark);
+      opacity: 0.25;
+      line-height: 1;
+      margin-bottom: 0.75rem;
+    }
+    .pillar h4 {
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--charcoal);
+      margin-bottom: 0.5rem;
+    }
+    .pillar p {
+      font-size: 0.85rem;
+      color: var(--gray-600);
+      line-height: 1.5;
+    }
+
+    /* ===== Accessibility Table ===== */
+    .a11y-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1.5rem;
+      background: var(--white);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    }
+    .a11y-table th {
+      font-family: var(--font-body);
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--gray-400);
+      text-align: left;
+      padding: 1rem 1.25rem;
+      background: var(--gray-100);
+    }
+    .a11y-table td {
+      padding: 0.85rem 1.25rem;
+      font-size: 0.9rem;
+      border-bottom: 1px solid var(--gray-100);
+    }
+    .a11y-table tr:last-child td { border-bottom: none; }
+    .badge {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 4px;
+      letter-spacing: 0.05em;
+    }
+    .badge-aaa { background: var(--green-light); color: var(--green-dark); }
+    .badge-aa { background: #FEF3CD; color: #856404; }
+    .badge-lg { background: #FCE4D6; color: #9C4221; }
+
+    /* ===== Code Block ===== */
+    .code-block {
+      background: var(--footer-dark);
+      border-radius: 12px;
+      padding: 2rem;
+      margin-top: 1.5rem;
+      overflow-x: auto;
+    }
+    .code-block pre {
+      font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', Consolas, monospace;
+      font-size: 0.82rem;
+      line-height: 1.7;
+      color: #D4D4D4;
+      margin: 0;
+    }
+    .code-block .comment { color: #6A9955; }
+    .code-block .prop { color: #9CDCFE; }
+    .code-block .val { color: #CE9178; }
+    .code-block .selector { color: #D7BA7D; }
+
+    /* ===== Spacing / Design System ===== */
+    .spacing-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 0.5rem;
+    }
+    .spacing-bar {
+      background: var(--green-dark);
+      height: 24px;
+      border-radius: 4px;
+      opacity: 0.7;
+    }
+    .spacing-label {
+      font-size: 0.8rem;
+      color: var(--gray-400);
+      min-width: 120px;
+      font-weight: 500;
+    }
+
+    /* ===== Info Cards ===== */
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    .info-card {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    }
+    .info-card .label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--gray-400);
+      margin-bottom: 0.35rem;
+    }
+    .info-card .value {
+      font-family: var(--font-heading);
+      font-size: 1.15rem;
+      color: var(--charcoal);
+    }
+
+    /* ===== Imagery ===== */
+    .imagery-list {
+      list-style: none;
+      padding: 0;
+      margin-top: 1.5rem;
+    }
+    .imagery-list li {
+      background: var(--white);
+      border-radius: 8px;
+      padding: 1rem 1.35rem;
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+      color: var(--gray-600);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+      padding-left: 2.5rem;
+      position: relative;
+    }
+    .imagery-list li::before {
+      content: '';
+      position: absolute;
+      left: 1.15rem;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 8px;
+      height: 8px;
+      background: var(--green-mid);
+      border-radius: 50%;
+    }
+
+    /* ===== Footer ===== */
+    .brand-footer {
+      background: var(--footer-dark);
+      padding: 3rem 2rem;
+      text-align: center;
+      margin-top: 2rem;
+    }
+    .brand-footer p {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.4);
+      line-height: 1.8;
+    }
+    .brand-footer a {
+      color: var(--green-mid);
+      text-decoration: none;
+    }
+
+    /* ===== Print ===== */
+    @media print {
+      body { background: white; }
+      .brand-header { break-after: page; }
+      section { break-inside: avoid; }
+      .toc { box-shadow: none; border: 1px solid var(--gray-200); }
+      .color-card, .voice-card, .pillar, .type-specimen, .info-card { box-shadow: none; border: 1px solid var(--gray-200); }
+    }
+
+    @media (max-width: 640px) {
+      .brand-header { padding: 3rem 1.5rem; }
+      .brand-header .logo-text { font-size: 2rem; }
+      .section-title { font-size: 1.75rem; }
+      .color-grid { grid-template-columns: repeat(2, 1fr); }
+      .toc-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== COVER ===== -->
+  <header class="brand-header">
+    <div class="brand-header-inner">
+      <p class="subtitle">Brand Guidelines</p>
+      <h1 class="logo-text">TR<span>3</span> Media Solutions</h1>
+      <p class="tagline">"Design for Organizations Doing Real Work"</p>
+      <p class="meta">Version 1.0 &middot; February 2026 &middot; Confidential</p>
+    </div>
+  </header>
+
+  <div class="page-wrapper">
+
+    <!-- ===== TABLE OF CONTENTS ===== -->
+    <nav class="toc">
+      <h2>Contents</h2>
+      <div class="toc-grid">
+        <a href="#overview"><span class="num">01</span> Brand Overview</a>
+        <a href="#colors"><span class="num">02</span> Color Palette</a>
+        <a href="#typography"><span class="num">03</span> Typography</a>
+        <a href="#logo"><span class="num">04</span> Logo Usage</a>
+        <a href="#voice"><span class="num">05</span> Voice &amp; Tone</a>
+        <a href="#services"><span class="num">06</span> Services</a>
+        <a href="#design-system"><span class="num">07</span> Design System</a>
+        <a href="#imagery"><span class="num">08</span> Imagery</a>
+        <a href="#code-ref"><span class="num">09</span> CSS Reference</a>
+        <a href="#contact"><span class="num">10</span> Contact</a>
+      </div>
+    </nav>
+
+    <!-- ===== 01. OVERVIEW ===== -->
+    <section id="overview">
+      <span class="section-number">01 &mdash; Brand Overview</span>
+      <h2 class="section-title">Who we are</h2>
+      <p class="section-intro">TR3 Media Solutions is a strategic design partner for mission-driven teams who need their work to be clear, consistent, and built to last.</p>
+
+      <h3>Mission</h3>
+      <p>We bring structure to complex messages and deliver systems your team can actually maintain. We build brands, websites, and campaign systems that hold up under real stakeholders, real timelines, and real scrutiny.</p>
+
+      <h3>Positioning</h3>
+      <p>TR3 is a <strong>strategic partner, not a vendor</strong>. The brand stands for clarity, structure, and durability. "Pretty" is never the goal &mdash; <strong>clarity is non-negotiable</strong>.</p>
+
+      <h3>Credentials</h3>
+      <ul style="padding-left: 1.5rem; color: var(--gray-600); margin-top: 0.5rem;">
+        <li>Goldman Sachs 10,000 Small Businesses Alumni</li>
+        <li>10+ years of experience</li>
+        <li>Detroit-based, community-rooted</li>
+      </ul>
+
+      <h3>Audience</h3>
+      <p>Nonprofits, foundations, public sector organizations, and social impact brands &mdash; teams with high stakeholder involvement and mission-critical work requiring structural clarity.</p>
+    </section>
+
+    <!-- ===== 02. COLORS ===== -->
+    <section id="colors">
+      <span class="section-number">02 &mdash; Color Palette</span>
+      <h2 class="section-title">Brand Colors</h2>
+      <p class="section-intro">A simple, grounded palette. One signature green. Warm cream instead of stark white. Charcoal for text. That's it.</p>
+
+      <div class="color-grid">
+        <div class="color-card">
+          <div class="color-swatch" style="background: #2C5F2D;">
+            <span class="hex-overlay">#2C5F2D</span>
+          </div>
+          <div class="color-info">
+            <div class="color-name">TR3 Green</div>
+            <div class="color-usage">Primary brand color &mdash; headers, CTAs, accents. Hover state: #1E4A1F</div>
+          </div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch light-bg" style="background: #F5F0E8;">
+            <span class="hex-overlay">#F5F0E8</span>
+          </div>
+          <div class="color-info">
+            <div class="color-name">Warm Cream</div>
+            <div class="color-usage">Primary background</div>
+          </div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background: #333333;">
+            <span class="hex-overlay">#333333</span>
+          </div>
+          <div class="color-info">
+            <div class="color-name">Charcoal</div>
+            <div class="color-usage">Body text, headings</div>
+          </div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background: #2A2A2A;">
+            <span class="hex-overlay">#2A2A2A</span>
+          </div>
+          <div class="color-info">
+            <div class="color-name">Dark</div>
+            <div class="color-usage">Footer, dark sections</div>
+          </div>
+        </div>
+      </div>
+
+      <h3>Supporting Neutrals</h3>
+      <p style="color: var(--gray-600); font-size: 0.95rem; margin-bottom: 1.5rem;">These support the primary palette &mdash; used for subtle backgrounds, borders, and secondary text.</p>
+
+      <div class="color-grid">
+        <div class="color-card">
+          <div class="color-swatch light-bg" style="background: #EAF0E6;">
+            <span class="hex-overlay">#EAF0E6</span>
+          </div>
+          <div class="color-info">
+            <div class="color-name">Green Tint</div>
+            <div class="color-usage">Subtle green backgrounds</div>
+          </div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background: #555555;">
+            <span class="hex-overlay">#555555</span>
+          </div>
+          <div class="color-info">
+            <div class="color-name">Gray</div>
+            <div class="color-usage">Secondary text</div>
+          </div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch light-bg" style="background: #E0DDD8;">
+            <span class="hex-overlay">#E0DDD8</span>
+          </div>
+          <div class="color-info">
+            <div class="color-name">Border</div>
+            <div class="color-usage">Dividers, borders</div>
+          </div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch light-bg" style="background: #F0EDE8;">
+            <span class="hex-overlay">#F0EDE8</span>
+          </div>
+          <div class="color-info">
+            <div class="color-name">Light</div>
+            <div class="color-usage">Tinted section backgrounds</div>
+          </div>
+        </div>
+      </div>
+
+      <h3>Accessibility Contrast Ratios</h3>
+      <table class="a11y-table">
+        <thead>
+          <tr>
+            <th>Combination</th>
+            <th>Ratio</th>
+            <th>Rating</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Charcoal on Cream</td>
+            <td>7.5 : 1</td>
+            <td><span class="badge badge-aaa">AAA</span></td>
+          </tr>
+          <tr>
+            <td>Gray on Cream</td>
+            <td>5.7 : 1</td>
+            <td><span class="badge badge-aa">AA</span></td>
+          </tr>
+          <tr>
+            <td>TR3 Green on Cream</td>
+            <td>5.4 : 1</td>
+            <td><span class="badge badge-aa">AA</span></td>
+          </tr>
+          <tr>
+            <td>White on TR3 Green</td>
+            <td>5.4 : 1</td>
+            <td><span class="badge badge-aa">AA</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- ===== 03. TYPOGRAPHY ===== -->
+    <section id="typography">
+      <span class="section-number">03 &mdash; Typography</span>
+      <h2 class="section-title">Type System</h2>
+      <p class="section-intro">Georgia for editorial authority. Inter for clean readability. Confident, not heavy-handed.</p>
+
+      <div class="type-specimen">
+        <div class="type-label">
+          <span>Headings &mdash; Georgia</span>
+          <span class="type-meta">Weight 400 (Regular) &middot; Serif</span>
+        </div>
+        <p class="type-sample-heading" style="font-size: 2.5rem; letter-spacing: -0.02em; margin-bottom: 0.5rem;">Clarity first. Then design.</p>
+        <p class="type-sample-heading" style="font-size: 1.5rem;">Built for teams with stakes and stakeholders</p>
+      </div>
+
+      <div class="type-specimen">
+        <div class="type-label">
+          <span>Body &mdash; Inter</span>
+          <span class="type-meta">Weights 400&ndash;700 &middot; Sans-serif</span>
+        </div>
+        <p class="type-sample-body" style="font-size: 1rem;">We bring structure to complex messages and deliver systems your team can actually maintain. TR3 Media Solutions is a strategic design partner for mission-driven teams who need their work to be clear, consistent, and built to last.</p>
+      </div>
+
+      <h3>Type Scale</h3>
+      <table class="type-scale-table">
+        <thead>
+          <tr>
+            <th>Element</th>
+            <th>Preview</th>
+            <th>Size</th>
+            <th>Spacing</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>h1</code></td>
+            <td class="preview" style="font-family: Georgia, serif; font-size: 1.75rem; letter-spacing: -0.02em;">Heading One</td>
+            <td class="spec">3rem / 48px</td>
+            <td class="spec">-0.02em</td>
+          </tr>
+          <tr>
+            <td><code>h2</code></td>
+            <td class="preview" style="font-family: Georgia, serif; font-size: 1.45rem; letter-spacing: -0.01em;">Heading Two</td>
+            <td class="spec">2.5rem / 40px</td>
+            <td class="spec">-0.01em</td>
+          </tr>
+          <tr>
+            <td><code>h3</code></td>
+            <td class="preview" style="font-family: Georgia, serif; font-size: 1.2rem;">Heading Three</td>
+            <td class="spec">1.5rem / 24px</td>
+            <td class="spec">normal</td>
+          </tr>
+          <tr>
+            <td><code>h4</code></td>
+            <td class="preview" style="font-family: Georgia, serif; font-size: 1.05rem;">Heading Four</td>
+            <td class="spec">1.25rem / 20px</td>
+            <td class="spec">normal</td>
+          </tr>
+          <tr>
+            <td><code>body</code></td>
+            <td class="preview" style="font-size: 1rem;">Body text sample</td>
+            <td class="spec">1rem / 16px</td>
+            <td class="spec">normal</td>
+          </tr>
+          <tr>
+            <td><code>small</code></td>
+            <td class="preview" style="font-size: 0.875rem;">Small text sample</td>
+            <td class="spec">0.875rem / 14px</td>
+            <td class="spec">normal</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- ===== 04. LOGO ===== -->
+    <section id="logo">
+      <span class="section-number">04 &mdash; Logo</span>
+      <h2 class="section-title">Logo Usage</h2>
+      <p class="section-intro">The TR3 logo is the cornerstone of brand recognition. Always maintain its integrity and visibility.</p>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1.5rem;">
+        <div style="background: #2C5F2D; border-radius: 12px; padding: 3rem; display: flex; align-items: center; justify-content: center; min-height: 160px;">
+          <img src="assets/logos/tr3-logo-white.svg" alt="TR3 Media Solutions logo on green background" style="max-width: 260px; height: auto;">
+        </div>
+        <div style="background: #2A2A2A; border-radius: 12px; padding: 3rem; display: flex; align-items: center; justify-content: center; min-height: 160px;">
+          <img src="assets/logos/tr3-logo-white.svg" alt="TR3 Media Solutions logo on dark background" style="max-width: 260px; height: auto;">
+        </div>
+      </div>
+
+      <div style="margin-top: 1.5rem;">
+        <div class="info-grid">
+          <div class="info-card">
+            <div class="label">Primary File</div>
+            <div class="value" style="font-size: 0.9rem; font-family: var(--font-body);">tr3-logo-white.svg</div>
+          </div>
+          <div class="info-card">
+            <div class="label">Header Height</div>
+            <div class="value">44px</div>
+          </div>
+          <div class="info-card">
+            <div class="label">Background</div>
+            <div class="value" style="font-size: 0.9rem; font-family: var(--font-body);">Emerald Green</div>
+          </div>
+          <div class="info-card">
+            <div class="label">Clear Space</div>
+            <div class="value" style="font-size: 0.85rem; font-family: var(--font-body);">Height of "3"</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 05. VOICE ===== -->
+    <section id="voice">
+      <span class="section-number">05 &mdash; Voice &amp; Tone</span>
+      <h2 class="section-title">How we sound</h2>
+      <p class="section-intro">Our voice mirrors our design: clear, organized, intentional. We speak from experience, not hype.</p>
+
+      <div class="voice-grid">
+        <div class="voice-card">
+          <h4>Direct</h4>
+          <p>Say what you mean. No jargon, no filler, no corporate fluff.</p>
+        </div>
+        <div class="voice-card">
+          <h4>Pragmatic</h4>
+          <p>Focused on what works. Aesthetics serve the mission, not the other way around.</p>
+        </div>
+        <div class="voice-card">
+          <h4>Confident</h4>
+          <p>We know our craft. We speak from experience, not hype.</p>
+        </div>
+        <div class="voice-card">
+          <h4>Respectful</h4>
+          <p>We honor organizational complexity. We understand the real-world constraints.</p>
+        </div>
+        <div class="voice-card">
+          <h4>Structured</h4>
+          <p>Our language mirrors our design approach &mdash; clear, organized, intentional.</p>
+        </div>
+      </div>
+
+      <h3>Signature Phrases</h3>
+      <div class="phrase-grid">
+        <div class="phrase">"Clarity first. Then design."</div>
+        <div class="phrase">"Built for teams with stakes and stakeholders."</div>
+        <div class="phrase">"We bring structure to complex messages."</div>
+        <div class="phrase">"Strategic partner, not vendor."</div>
+        <div class="phrase">"Systems your team can actually maintain."</div>
+        <div class="phrase">"The work needs to hold up in the real world."</div>
+      </div>
+
+      <h3>Messaging Guidelines</h3>
+      <div class="do-dont">
+        <div class="do-col">
+          <h4>Do</h4>
+          <ul>
+            <li>Lead with clarity, follow with craft</li>
+            <li>Speak to the mission, not the aesthetics</li>
+            <li>Acknowledge the difficulty of the client's work</li>
+            <li>Use concrete language: "stakeholders," "timelines," "scrutiny"</li>
+            <li>Emphasize durability and maintainability</li>
+          </ul>
+        </div>
+        <div class="dont-col">
+          <h4>Don't</h4>
+          <ul>
+            <li>Call things "beautiful" or "stunning" &mdash; say clear, effective, durable</li>
+            <li>Use buzzwords like "synergy," "disrupt," or "cutting-edge"</li>
+            <li>Position design as decoration; it's a structural tool</li>
+            <li>Overpromise &mdash; the tone is honest and grounded</li>
+            <li>Be casual to the point of being flippant</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 06. SERVICES ===== -->
+    <section id="services">
+      <span class="section-number">06 &mdash; Services</span>
+      <h2 class="section-title">Four Pillars</h2>
+      <p class="section-intro">Everything we do falls under four interconnected areas of practice.</p>
+
+      <div class="pillars">
+        <div class="pillar">
+          <div class="pillar-num">01</div>
+          <h4>Strategic Design &amp; Creative Direction</h4>
+          <p>Creative leadership aligning visuals, messaging, and execution so decisions are easier and results are cleaner.</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-num">02</div>
+          <h4>Digital Experiences</h4>
+          <p>Websites and digital platforms built for clarity, accessibility, and long-term maintainability.</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-num">03</div>
+          <h4>Campaigns &amp; Storytelling</h4>
+          <p>Multi-channel campaigns that tell cohesive stories across every touchpoint.</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-num">04</div>
+          <h4>Print &amp; Event Design</h4>
+          <p>Polished physical experiences that feel as intentional in person as they look on screen.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 07. DESIGN SYSTEM ===== -->
+    <section id="design-system">
+      <span class="section-number">07 &mdash; Design System</span>
+      <h2 class="section-title">Spacing &amp; Layout</h2>
+      <p class="section-intro">Consistent spacing and layout constraints create the structured, breathable feel of the TR3 brand.</p>
+
+      <h3>Layout Constraints</h3>
+      <div class="info-grid">
+        <div class="info-card">
+          <div class="label">Max Width</div>
+          <div class="value">1200px</div>
+        </div>
+        <div class="info-card">
+          <div class="label">Narrow</div>
+          <div class="value">800px</div>
+        </div>
+        <div class="info-card">
+          <div class="label">Text Column</div>
+          <div class="value">680px</div>
+        </div>
+        <div class="info-card">
+          <div class="label">Header</div>
+          <div class="value">72px</div>
+        </div>
+      </div>
+
+      <h3>Border Radius</h3>
+      <div class="info-grid">
+        <div class="info-card">
+          <div class="label">Default</div>
+          <div class="value" style="font-size: 1rem;">8px</div>
+        </div>
+        <div class="info-card">
+          <div class="label">Large</div>
+          <div class="value" style="font-size: 1rem;">16px</div>
+        </div>
+        <div class="info-card">
+          <div class="label">XL</div>
+          <div class="value" style="font-size: 1rem;">24px</div>
+        </div>
+        <div class="info-card">
+          <div class="label">Pill (CTAs)</div>
+          <div class="value" style="font-size: 1rem;">100px</div>
+        </div>
+      </div>
+
+      <h3>Spacing Scale</h3>
+      <div style="background: var(--white); border-radius: 12px; padding: 2rem; margin-top: 1rem; box-shadow: 0 1px 4px rgba(0,0,0,0.06);">
+        <div class="spacing-row">
+          <span class="spacing-label">XS &mdash; 8px</span>
+          <div class="spacing-bar" style="width: 8px;"></div>
+        </div>
+        <div class="spacing-row">
+          <span class="spacing-label">SM &mdash; 12px</span>
+          <div class="spacing-bar" style="width: 12px;"></div>
+        </div>
+        <div class="spacing-row">
+          <span class="spacing-label">MD &mdash; 16px</span>
+          <div class="spacing-bar" style="width: 16px;"></div>
+        </div>
+        <div class="spacing-row">
+          <span class="spacing-label">LG &mdash; 24px</span>
+          <div class="spacing-bar" style="width: 24px;"></div>
+        </div>
+        <div class="spacing-row">
+          <span class="spacing-label">XL &mdash; 32px</span>
+          <div class="spacing-bar" style="width: 32px;"></div>
+        </div>
+        <div class="spacing-row">
+          <span class="spacing-label">2XL &mdash; 48px</span>
+          <div class="spacing-bar" style="width: 48px;"></div>
+        </div>
+        <div class="spacing-row">
+          <span class="spacing-label">5XL &mdash; 64px</span>
+          <div class="spacing-bar" style="width: 64px;"></div>
+        </div>
+      </div>
+
+      <h3>Motion</h3>
+      <div class="info-grid" style="grid-template-columns: 1fr 1fr;">
+        <div class="info-card">
+          <div class="label">Default Transition</div>
+          <div class="value" style="font-size: 1rem; font-family: var(--font-body);">0.2s ease</div>
+        </div>
+        <div class="info-card">
+          <div class="label">Slow Transition</div>
+          <div class="value" style="font-size: 1rem; font-family: var(--font-body);">0.3s ease</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 08. IMAGERY ===== -->
+    <section id="imagery">
+      <span class="section-number">08 &mdash; Imagery</span>
+      <h2 class="section-title">Photography &amp; Visuals</h2>
+      <p class="section-intro">Real work. Real people. No stock photo energy.</p>
+
+      <ul class="imagery-list">
+        <li>Professional, collaborative environment shots</li>
+        <li>Focus on organizations at work &mdash; not abstract creative imagery</li>
+        <li>Real projects with real people and real outcomes</li>
+        <li>Warm, grounded tones consistent with cream and green palette</li>
+        <li>No stock photo "corporate handshake" energy</li>
+        <li>Context-specific: show the mission, not the aesthetic</li>
+      </ul>
+    </section>
+
+    <!-- ===== 09. CODE REF ===== -->
+    <section id="code-ref">
+      <span class="section-number">09 &mdash; CSS Reference</span>
+      <h2 class="section-title">Custom Properties</h2>
+      <p class="section-intro">Copy-paste ready CSS variables for implementation.</p>
+
+      <div class="code-block">
+<pre><span class="selector">:root</span> {
+  <span class="comment">/* Brand Colors */</span>
+  <span class="prop">--color-green</span>: <span class="val">#2C5F2D</span>;       <span class="comment">/* TR3 Green */</span>
+  <span class="prop">--color-green-hover</span>: <span class="val">#1E4A1F</span>;  <span class="comment">/* Hover state */</span>
+  <span class="prop">--color-green-tint</span>: <span class="val">#EAF0E6</span>;  <span class="comment">/* Subtle bg */</span>
+  <span class="prop">--color-cream</span>: <span class="val">#F5F0E8</span>;       <span class="comment">/* Background */</span>
+  <span class="prop">--color-charcoal</span>: <span class="val">#333333</span>;    <span class="comment">/* Body text */</span>
+  <span class="prop">--color-dark</span>: <span class="val">#2A2A2A</span>;        <span class="comment">/* Footer */</span>
+
+  <span class="comment">/* Neutrals */</span>
+  <span class="prop">--color-gray</span>: <span class="val">#555555</span>;        <span class="comment">/* Secondary text */</span>
+  <span class="prop">--color-border</span>: <span class="val">#E0DDD8</span>;      <span class="comment">/* Dividers */</span>
+  <span class="prop">--color-light</span>: <span class="val">#F0EDE8</span>;       <span class="comment">/* Section bg */</span>
+
+  <span class="comment">/* Typography */</span>
+  <span class="prop">--font-heading</span>: <span class="val">'Georgia', 'Times New Roman', serif</span>;
+  <span class="prop">--font-body</span>: <span class="val">'Inter', -apple-system, BlinkMacSystemFont, sans-serif</span>;
+}</pre>
+      </div>
+    </section>
+
+    <!-- ===== 10. CONTACT ===== -->
+    <section id="contact">
+      <span class="section-number">10 &mdash; Contact</span>
+      <h2 class="section-title">Get in Touch</h2>
+      <p class="section-intro">For brand asset requests, partnerships, or press inquiries.</p>
+
+      <div class="info-grid">
+        <div class="info-card">
+          <div class="label">Email</div>
+          <div class="value" style="font-size: 0.95rem; font-family: var(--font-body);">hello@tr3mediasolutions.com</div>
+        </div>
+        <div class="info-card">
+          <div class="label">Phone</div>
+          <div class="value" style="font-size: 0.95rem; font-family: var(--font-body);">(313) 575-8272</div>
+        </div>
+        <div class="info-card">
+          <div class="label">Location</div>
+          <div class="value" style="font-size: 0.85rem; font-family: var(--font-body);">440 Burroughs St, Suite 140<br>Detroit, MI 48202</div>
+        </div>
+        <div class="info-card">
+          <div class="label">Website</div>
+          <div class="value" style="font-size: 0.95rem; font-family: var(--font-body);">tr3mediasolutions.com</div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="brand-footer">
+    <p>&copy; 2026 TR3 Media Solutions. All Rights Reserved.<br>
+    This document is confidential. For authorized use only.<br>
+    <a href="https://tr3mediasolutions.com">tr3mediasolutions.com</a></p>
+  </footer>
+
+</body>
+</html>

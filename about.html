@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — TR3 Media Solutions</title>
+  <meta name="description" content="TR3 Media Solutions is a strategic creative partner for mission-driven organizations. Led by Domonique Davis with 11+ years of experience across digital design, campaign development, and public-sector work.">
+  <meta property="og:title" content="About — TR3 Media Solutions">
+  <meta property="og:description" content="TR3 Media Solutions is a strategic creative partner for mission-driven organizations. Led by Domonique Davis with 11+ years of experience across digital design, campaign development, and public-sector work.">
+  <meta property="og:image" content="assets/images/dom-headshot.jpg">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="TR3 Media Solutions">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/logos/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/logos/apple-touch-icon.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <!-- HEADER -->
+  <header class="site-header" role="banner">
+    <div class="container">
+      <a href="index.html" class="site-header__logo" aria-label="TR3 Media Solutions — Home">
+        <img src="assets/logos/tr3-logo-white.svg" alt="TR3 Media Solutions">
+      </a>
+      <div class="site-header__contact">
+        <a href="tel:+13135758272">(313) 575-8272</a>
+        <span aria-hidden="true">|</span>
+        <a href="mailto:hello@tr3mediasolutions.com">hello@tr3mediasolutions.com</a>
+      </div>
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" onclick="document.querySelector('.site-nav').classList.toggle('site-nav--open'); document.querySelector('.nav-overlay').classList.toggle('nav-overlay--visible'); this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+      </button>
+      <div class="nav-overlay" onclick="document.querySelector('.site-nav').classList.remove('site-nav--open'); document.querySelector('.nav-overlay').classList.remove('nav-overlay--visible'); document.querySelector('.nav-toggle').setAttribute('aria-expanded', 'false');"></div>
+      <nav class="site-nav" role="navigation" aria-label="Primary navigation">
+        <ul class="site-nav__list">
+          <li><a href="about.html" class="site-nav__link site-nav__link--active">About</a></li>
+          <li><a href="services.html" class="site-nav__link">Services</a></li>
+          <li><a href="work.html" class="site-nav__link">Work</a></li>
+          <li><a href="how-we-work.html" class="site-nav__link">How We Work</a></li>
+          <li><a href="insights.html" class="site-nav__link">Insights</a></li>
+          <li><a href="contact.html" class="site-nav__link">Contact</a></li>
+        </ul>
+        <div class="site-nav__cta">
+          <a href="start.html" class="btn btn--header">Start a Project <span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main id="main">
+
+    <!-- Page Hero -->
+    <section class="page-hero" style="background-image: url('assets/images/stock-designers-team.jpg');">
+      <div class="container">
+        <h1 class="page-hero__title">Creative Direction Rooted in Strategy.</h1>
+      </div>
+    </section>
+
+    <!-- The Agency -->
+    <section class="section" aria-labelledby="agency-heading">
+      <div class="container">
+        <div style="max-width: 720px;">
+          <span class="section__eyebrow">The Agency</span>
+          <h2 id="agency-heading">Strategic design for organizations that carry real responsibility.</h2>
+          <div class="content-block" style="margin-top: 1.5rem;">
+            <p>TR3 Media Solutions is a creative agency for mission-driven organizations that need clarity, consistency, and systems that actually work.</p>
+            <p>We partner with teams whose work carries responsibility &mdash; public trust, community impact, educational outcomes, civic engagement. When the work matters, the design has to do more than look good. It has to function under pressure, scale with capacity, and communicate with intention.</p>
+            <p>We don't chase trends. We design with context, constraints, and long-term use in mind.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Meet the Founder -->
+    <section class="section section--tinted" aria-labelledby="founder-heading">
+      <div class="container">
+        <div class="split split--reverse">
+          <div class="split__image">
+            <img src="assets/images/dom-headshot.jpg" alt="Domonique Davis, Founder and Creative Director" loading="lazy" width="500" height="500">
+          </div>
+          <div>
+            <span class="section__eyebrow">Meet the Founder</span>
+            <h2 id="founder-heading">Domonique Davis</h2>
+            <div class="content-block" style="margin-top: 1.5rem;">
+              <p>TR3 Media Solutions is led by Domonique Davis, a creative director with over a decade of experience across digital design, user experience, campaign development, and public-sector work.</p>
+              <p>Her background blends strategy, execution, and operational reality &mdash; shaped by years of work with nonprofits, government entities, and mission-led teams operating at scale. That combination allows the work to move beyond surface-level visuals into tools that support real outcomes.</p>
+            </div>
+            <ul class="engagement-triggers" style="margin-top: 1.5rem;">
+              <li>Brand systems for organizations with 50+ stakeholders</li>
+              <li>Campaign direction for galas, fundraisers, and public initiatives</li>
+              <li>Digital strategy for foundations and civic organizations</li>
+              <li>Goldman Sachs 10,000 Small Businesses Alumni</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Philosophy -->
+    <section class="section" aria-labelledby="philosophy-heading">
+      <div class="container">
+        <div style="max-width: 720px;">
+          <span class="section__eyebrow">How We Think</span>
+          <h2 id="philosophy-heading">Principles that guide our work</h2>
+          <ul class="philosophy-list">
+            <li>Good design creates clarity, not confusion. The goal is always to make it easier for your audience to understand who you are and why your work matters.</li>
+            <li>Structure protects creativity. Process isn't the enemy of inspiration &mdash; it's what gives creative work room to succeed under real constraints.</li>
+            <li>The best partnerships are built on mutual respect for process. We bring creative leadership. You bring organizational knowledge. The work is better because of both.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3.3 Perspective / POV -->
+    <section class="section section--tinted" aria-label="Our Perspective">
+      <div class="container">
+        <div class="perspective-block">
+          <h2>We don't make things pretty. We make them clear.</h2>
+          <p>Most agencies optimize for aesthetics. We optimize for clarity, durability, and trust. The organizations we serve can't afford marketing that looks good but doesn't hold up under scrutiny. Our job is to build systems that work &mdash; for your team, your stakeholders, and the communities you serve.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Closing Statement -->
+    <section class="section" aria-label="Credentials">
+      <div class="container">
+        <div style="max-width: 720px; text-align: center; margin: 0 auto;">
+          <p style="font-family: var(--font-heading); font-size: var(--size-xl); color: var(--color-gray-800); line-height: 1.6; font-style: italic;">Detroit-based. Community-rooted. Over a decade of work supporting civic and nonprofit initiatives.</p>
+          <div style="margin-top: 2rem;">
+            <img src="assets/images/Goldman-Sachs-Small-Business-Alumni.png" alt="Goldman Sachs 10,000 Small Businesses Alumni" style="max-width: 200px; opacity: 0.85;" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Final CTA (consolidated) -->
+    <section class="cta-banner" aria-labelledby="about-cta-heading">
+      <div class="container">
+        <div class="cta-banner__inner">
+          <h2 class="cta-banner__title" id="about-cta-heading">Ready to Work Together?</h2>
+          <p class="cta-banner__subtitle">Let's talk about what you're building and how we can help. We're currently partnering with a select number of mission-driven organizations at the executive level.</p>
+          <div class="cta-banner__actions">
+            <a href="start.html" class="btn btn--primary btn--large">Request a Strategic Consultation <span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="site-footer__top">
+        <div class="site-footer__brand">
+          <img src="assets/logos/tr3-logo-white.svg" alt="TR3 Media Solutions">
+          <p>We specialize in branding, web design, and on-call creative support built on 11+ years of experience and integrity.</p>
+          <img src="assets/images/Goldman-Sachs-Small-Business-Alumni.png" alt="Goldman Sachs 10,000 Small Businesses Alumni" class="site-footer__gs-badge">
+        </div>
+        <div>
+          <h3 class="site-footer__nav-title">Navigation</h3>
+          <ul class="site-footer__nav-list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="work.html">Portfolio</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="marketing-that-pays.html">Marketing That Pays</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="site-footer__nav-title">Contact Info</h3>
+          <p class="site-footer__contact-label">Email</p>
+          <p class="site-footer__contact-value">hello@tr3mediasolutions.com</p>
+          <p class="site-footer__contact-label">Phone</p>
+          <p class="site-footer__contact-value">(313) 575-8272</p>
+          <p class="site-footer__contact-label">Location</p>
+          <p class="site-footer__contact-value">440 Burroughs St, Suite 140, Detroit, MI 48202</p>
+        </div>
+        <div>
+          <h3 class="site-footer__nav-title">Our Socials</h3>
+          <div class="site-footer__socials">
+            <a href="https://www.facebook.com/Tr3MediaSolutions" class="site-footer__social-icon" aria-label="Follow TR3 Media Solutions on Facebook" target="_blank" rel="noopener noreferrer">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/tr3media/" class="site-footer__social-icon" aria-label="Follow TR3 Media Solutions on Instagram" target="_blank" rel="noopener noreferrer">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="site-footer__bottom">
+        <p>&copy; 2026 TR3 Media Solutions. All Rights Reserved.</p>
+        <div class="site-footer__utilities">
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="terms.html">Terms of Use</a>
+          <a href="accessibility.html">Accessibility</a>
+          <a href="brand-guide.html">Brand Guide</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Start a Project — TR3 Media Solutions</title>
+  <meta name="description" content="Submit an inquiry to work with TR3 Media Solutions. We review every submission and follow up if there is alignment.">
+  <meta property="og:title" content="Start a Project — TR3 Media Solutions">
+  <meta property="og:description" content="Submit an inquiry to work with TR3 Media Solutions. We review every submission and follow up if there is alignment.">
+  <meta property="og:image" content="assets/logos/apple-touch-icon.png">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="TR3 Media Solutions">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/logos/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/logos/apple-touch-icon.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <!-- HEADER -->
+  <header class="site-header" role="banner">
+    <div class="container">
+      <a href="index.html" class="site-header__logo" aria-label="TR3 Media Solutions — Home">
+        <img src="assets/logos/tr3-logo-white.svg" alt="TR3 Media Solutions">
+      </a>
+      <div class="site-header__contact">
+        <a href="tel:+13135758272">(313) 575-8272</a>
+        <span aria-hidden="true">|</span>
+        <a href="mailto:hello@tr3mediasolutions.com">hello@tr3mediasolutions.com</a>
+      </div>
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" onclick="document.querySelector('.site-nav').classList.toggle('site-nav--open'); document.querySelector('.nav-overlay').classList.toggle('nav-overlay--visible'); this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+      </button>
+      <div class="nav-overlay" onclick="document.querySelector('.site-nav').classList.remove('site-nav--open'); document.querySelector('.nav-overlay').classList.remove('nav-overlay--visible'); document.querySelector('.nav-toggle').setAttribute('aria-expanded', 'false');"></div>
+      <nav class="site-nav" role="navigation" aria-label="Primary navigation">
+        <ul class="site-nav__list">
+          <li><a href="about.html" class="site-nav__link">About</a></li>
+          <li><a href="services.html" class="site-nav__link">Services</a></li>
+          <li><a href="work.html" class="site-nav__link">Work</a></li>
+          <li><a href="how-we-work.html" class="site-nav__link">How We Work</a></li>
+          <li><a href="insights.html" class="site-nav__link">Insights</a></li>
+          <li><a href="contact.html" class="site-nav__link">Contact</a></li>
+        </ul>
+        <div class="site-nav__cta">
+          <a href="start.html" class="btn btn--header">Start a Project <span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main id="main">
+
+    <!-- Page Hero -->
+    <section class="page-hero page-hero--plain">
+      <div class="container">
+        <h1 class="page-hero__title">Start a project</h1>
+      </div>
+    </section>
+
+    <!-- Form -->
+    <section class="section" aria-label="Project inquiry form">
+      <div class="container container--narrow">
+
+        <div style="max-width: 600px;">
+          <p style="color: var(--color-gray-600); line-height: 1.7; margin-bottom: 3rem;">This form is for organizations interested in working with TR3 Media Solutions. We review every submission and follow up within two business days.</p>
+
+          <form id="intake-form">
+
+            <!-- About You -->
+            <div class="form-section">
+              <h2 class="form-section__title">About You</h2>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="contact-name" class="form-label">Your name</label>
+                  <input type="text" id="contact-name" name="name" class="form-input" placeholder="Full name" required>
+                </div>
+                <div class="form-group">
+                  <label for="contact-email" class="form-label">Email</label>
+                  <input type="email" id="contact-email" name="email" class="form-input" placeholder="you@organization.org" required>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="org-name" class="form-label">Organization</label>
+                  <input type="text" id="org-name" name="organization" class="form-input" placeholder="Organization name" required>
+                </div>
+                <div class="form-group">
+                  <label for="your-role" class="form-label">Your role</label>
+                  <input type="text" id="your-role" name="role" class="form-input" placeholder="e.g. Executive Director" required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="org-type" class="form-label">Organization type</label>
+                <select id="org-type" name="org-type" class="form-select" required>
+                  <option value="">Select one</option>
+                  <option value="nonprofit">Nonprofit or Foundation</option>
+                  <option value="public-sector">Public Sector or Education</option>
+                  <option value="social-impact">Social Impact Business</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Are you the primary decision-maker?</label>
+                <div class="form-options">
+                  <label class="form-option">
+                    <input type="radio" name="decision-maker" value="yes" required>
+                    <span class="form-option__text">Yes</span>
+                  </label>
+                  <label class="form-option">
+                    <input type="radio" name="decision-maker" value="closely-involved">
+                    <span class="form-option__text">No, but closely involved</span>
+                  </label>
+                  <label class="form-option">
+                    <input type="radio" name="decision-maker" value="no">
+                    <span class="form-option__text">No</span>
+                  </label>
+                </div>
+                <div class="form-note" id="decision-maker-note">
+                  We prioritize projects with clear decision-making authority.
+                </div>
+              </div>
+            </div>
+
+            <!-- Project Details -->
+            <div class="form-section">
+              <h2 class="form-section__title">Project Details</h2>
+
+              <div class="form-group">
+                <label class="form-label">What support do you need?</label>
+                <div class="form-options">
+                  <label class="form-option">
+                    <input type="checkbox" name="support" value="website">
+                    <span class="form-option__text">Website or digital platform</span>
+                  </label>
+                  <label class="form-option">
+                    <input type="checkbox" name="support" value="campaign">
+                    <span class="form-option__text">Campaign or initiative</span>
+                  </label>
+                  <label class="form-option">
+                    <input type="checkbox" name="support" value="brand">
+                    <span class="form-option__text">Brand or visual system</span>
+                  </label>
+                  <label class="form-option">
+                    <input type="checkbox" name="support" value="print">
+                    <span class="form-option__text">Print or event materials</span>
+                  </label>
+                  <label class="form-option">
+                    <input type="checkbox" name="support" value="ongoing">
+                    <span class="form-option__text">Ongoing creative partnership</span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="problem" class="form-label">Describe the problem you're trying to solve</label>
+                <textarea id="problem" name="problem" class="form-textarea" placeholder="Focus on the challenge, not the deliverables." required></textarea>
+              </div>
+            </div>
+
+            <!-- Timing & Budget -->
+            <div class="form-section">
+              <h2 class="form-section__title">Timing &amp; Budget</h2>
+
+              <div class="form-group">
+                <label for="timeframe" class="form-label">Ideal start timeframe</label>
+                <select id="timeframe" name="timeframe" class="form-select" required>
+                  <option value="">Select one</option>
+                  <option value="immediately">Immediately</option>
+                  <option value="1-2-months">Within 1-2 months</option>
+                  <option value="3-months">3+ months out</option>
+                  <option value="exploring">Exploring options</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Is funding allocated?</label>
+                <div class="form-options">
+                  <label class="form-option">
+                    <input type="radio" name="funding" value="yes" required>
+                    <span class="form-option__text">Yes</span>
+                  </label>
+                  <label class="form-option">
+                    <input type="radio" name="funding" value="in-progress">
+                    <span class="form-option__text">In progress</span>
+                  </label>
+                  <label class="form-option">
+                    <input type="radio" name="funding" value="not-yet">
+                    <span class="form-option__text">Not yet</span>
+                  </label>
+                </div>
+                <div class="form-note" id="funding-note">
+                  We typically engage once funding and internal readiness are confirmed.
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Anticipated investment</label>
+                <div class="form-options">
+                  <label class="form-option">
+                    <input type="radio" name="investment" value="under-5k" required>
+                    <span class="form-option__text">Under $5,000</span>
+                  </label>
+                  <label class="form-option">
+                    <input type="radio" name="investment" value="5k-10k">
+                    <span class="form-option__text">$5,000 - $10,000</span>
+                  </label>
+                  <label class="form-option">
+                    <input type="radio" name="investment" value="10k-25k">
+                    <span class="form-option__text">$10,000 - $25,000</span>
+                  </label>
+                  <label class="form-option">
+                    <input type="radio" name="investment" value="25k-plus">
+                    <span class="form-option__text">$25,000+</span>
+                  </label>
+                </div>
+                <p class="form-helper">Budgets help us recommend the right approach.</p>
+              </div>
+            </div>
+
+            <!-- Working Style -->
+            <div class="form-section">
+              <h2 class="form-section__title">Working Style</h2>
+
+              <div class="form-group">
+                <label class="form-label">How do you prefer to work?</label>
+                <div class="form-options">
+                  <label class="form-option">
+                    <input type="radio" name="working-style" value="strategic-partner" required>
+                    <span class="form-option__text">We want a strategic partner who helps us think and decide</span>
+                  </label>
+                  <label class="form-option">
+                    <input type="radio" name="working-style" value="execution-guidance">
+                    <span class="form-option__text">We want execution with some guidance</span>
+                  </label>
+                  <label class="form-option">
+                    <input type="radio" name="working-style" value="production-only">
+                    <span class="form-option__text">We want production only</span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="why-tr3" class="form-label">Why do you want to work with TR3 Media specifically?</label>
+                <textarea id="why-tr3" name="why-tr3" class="form-textarea" placeholder="What drew you to us?" required></textarea>
+              </div>
+            </div>
+
+            <!-- Submit -->
+            <div class="form-submit">
+              <button type="submit" class="btn btn--primary btn--large">Submit Inquiry</button>
+            </div>
+
+          </form>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- FOOTER -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="site-footer__top">
+        <div class="site-footer__brand">
+          <img src="assets/logos/tr3-logo-white.svg" alt="TR3 Media Solutions">
+          <p>We specialize in branding, web design, and on-call creative support built on 11+ years of experience and integrity.</p>
+          <img src="assets/images/Goldman-Sachs-Small-Business-Alumni.png" alt="Goldman Sachs 10,000 Small Businesses Alumni" class="site-footer__gs-badge">
+        </div>
+        <div>
+          <h3 class="site-footer__nav-title">Navigation</h3>
+          <ul class="site-footer__nav-list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="work.html">Portfolio</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="marketing-that-pays.html">Marketing That Pays</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="site-footer__nav-title">Contact Info</h3>
+          <p class="site-footer__contact-label">Email</p>
+          <p class="site-footer__contact-value">hello@tr3mediasolutions.com</p>
+          <p class="site-footer__contact-label">Phone</p>
+          <p class="site-footer__contact-value">(313) 575-8272</p>
+          <p class="site-footer__contact-label">Location</p>
+          <p class="site-footer__contact-value">440 Burroughs St, Suite 140, Detroit, MI 48202</p>
+        </div>
+        <div>
+          <h3 class="site-footer__nav-title">Our Socials</h3>
+          <div class="site-footer__socials">
+            <a href="https://www.facebook.com/Tr3MediaSolutions" class="site-footer__social-icon" aria-label="Follow TR3 Media Solutions on Facebook" target="_blank" rel="noopener noreferrer">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/tr3media/" class="site-footer__social-icon" aria-label="Follow TR3 Media Solutions on Instagram" target="_blank" rel="noopener noreferrer">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="site-footer__bottom">
+        <p>&copy; 2026 TR3 Media Solutions. All Rights Reserved.</p>
+        <div class="site-footer__utilities">
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="terms.html">Terms of Use</a>
+          <a href="accessibility.html">Accessibility</a>
+          <a href="brand-guide.html">Brand Guide</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Conditional notes
+    document.querySelectorAll('input[name="decision-maker"]').forEach(function(r) {
+      r.addEventListener('change', function() {
+        document.getElementById('decision-maker-note').classList.toggle('form-note--visible', this.value === 'no');
+      });
+    });
+    document.querySelectorAll('input[name="funding"]').forEach(function(r) {
+      r.addEventListener('change', function() {
+        document.getElementById('funding-note').classList.toggle('form-note--visible', this.value === 'not-yet');
+      });
+    });
+
+    // Form submission — posts to Formspree and routes to confirmation
+    document.getElementById('intake-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      var form = e.target;
+      var btn = form.querySelector('button[type="submit"]');
+      btn.disabled = true;
+      btn.textContent = 'Submitting...';
+
+      var val = function(name) {
+        var el = form.querySelector('[name="' + name + '"]:checked') || form.querySelector('[name="' + name + '"]');
+        return el ? el.value : '';
+      };
+      var checked = function(name) {
+        return Array.from(form.querySelectorAll('[name="' + name + '"]:checked')).map(function(c) { return c.value; });
+      };
+
+      var decisionMaker = val('decision-maker');
+      var support = checked('support');
+      var orgType = val('org-type');
+      var timeframe = val('timeframe');
+      var funding = val('funding');
+      var investment = val('investment');
+      var style = val('working-style');
+      var whyTr3 = (form.querySelector('#why-tr3').value || '').trim();
+
+      // Determine route
+      var destination = 'start-confirmation-project.html';
+
+      if (
+        investment === 'under-5k' ||
+        funding === 'not-yet' ||
+        decisionMaker === 'no' ||
+        style === 'production-only' ||
+        (timeframe === 'exploring' && (investment === 'under-5k' || investment === '5k-10k')) ||
+        whyTr3.length < 25
+      ) {
+        destination = 'start-confirmation-decline.html';
+      } else if (
+        ['nonprofit', 'public-sector', 'social-impact'].indexOf(orgType) !== -1 &&
+        (support.indexOf('ongoing') !== -1 || support.length > 1) &&
+        ['10k-25k', '25k-plus'].indexOf(investment) !== -1 &&
+        ['yes', 'in-progress'].indexOf(funding) !== -1 &&
+        style === 'strategic-partner'
+      ) {
+        destination = 'start-confirmation-retainer.html';
+      }
+
+      // Submit to Formspree
+      fetch('https://formspree.io/f/xlgwkbol', {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      }).then(function(response) {
+        if (response.ok) {
+          window.location.href = destination;
+        } else {
+          btn.disabled = false;
+          btn.textContent = 'Submit Inquiry';
+          alert('Something went wrong. Please try again or email us directly at hello@tr3mediasolutions.com');
+        }
+      }).catch(function() {
+        btn.disabled = false;
+        btn.textContent = 'Submit Inquiry';
+        alert('Something went wrong. Please try again or email us directly at hello@tr3mediasolutions.com');
+      });
+    });
+  </script>
+</body>
+</html>
