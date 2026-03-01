@@ -321,9 +321,10 @@
     <p class="form-step">Form 2 of 4 &nbsp;·&nbsp; ~6 minutes</p>
   </header>
 
-  <form id="mtp-form-2" action="[FORMSPREE_ENDPOINT]" method="POST">
+  <form id="mtp-form-2" action="https://formspree.io/f/xgolbyep" method="POST">
     <input type="hidden" name="_subject" value="MTP Intake: Lead Source Tracker">
     <input type="hidden" name="form_type" value="lead_tracker">
+    <input type="hidden" name="_next" value="./form-icp-builder.html">
 
     <!-- Identity -->
     <p class="section-label">Your Details</p>
@@ -433,7 +434,7 @@
   <div class="success-message" id="success-msg">
     <div class="success-icon">✓</div>
     <h3>Lead Data Received</h3>
-    <p>Next: Form 3 — ICP Builder. This one takes a bit more thought. Set aside 10–15 minutes.</p>
+    <p>Taking you to Form 3 — ICP Builder in <span id="redirect-count">3</span>…</p>
   </div>
 
   <footer style="display:flex;align-items:center;justify-content:space-between;margin-top:48px;padding-top:24px;border-top:1px solid var(--border);">
@@ -537,6 +538,13 @@
       if (res.ok) {
         form.style.display = 'none';
         document.getElementById('success-msg').classList.add('visible');
+        let secs = 3;
+        const countEl = document.getElementById('redirect-count');
+        const tick = setInterval(() => {
+          secs--;
+          if (countEl) countEl.textContent = secs;
+          if (secs <= 0) { clearInterval(tick); window.location.href = './form-icp-builder.html'; }
+        }, 1000);
       } else {
         btn.textContent = 'Submission failed — try again';
         btn.disabled = false;

@@ -465,10 +465,11 @@
   </header>
 
   <!-- Form -->
-  <form id="mtp-form-1" action="[FORMSPREE_ENDPOINT]" method="POST">
+  <form id="mtp-form-1" action="https://formspree.io/f/xeelwkql" method="POST">
     <!-- Hidden meta -->
     <input type="hidden" name="_subject" value="MTP Intake: Marketing Spend Inventory">
     <input type="hidden" name="form_type" value="spend_inventory">
+    <input type="hidden" name="_next" value="./form-lead-tracker.html">
 
     <!-- Section: Identity -->
     <p class="section-label">Your Details</p>
@@ -585,7 +586,7 @@
   <div class="success-message" id="success-msg">
     <div class="success-icon">✓</div>
     <h3>Spend Inventory Received</h3>
-    <p>We've got your data. Move on to Form 2 — Lead Source Tracker — when you're ready.</p>
+    <p>Taking you to Form 2 — Lead Source Tracker in <span id="redirect-count">3</span>…</p>
   </div>
 
   <!-- Footer -->
@@ -701,6 +702,13 @@
       if (res.ok) {
         form.style.display = 'none';
         document.getElementById('success-msg').classList.add('visible');
+        let secs = 3;
+        const countEl = document.getElementById('redirect-count');
+        const tick = setInterval(() => {
+          secs--;
+          if (countEl) countEl.textContent = secs;
+          if (secs <= 0) { clearInterval(tick); window.location.href = './form-lead-tracker.html'; }
+        }, 1000);
       } else {
         btn.textContent = 'Submission failed — try again';
         btn.disabled = false;
