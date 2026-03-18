@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marketing Diagnosis — Marketing That Pays™</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --dark: #2A2A2A;
+    --charcoal: #333333;
+    --cream: #F5F0E8;
+    --cream-deep: #EDE8DF;
+    --green: #2C5F2D;
+    --green-hover: #1E4A1F;
+    --rust: #8B3A1F;
+    --mid: #575753;
+    --border: rgba(44,95,45,0.15);
+    --border-dark: rgba(245,240,232,0.12);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--charcoal); min-height: 100vh; }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.1rem 4vw;
+    background: rgba(245,240,232,0.94);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; letter-spacing: 0.12em; color: var(--green); text-decoration: none; }
+  .nav-back { font-size: 0.8rem; color: var(--mid); text-decoration: none; display: flex; align-items: center; gap: 0.4rem; }
+  .nav-back:hover { color: var(--green); }
+
+  .audit-wrap {
+    min-height: 100vh;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    padding: 100px 4vw 60px;
+  }
+  .audit-intro { max-width: 560px; width: 100%; text-align: center; margin-bottom: 3rem; }
+  .audit-eyebrow {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    font-size: 0.68rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--green); margin-bottom: 1.25rem;
+  }
+  .audit-eyebrow::before { content: ''; width: 20px; height: 1px; background: var(--green); }
+  .audit-intro h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.5rem, 7vw, 4.5rem); line-height: 0.95; letter-spacing: 0.02em; color: var(--charcoal); margin-bottom: 1rem; }
+  .audit-intro h1 em { color: var(--green); font-style: normal; }
+  .audit-intro p { font-size: 1rem; line-height: 1.7; color: var(--mid); max-width: 440px; margin: 0 auto; }
+  .audit-intro .time-badge {
+    display: inline-block; margin-top: 1.25rem;
+    background: var(--green); color: var(--cream);
+    font-size: 0.7rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 0.35rem 1rem;
+  }
+
+  .audit-card { max-width: 600px; width: 100%; background: var(--cream); border: 1px solid var(--border); padding: 2.5rem; }
+
+  .progress-wrap { margin-bottom: 2rem; }
+  .progress-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; }
+  .progress-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--green); }
+  .progress-count { font-size: 0.75rem; color: var(--mid); }
+  .progress-bar { height: 2px; background: var(--border); }
+  .progress-fill { height: 100%; background: var(--green); transition: width 0.4s ease; }
+
+  .q-text { font-family: 'DM Serif Display', serif; font-size: 1.35rem; line-height: 1.4; color: var(--charcoal); margin-bottom: 1.75rem; }
+
+  .options { display: flex; flex-direction: column; gap: 10px; }
+  .opt {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 1rem 1.1rem;
+    border: 1px solid var(--border);
+    background: var(--cream); cursor: pointer;
+    transition: all 0.15s;
+  }
+  .opt:hover { border-color: var(--green); background: var(--cream-deep); }
+  .opt.selected { border-color: var(--green); border-width: 1.5px; background: var(--cream-deep); }
+  .opt-marker {
+    width: 18px; height: 18px; border-radius: 50%; border: 1.5px solid var(--border);
+    flex-shrink: 0; margin-top: 1px; transition: all 0.15s;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .opt.selected .opt-marker { background: var(--green); border-color: var(--green); }
+  .opt.selected .opt-marker::after { content: ''; width: 6px; height: 6px; background: white; border-radius: 50%; }
+  .opt-label { font-size: 0.95rem; color: var(--charcoal); line-height: 1.5; }
+
+  .nav-btns { display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+  .btn-back-q { font-size: 0.85rem; color: var(--mid); background: none; border: none; cursor: pointer; padding: 0; }
+  .btn-back-q:hover { color: var(--charcoal); }
+  .btn-next-q {
+    background: var(--green); color: var(--cream);
+    font-size: 0.82rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 0.85rem 2rem; border: none; cursor: pointer; transition: background 0.2s;
+  }
+  .btn-next-q:hover { background: var(--green-hover); }
+  .btn-next-q:disabled { opacity: 0.35; cursor: not-allowed; }
+
+  /* RESULT */
+  .result-wrap { max-width: 640px; width: 100%; display: none; }
+  .result-wrap.show { display: block; }
+
+  .diag-block { padding: 2.5rem; margin-bottom: 2px; }
+  .diag-block.tier1 { background: var(--cream-deep); border: 1px solid var(--border); }
+  .diag-block.tier2 { background: var(--dark); border: 1px solid var(--green); }
+  .diag-block.disqualify { background: var(--cream-deep); border: 1px solid rgba(139,58,31,0.3); }
+
+  .diag-eyebrow { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 0.75rem; }
+  .tier1 .diag-eyebrow { color: var(--green); }
+  .tier2 .diag-eyebrow { color: var(--green); }
+  .disqualify .diag-eyebrow { color: var(--rust); }
+
+  .diag-headline { font-family: 'DM Serif Display', serif; font-size: clamp(1.5rem, 3vw, 2rem); line-height: 1.2; margin-bottom: 1rem; }
+  .tier1 .diag-headline, .disqualify .diag-headline { color: var(--charcoal); }
+  .tier2 .diag-headline { color: var(--cream); }
+
+  .diag-body { font-size: 0.95rem; line-height: 1.75; }
+  .tier1 .diag-body, .disqualify .diag-body { color: var(--mid); }
+  .tier2 .diag-body { color: rgba(245,240,232,0.72); }
+
+  .findings-block { background: var(--cream); border: 1px solid var(--border); border-top: none; padding: 2rem 2.5rem; margin-bottom: 2px; }
+  .findings-title { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--green); margin-bottom: 1.25rem; }
+  .finding { display: flex; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid var(--border); }
+  .finding:last-child { border-bottom: none; }
+  .find-arrow { color: var(--green); font-size: 0.9rem; flex-shrink: 0; margin-top: 2px; }
+  .find-content h4 { font-size: 0.9rem; font-weight: 600; color: var(--charcoal); margin-bottom: 0.25rem; }
+  .find-content p { font-size: 0.85rem; color: var(--mid); line-height: 1.6; }
+
+  .rec-block { background: var(--cream-deep); border: 1px solid var(--border); border-top: none; padding: 2rem 2.5rem; margin-bottom: 2px; }
+  .rec-tier { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--green); margin-bottom: 0.4rem; }
+  .rec-name { font-family: 'DM Serif Display', serif; font-size: 1.3rem; color: var(--charcoal); margin-bottom: 0.3rem; }
+  .rec-price { font-size: 0.82rem; color: var(--mid); margin-bottom: 0.85rem; }
+  .rec-desc { font-size: 0.9rem; color: var(--mid); line-height: 1.7; }
+
+  .cta-block { background: var(--cream); border: 1px solid var(--border); border-top: none; padding: 2rem 2.5rem; }
+  .email-field { margin-bottom: 1.25rem; }
+  .email-field label { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--green); display: block; margin-bottom: 0.5rem; }
+  .email-field input { width: 100%; padding: 0.85rem 1rem; border: 1px solid var(--border); background: var(--cream-deep); color: var(--charcoal); font-family: inherit; font-size: 0.95rem; outline: none; transition: border-color 0.2s; }
+  .email-field input:focus { border-color: var(--green); }
+  .cta-apply {
+    display: block; width: 100%; padding: 1rem;
+    background: var(--green); color: var(--cream);
+    font-size: 0.82rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    border: none; cursor: pointer; text-align: center; text-decoration: none;
+    transition: background 0.2s; margin-bottom: 0.75rem;
+  }
+  .cta-apply:hover { background: var(--green-hover); }
+  .cta-advisor {
+    display: block; width: 100%; padding: 0.85rem;
+    background: none; color: var(--mid);
+    font-size: 0.82rem; font-weight: 500; letter-spacing: 0.06em;
+    border: 1px solid var(--border); cursor: pointer; text-align: center; text-decoration: none;
+    transition: all 0.2s;
+  }
+  .cta-advisor:hover { color: var(--charcoal); border-color: var(--charcoal); }
+  .cta-note { font-size: 0.75rem; color: var(--mid); text-align: center; margin-top: 0.75rem; }
+
+  footer { text-align: center; padding: 2.5rem 4vw; border-top: 1px solid var(--border); }
+  footer p { font-size: 0.78rem; color: var(--mid); }
+  footer a { color: var(--green); text-decoration: none; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/marketing-that-pays/" class="nav-logo">Marketing That Pays™</a>
+  <a href="/marketing-that-pays/" class="nav-back">← Back to program</a>
+</nav>
+
+<div class="audit-wrap">
+  <div class="audit-intro" id="intro-block">
+    <div class="audit-eyebrow">Free · 3 minutes</div>
+    <h1>Find out why your<br>marketing <em>isn't converting</em></h1>
+    <p>9 questions. A brutally honest diagnosis. A clear recommendation on what to fix first — and whether Marketing That Pays™ is the right move.</p>
+    <div class="time-badge">Takes 3 minutes</div>
+  </div>
+
+  <!-- QUIZ -->
+  <div class="audit-card" id="quiz-card">
+    <div class="progress-wrap">
+      <div class="progress-meta">
+        <span class="progress-label" id="prog-label">Question 1 of 9</span>
+        <span class="progress-count" id="prog-count">11%</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" id="prog-fill" style="width:11%"></div></div>
+    </div>
+    <div class="q-text" id="q-text"></div>
+    <div class="options" id="options"></div>
+    <div class="nav-btns">
+      <button class="btn-back-q" id="btn-back" onclick="goBack()">← Back</button>
+      <button class="btn-next-q" id="btn-next" onclick="goNext()" disabled>Continue →</button>
+    </div>
+  </div>
+
+  <!-- RESULT -->
+  <div class="result-wrap" id="result-wrap">
+    <div id="diag-block" class="diag-block"></div>
+    <div class="findings-block" id="findings-block"></div>
+    <div class="rec-block" id="rec-block"></div>
+    <div class="cta-block">
+      <div class="email-field">
+        <label>Get your full plan — enter your email</label>
+        <input type="email" id="email-in" placeholder="your@email.com">
+      </div>
+      <button class="cta-apply" id="cta-apply" onclick="applyNow()">Apply to build your system →</button>
+      <a href="/marketing-that-pays/advisor.html" class="cta-advisor" id="cta-advisor">Talk to the AI advisor about my results →</a>
+      <p class="cta-note">8 spots available · April cohort · Dom reviews every application personally</p>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p><a href="/marketing-that-pays/">Marketing That Pays™</a> · A <a href="/">TR3 Media Solutions</a> Program · © 2026</p>
+</footer>
+
+<script>
+const qs = [
+  { text: "What are you primarily selling?", opts: ["Service or consulting","Program or course","Physical product","Mix of the above"], scores: [2,2,1,2] },
+  { text: "What's your monthly revenue right now?", opts: ["Not yet / pre-revenue","Under $5K/month","$5K–$20K/month","$20K+/month"], scores: [0,1,2,3] },
+  { text: "Do you currently get consistent leads?", opts: ["Yes, predictably","Sometimes — hit or miss","Rarely","Basically never"], scores: [3,2,1,0] },
+  { text: "Do you have an offer that converts cold traffic?", opts: ["Yes, people buy without much explanation","Warm leads convert, cold don't","Not really","No clear offer"], scores: [3,2,1,0] },
+  { text: "Do you have a funnel — not just a website?", opts: ["Yes, built intentionally","Some pieces exist, not connected","Not really","No"], scores: [3,2,1,0] },
+  { text: "How would you describe your marketing right now?", opts: ["Structured and consistent","I post but it's random","I overthink and don't post","I'm stuck and avoiding it"], scores: [3,2,1,0] },
+  { text: "Are you getting real value from your AI tools?", opts: ["Yes — saves me time","I use them but rewrite everything","Inconsistent","Not really"], scores: [3,1,1,0] },
+  { text: "What's your biggest frustration right now?", opts: ["Not getting enough leads","Leads aren't converting","Too much manual work","Don't know what's working"], scores: [1,2,2,1] },
+  { text: "What happens if this doesn't change in 90 days?", opts: ["I lose real money","I stay stuck","My growth stalls","Probably nothing"], scores: [3,2,2,0] }
+];
+
+let cur = 0, answers = [], sel = null;
+
+const frustLabels = ["getting enough leads","converting the leads you get","too much manual work","knowing what's actually working"];
+
+function render() {
+  const q = qs[cur];
+  const pct = Math.round(((cur+1)/qs.length)*100);
+  document.getElementById('prog-label').textContent = `Question ${cur+1} of ${qs.length}`;
+  document.getElementById('prog-count').textContent = pct + '%';
+  document.getElementById('prog-fill').style.width = pct + '%';
+  document.getElementById('q-text').textContent = q.text;
+
+  const opts = document.getElementById('options');
+  opts.innerHTML = '';
+  q.opts.forEach((o, i) => {
+    const d = document.createElement('div');
+    d.className = 'opt' + (answers[cur] === i ? ' selected' : '');
+    d.innerHTML = `<div class="opt-marker"></div><div class="opt-label">${o}</div>`;
+    d.onclick = () => pick(i);
+    opts.appendChild(d);
+  });
+
+  sel = answers[cur] !== undefined ? answers[cur] : null;
+  document.getElementById('btn-next').disabled = sel === null;
+  document.getElementById('btn-back').style.visibility = cur === 0 ? 'hidden' : 'visible';
+  document.getElementById('btn-next').textContent = cur === qs.length - 1 ? 'See my results →' : 'Continue →';
+}
+
+function pick(i) {
+  sel = i; answers[cur] = i;
+  document.querySelectorAll('.opt').forEach((el, idx) => el.classList.toggle('selected', idx === i));
+  document.getElementById('btn-next').disabled = false;
+}
+
+function goNext() {
+  if (sel === null) return;
+  if (cur < qs.length - 1) { cur++; render(); }
+  else showResult();
+}
+
+function goBack() { if (cur > 0) { cur--; render(); } }
+
+function totalScore() {
+  return answers.reduce((sum, a, i) => sum + (a !== undefined ? qs[i].scores[a] : 0), 0);
+}
+
+function getTier(s) {
+  if (answers[1] === 0 && s < 8) return 'disqualify';
+  if (s >= 16) return 'tier2';
+  return 'tier1';
+}
+
+function showResult() {
+  document.getElementById('intro-block').style.display = 'none';
+  document.getElementById('quiz-card').style.display = 'none';
+  const rw = document.getElementById('result-wrap');
+  rw.classList.add('show');
+
+  const s = totalScore();
+  const tier = getTier(s);
+  const frust = frustLabels[answers[7]] || 'unclear conversion';
+
+  const db = document.getElementById('diag-block');
+  db.className = `diag-block ${tier}`;
+
+  if (tier === 'disqualify') {
+    db.innerHTML = `<div class="diag-eyebrow">Honest diagnosis</div><div class="diag-headline">Not quite ready — but that's fixable.</div><div class="diag-body">Marketing That Pays™ is built for businesses already operating with revenue coming in. Right now, your highest-leverage move is validating your offer and landing your first consistent clients. Come back when you're generating revenue — the system will work harder for you then.</div>`;
+    document.getElementById('findings-block').style.display = 'none';
+    document.getElementById('rec-block').style.display = 'none';
+    document.getElementById('cta-apply').style.display = 'none';
+    document.getElementById('email-in').closest('.email-field').style.display = 'none';
+    document.getElementById('cta-advisor').textContent = 'Talk to the advisor about what to focus on first →';
+    document.querySelector('.cta-note').style.display = 'none';
+  } else {
+    const isT2 = tier === 'tier2';
+    db.innerHTML = `
+      <div class="diag-eyebrow">${isT2 ? '⭑ ' : ''}Your diagnosis</div>
+      <div class="diag-headline">${isT2 ? 'You have momentum. You\'re leaving money on the table.' : 'Your marketing isn\'t broken. It\'s disconnected.'}</div>
+      <div class="diag-body">${isT2
+        ? `You're already doing things — but your execution layer is fragmented. The effort is there. The system connecting it to revenue isn't. Right now that gap is costing you on ${frust}.`
+        : `You have tools, effort, and a real business — but nothing connecting them to consistent revenue. The core gap right now is ${frust}. That's not a content problem. It's a system problem.`
+      }</div>`;
+
+    const findData = {
+      tier1: [
+        ['Messaging clarity','Cold traffic doesn\'t understand your offer fast enough to act.'],
+        ['Funnel structure','There\'s no clear path from awareness to conversion.'],
+        ['AI leverage','Your tools aren\'t trained on your business — so the output doesn\'t sound like you.'],
+      ],
+      tier2: [
+        ['Execution gaps','Strategy exists but the execution layer — copy, pages, templates — isn\'t fully built.'],
+        ['Conversion infrastructure','Your funnel has holes. Traffic comes in but doesn\'t convert consistently.'],
+        ['System dependency','Too much relies on you manually. Nothing runs without you in the loop.'],
+      ]
+    };
+
+    document.getElementById('findings-block').innerHTML = `
+      <div class="findings-title">What's breaking your results</div>
+      ${findData[tier].map(([t,d]) => `<div class="finding"><div class="find-arrow">→</div><div class="find-content"><h4>${t}</h4><p>${d}</p></div></div>`).join('')}`;
+
+    const recData = {
+      tier1: { label: 'Recommended: Tier 1', name: 'Strategy + AI System', price: '$3,500 · or 2 payments of $1,750', desc: 'Four weeks, 1:1 with Dom. We build your messaging, funnel strategy, and a custom AI marketing system trained on your business. You leave with something that runs — not a plan to execute later.' },
+      tier2: { label: '⭑ Recommended: Tier 2', name: 'Strategy + Full Execution Build', price: '$7,500 · or 2 payments of $3,750', desc: 'Everything in Tier 1 plus the full execution layer — landing page copy, email sequences, branded templates, social calendar, and design direction. The complete system, built and deployed.' }
+    };
+    const r = recData[tier];
+    document.getElementById('rec-block').innerHTML = `<div class="rec-tier">${r.label}</div><div class="rec-name">${r.name}</div><div class="rec-price">${r.price}</div><div class="rec-desc">${r.desc}</div>`;
+  }
+
+  if (typeof gtag !== 'undefined') gtag('event', 'audit_completed', { tier, score: s });
+  window.auditTier = tier;
+  window.auditScore = s;
+}
+
+function applyNow() {
+  const email = document.getElementById('email-in').value;
+  if (typeof gtag !== 'undefined') gtag('event', 'book_call_clicked', { email });
+  window.location.href = '/marketing-that-pays/?apply=1&tier=' + (window.auditTier || '') + '#apply';
+}
+
+render();
+</script>
+</body>
+</html>
