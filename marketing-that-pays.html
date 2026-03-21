@@ -442,7 +442,10 @@
 <!-- NAV -->
 <nav>
   <div class="nav-logo">Marketing That Pays™</div>
-  <a href="#apply" class="nav-cta">Apply Now</a>
+  <div style="display:flex; align-items:center; gap:1.5rem;">
+    <a href="/marketing-that-pays/audit.html" style="font-size:0.8rem; color:var(--mid); text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='var(--green)'" onmouseout="this.style.color='var(--mid)'">Take the Quiz</a>
+    <a href="#apply" class="nav-cta">Apply Now</a>
+  </div>
 </nav>
 
 <!-- HERO -->
@@ -457,8 +460,8 @@
     </p>
     <p class="hero-sub" style="margin-top:-1rem; font-style:italic; font-size:1rem;">No homework. No abandoned modules. No "here's your action items."</p>
     <div class="hero-actions">
-      <a href="#apply" class="btn-primary">Apply to Build Your System →</a>
-      <a href="#how" class="btn-ghost">See how it works</a>
+      <a href="/marketing-that-pays/audit.html" class="btn-primary">Find Out What's Broken — Free Quiz →</a>
+      <a href="#apply" class="btn-ghost">Ready to apply? Skip ahead</a>
     </div>
     <div style="margin-top:2.5rem; max-width:640px; position:relative;">
       <video controls playsinline style="width:100%; display:block; border:1px solid rgba(44,95,45,0.3);" poster="">
@@ -781,7 +784,7 @@
     <p class="lead">Both tiers are 4 weeks of 1:1 sessions with Dom. The difference is how deep we build the execution layer.</p>
 
     <div class="pricing-grid">
-      <div class="pricing-card">
+      <div class="pricing-card" id="tier1">
         <div class="tier-badge">Tier 1</div>
         <div class="tier-price"><span>$</span>3,500</div>
         <div class="tier-name">Strategy + AI System</div>
@@ -799,7 +802,7 @@
         <a href="#apply" class="btn-primary" style="width:100%; text-align:center;">Apply to Build Your System →</a>
         <p class="tier-note">Payment plans available. 2 payments of $1,750.</p>
       </div>
-      <div class="pricing-card featured">
+      <div class="pricing-card featured" id="tier2">
         <div class="tier-badge active">⭑ Tier 2 — Most Popular</div>
         <div class="tier-price"><span>$</span>7,500</div>
         <div class="tier-name">Strategy + Full Execution Build</div>
@@ -841,6 +844,9 @@
   <h2>If your marketing isn't paying you,<br><em>it's costing you.</em></h2>
   <p>Four weeks. 45 minutes a session. A marketing system built live, on the call, that keeps running when we're done.</p>
   <a href="#apply" class="btn-light">Apply to Build Your System →</a>
+  <p style="margin-top:1.25rem;">
+    <a href="/marketing-that-pays/advisor.html" style="color:rgba(245,240,232,0.6); font-size:0.88rem; text-decoration:none; border-bottom:1px solid rgba(245,240,232,0.2); padding-bottom:2px; transition:all 0.2s;" onmouseover="this.style.color='var(--cream)'; this.style.borderColor='var(--green)'" onmouseout="this.style.color='rgba(245,240,232,0.6)'; this.style.borderColor='rgba(245,240,232,0.2)'">Not sure yet? Pick Dom's brain with the AI Advisor →</a>
+  </p>
   <p class="cta-note">Currently accepting 8 clients for the April cohort. Response within 48 hours.</p>
 </section>
 
@@ -886,7 +892,7 @@
         <div style="border-top:1px solid var(--border); padding-top:1.5rem; margin-top:0.5rem;">
           <p style="font-size:0.8rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:var(--green); margin-bottom:0.75rem;">While You Wait</p>
           <p style="font-size:0.9rem; color:#575753; line-height:1.6; margin-bottom:1.25rem;">Tell our AI advisor more about your business. The more context Dom has before the call, the more useful your first session will be.</p>
-          <a href="#advisor" style="display:inline-block; background:var(--green); color:var(--cream); font-size:0.8rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; padding:0.85rem 2rem; text-decoration:none; transition:background 0.2s;" onmouseover="this.style.background='#1E4A1F'" onmouseout="this.style.background='#2C5F2D'">Talk to the AI Advisor →</a>
+          <a href="/marketing-that-pays/advisor.html" style="display:inline-block; background:var(--green); color:var(--cream); font-size:0.8rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; padding:0.85rem 2rem; text-decoration:none; transition:background 0.2s;" onmouseover="this.style.background='#1E4A1F'" onmouseout="this.style.background='#2C5F2D'">Talk to the AI Advisor →</a>
         </div>
       </div>
     </div>
@@ -894,8 +900,44 @@
 </section>
 
 <script>
+const params = new URLSearchParams(window.location.search);
+const fromQuiz = params.get('from') === 'quiz';
+const quizTier = params.get('tier') || '';
+const quizScore = params.get('score') || '';
+
+// Pre-fill tier dropdown if coming from quiz
+if (quizTier) {
+  const tierSelect = document.querySelector('select[name="tier"]');
+  if (tierSelect) tierSelect.value = quizTier;
+}
+
+// Show personalized banner when arriving from quiz
+if (fromQuiz && quizTier) {
+  const banner = document.createElement('div');
+  banner.style.cssText = 'position:fixed; bottom:0; left:0; right:0; z-index:99; background:var(--green); padding:0.85rem 4vw; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:0.75rem;';
+  const tierLabel = quizTier === 'tier2' ? 'Tier 2 — Full Execution' : 'Tier 1 — Strategy + AI System';
+  banner.innerHTML = `
+    <p style="color:var(--cream); font-size:0.85rem; font-weight:500;">Your quiz result: <strong>${tierLabel}</strong> is recommended for you.</p>
+    <div style="display:flex; gap:1rem; align-items:center;">
+      <a href="#apply" style="color:var(--cream); font-size:0.78rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; text-decoration:none; border:1px solid rgba(245,240,232,0.4); padding:0.45rem 1.1rem;">Apply Now</a>
+      <a href="/marketing-that-pays/advisor.html?from=quiz&tier=${quizTier}" style="color:rgba(245,240,232,0.7); font-size:0.78rem; text-decoration:none;">Talk to advisor →</a>
+      <button onclick="this.closest('div').parentElement.remove()" style="background:none; border:none; color:rgba(245,240,232,0.5); cursor:pointer; font-size:1.1rem; padding:0 0.25rem;">×</button>
+    </div>`;
+  document.body.appendChild(banner);
+}
+
 document.getElementById('apply-form').addEventListener('submit', function(e) {
   e.preventDefault();
+  // Send email + tier to backend for Mailchimp
+  const email = document.querySelector('input[name="email"]')?.value || '';
+  const tier = document.querySelector('select[name="tier"]')?.value || '';
+  if (email) {
+    fetch('https://tr3mediasolutions.com/mtp-proxy/api/subscribe', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, tier, source: 'apply-form' })
+    }).catch(() => {});
+  }
   document.getElementById('apply-form').style.display = 'none';
   document.getElementById('form-success').style.display = 'block';
 });

@@ -130,8 +130,8 @@
 <nav>
   <a href="/marketing-that-pays/" class="nav-logo">Marketing That Pays™</a>
   <div class="nav-right">
-    <a href="/marketing-that-pays/" class="nav-back">← Back to program</a>
-    <a href="/marketing-that-pays/#apply" class="nav-apply">Apply Now</a>
+    <a href="/marketing-that-pays/marketing-that-pays.html" class="nav-back">← Back to program</a>
+    <a href="/marketing-that-pays/marketing-that-pays.html#apply" class="nav-apply">Apply Now</a>
   </div>
 </nav>
 
@@ -169,7 +169,7 @@
         <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
       </button>
     </div>
-    <p class="input-note">Powered by Claude · Built by TR3 Media Solutions · <a href="/marketing-that-pays/#apply" style="color:var(--green); text-decoration:none;">Apply for the program →</a></p>
+    <p class="input-note">Powered by Claude · Built by TR3 Media Solutions · <a href="/marketing-that-pays/marketing-that-pays.html#apply" style="color:var(--green); text-decoration:none;">Apply for the program →</a></p>
   </div>
 </div>
 
@@ -205,7 +205,7 @@ Tier 2 — Strategy + Full Execution Build — $7,500 (or 2 x $3,750)
 
 Guarantee: "If you complete the four weeks and don't have a working system, we keep going until you do."
 Availability: 8 spots, April cohort.
-Apply: /marketing-that-pays/#apply
+Apply: /marketing-that-pays/marketing-that-pays.html#apply
 
 RECOMMEND TIER 1 IF: unclear messaging, no consistent leads, tools with no system, building from scratch.
 RECOMMEND TIER 2 IF: already has momentum, execution is broken, needs assets built, DIY is costing them time.
@@ -219,7 +219,7 @@ CASE STUDIES:
 
 NEVER: give a complete free strategy, offer discounts, use emojis, write in bullet points unless listing deliverables, be sycophantic, claim to be Dom.
 
-When to push toward applying: once you've identified their problem and matched it to a tier, push clearly once. "Based on what you've told me, Tier X is the right fit. You can apply at /marketing-that-pays/#apply — Dom reviews every application personally and follows up within 48 hours." Don't push more than twice.`;
+When to push toward applying: once you've identified their problem and matched it to a tier, push clearly once. "Based on what you've told me, Tier X is the right fit. You can apply at /marketing-that-pays/marketing-that-pays.html#apply — Dom reviews every application personally and follows up within 48 hours." Don't push more than twice.`;
 
 let history = [];
 let msgCount = 0;
@@ -278,7 +278,7 @@ function removeTyping() {
 function showApplyNudge() {
   const wrap = document.getElementById('apply-nudge-wrap');
   if (!wrap.innerHTML) {
-    wrap.innerHTML = `<div class="apply-nudge"><p>Ready to build your system? 8 spots left for April.</p><a href="/marketing-that-pays/#apply">Apply now →</a></div>`;
+    wrap.innerHTML = `<div class="apply-nudge"><p>Ready to build your system? 8 spots left for April.</p><a href="/marketing-that-pays/marketing-that-pays.html#apply">Apply now →</a></div>`;
   }
 }
 
@@ -325,6 +325,27 @@ function autoResize(el) {
   el.style.height = 'auto';
   el.style.height = Math.min(el.scrollHeight, 140) + 'px';
 }
+
+// Auto-send context when arriving from quiz
+(function() {
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('from') === 'quiz') {
+    const tier = params.get('tier') || '';
+    const frust = decodeURIComponent(params.get('frustration') || '');
+    let msg = 'I just took the quiz.';
+    if (tier === 'tier1') msg += ' It recommended Tier 1 for me.';
+    else if (tier === 'tier2') msg += ' It recommended Tier 2 for me.';
+    else if (tier === 'disqualify') msg += " It said I'm not quite ready yet.";
+    if (frust) msg += ` My biggest frustration is ${frust}.`;
+    msg += ' Can you tell me more about what this means for my situation?';
+    // Small delay so the page renders first
+    setTimeout(() => {
+      document.getElementById('user-input').value = msg;
+      document.getElementById('starters').style.display = 'none';
+      sendMessage();
+    }, 600);
+  }
+})();
 </script>
 </body>
 </html>

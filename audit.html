@@ -164,8 +164,8 @@
 <body>
 
 <nav>
-  <a href="/marketing-that-pays/" class="nav-logo">Marketing That Pays™</a>
-  <a href="/marketing-that-pays/" class="nav-back">← Back to program</a>
+  <a href="/marketing-that-pays/marketing-that-pays.html" class="nav-logo">Marketing That Pays™</a>
+  <a href="/marketing-that-pays/marketing-that-pays.html" class="nav-back">← Back to program</a>
 </nav>
 
 <div class="audit-wrap">
@@ -200,18 +200,23 @@
     <div class="rec-block" id="rec-block"></div>
     <div class="cta-block">
       <div class="email-field">
-        <label>Get your full plan — enter your email</label>
+        <label>Get your full diagnosis + next steps — enter your email</label>
         <input type="email" id="email-in" placeholder="your@email.com">
       </div>
-      <button class="cta-apply" id="cta-apply" onclick="applyNow()">Apply to build your system →</button>
-      <a href="/marketing-that-pays/advisor.html" class="cta-advisor" id="cta-advisor">Talk to the AI advisor about my results →</a>
-      <p class="cta-note">8 spots available · April cohort · Dom reviews every application personally</p>
+      <button class="cta-apply" id="cta-apply" onclick="applyNow()">See what the right plan looks like →</button>
+      <div style="display:flex; align-items:center; gap:0.75rem; margin:1rem 0 0.75rem;">
+        <div style="flex:1; height:1px; background:var(--border);"></div>
+        <span style="font-size:0.72rem; color:var(--mid); text-transform:uppercase; letter-spacing:0.12em; font-weight:600;">or</span>
+        <div style="flex:1; height:1px; background:var(--border);"></div>
+      </div>
+      <a id="cta-advisor" class="cta-advisor" onclick="goToAdvisor(); return false;" href="#">Not ready to commit? Pick Dom's brain right now →</a>
+      <p class="cta-note" id="cta-note">8 spots available · April cohort · Dom reviews every application personally</p>
     </div>
   </div>
 </div>
 
 <footer>
-  <p><a href="/marketing-that-pays/">Marketing That Pays™</a> · A <a href="/">TR3 Media Solutions</a> Program · © 2026</p>
+  <p><a href="/marketing-that-pays/marketing-that-pays.html">Marketing That Pays™</a> · A <a href="/">TR3 Media Solutions</a> Program · © 2026</p>
 </footer>
 
 <script>
@@ -299,7 +304,7 @@ function showResult() {
     document.getElementById('cta-apply').style.display = 'none';
     document.getElementById('email-in').closest('.email-field').style.display = 'none';
     document.getElementById('cta-advisor').textContent = 'Talk to the advisor about what to focus on first →';
-    document.querySelector('.cta-note').style.display = 'none';
+    document.getElementById('cta-note').style.display = 'none';
   } else {
     const isT2 = tier === 'tier2';
     db.innerHTML = `
@@ -340,10 +345,38 @@ function showResult() {
   window.auditScore = s;
 }
 
+const BACKEND_URL = 'https://tr3mediasolutions.com/mtp-proxy/api/quiz';
+
+function saveQuizData(email) {
+  const data = {
+    email: email || '',
+    tier: window.auditTier || '',
+    score: window.auditScore || 0,
+    answers: answers,
+    frustration: frustLabels[answers[7]] || ''
+  };
+  fetch(BACKEND_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
+  }).catch(() => {});
+}
+
 function applyNow() {
   const email = document.getElementById('email-in').value;
-  if (typeof gtag !== 'undefined') gtag('event', 'book_call_clicked', { email });
-  window.location.href = '/marketing-that-pays/?apply=1&tier=' + (window.auditTier || '') + '#apply';
+  saveQuizData(email);
+  if (typeof gtag !== 'undefined') gtag('event', 'quiz_to_landing', { tier: window.auditTier, email: !!email });
+  const tier = window.auditTier || 'tier1';
+  window.location.href = '/marketing-that-pays/marketing-that-pays.html?from=quiz&tier=' + tier + '&score=' + (window.auditScore || 0) + '#' + (tier === 'tier2' ? 'tier2' : 'tier1');
+}
+
+function goToAdvisor() {
+  const email = document.getElementById('email-in').value;
+  saveQuizData(email);
+  if (typeof gtag !== 'undefined') gtag('event', 'quiz_to_advisor', { tier: window.auditTier });
+  const tier = window.auditTier || '';
+  const frust = encodeURIComponent(frustLabels[answers[7]] || '');
+  window.location.href = '/marketing-that-pays/advisor.html?from=quiz&tier=' + tier + '&frustration=' + frust;
 }
 
 render();
