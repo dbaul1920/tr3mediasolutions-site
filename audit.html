@@ -164,8 +164,8 @@
 <body>
 
 <nav>
-  <a href="/marketing-that-pays/marketing-that-pays.html" class="nav-logo">Marketing That Pays™</a>
-  <a href="/marketing-that-pays/marketing-that-pays.html" class="nav-back">← Back to program</a>
+  <a href="/marketing-that-pays/" class="nav-logo">Marketing That Pays™</a>
+  <a href="/marketing-that-pays/" class="nav-back">← Back to program</a>
 </nav>
 
 <div class="audit-wrap">
@@ -216,7 +216,7 @@
 </div>
 
 <footer>
-  <p><a href="/marketing-that-pays/marketing-that-pays.html">Marketing That Pays™</a> · A <a href="/">TR3 Media Solutions</a> Program · © 2026</p>
+  <p><a href="/marketing-that-pays/">Marketing That Pays™</a> · A <a href="/">TR3 Media Solutions</a> Program · © 2026</p>
 </footer>
 
 <script>
@@ -367,7 +367,7 @@ function applyNow() {
   saveQuizData(email);
   if (typeof gtag !== 'undefined') gtag('event', 'quiz_to_landing', { tier: window.auditTier, email: !!email });
   const tier = window.auditTier || 'tier1';
-  window.location.href = '/marketing-that-pays/marketing-that-pays.html?from=quiz&tier=' + tier + '&score=' + (window.auditScore || 0) + '#' + (tier === 'tier2' ? 'tier2' : 'tier1');
+  window.location.href = '/marketing-that-pays/?from=quiz&tier=' + tier + '&score=' + (window.auditScore || 0) + '#' + (tier === 'tier2' ? 'tier2' : 'tier1');
 }
 
 function goToAdvisor() {

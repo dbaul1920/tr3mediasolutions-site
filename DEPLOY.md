@@ -9,19 +9,18 @@
 
 public_html/
   marketing-that-pays/
-    marketing-that-pays.html  ← landing/squeeze page
-    audit.html                ← quiz (entry point)
-    advisor.html              ← AI advisor chat
+    index.html      ← landing page (rename marketing-that-pays.html → index.html)
+    audit.html      ← quiz (entry point)
+    advisor.html    ← AI advisor chat
 ```
 
 ---
 
 ## Step 1 — Upload the HTML files
 
-Upload `index.html`, `audit.html`, and `advisor.html` to:
-```
-public_html/marketing-that-pays/
-```
+Upload to `public_html/marketing-that-pays/`:
+- Rename `marketing-that-pays.html` → `index.html` (so `/marketing-that-pays/` loads the landing page)
+- Upload `audit.html` and `advisor.html` as-is
 
 ---
 
