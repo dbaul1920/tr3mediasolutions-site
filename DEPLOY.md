@@ -4,14 +4,14 @@
 ```
 /home/yourusername/
   mtp-proxy/
-    proxy.py          ← the proxy server
-    start-proxy.sh    ← startup script
+    proxy.py          ← backend (chat proxy + quiz storage + Mailchimp)
+    mtp_data.db       ← auto-created SQLite database
 
 public_html/
   marketing-that-pays/
-    index.html        ← landing page
-    audit.html        ← audit tool
-    advisor.html      ← AI advisor (updated to use proxy)
+    marketing-that-pays.html  ← landing/squeeze page
+    audit.html                ← quiz (entry point)
+    advisor.html              ← AI advisor chat
 ```
 
 ---
@@ -35,11 +35,19 @@ public_html/marketing-that-pays/
 6. In the app's **Environment Variables**, add:
    ```
    ANTHROPIC_API_KEY = sk-ant-your-key-here
+   MAILCHIMP_API_KEY = your-mailchimp-api-key-us21
+   MAILCHIMP_LIST_ID = your-audience-id
+   MAILCHIMP_DC = us21
    ALLOWED_ORIGIN = https://tr3mediasolutions.com
    PORT = 8080
    ```
+   - **MAILCHIMP_API_KEY**: Mailchimp → Profile → Extras → API Keys → Create
+   - **MAILCHIMP_DC**: The suffix after the dash in your API key (e.g., `us21`)
+   - **MAILCHIMP_LIST_ID**: Mailchimp → Audience → Settings → Audience name and defaults → "Audience ID"
 7. Set the **Startup command** to: `python3 proxy.py`
 8. Start the app
+
+> **Note**: If you skip the Mailchimp vars, the proxy still works — quiz results and emails will be saved to the local SQLite database (`mtp_data.db`) but won't sync to Mailchimp until you add the keys and restart.
 
 ---
 
