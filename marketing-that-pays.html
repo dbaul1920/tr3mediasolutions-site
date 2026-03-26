@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Marketing That Pays — TR3 Media Solutions</title>
+<title>The Leak Fix™ — TR3 Media Solutions</title>
+<meta name="description" content="The Leak Fix™ by TR3. A 4–6 week done-for-you engagement. Dom finds the leak. Dom fixes the flow. For organizations that already have momentum.">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -127,13 +128,6 @@ nav .container {
   margin-bottom: 16px;
   animation: fadeUp 0.6s 0.2s ease both;
 }
-.hero-guarantee {
-  font-size: 15px;
-  font-weight: 600;
-  color: var(--color-charcoal);
-  margin-bottom: 40px;
-  animation: fadeUp 0.6s 0.24s ease both;
-}
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
@@ -157,112 +151,270 @@ nav .container {
 .btn-primary::after { content: '\2192'; transition: transform 0.2s ease; }
 .btn-primary:hover { background: var(--color-green-hover); }
 .btn-primary:hover::after { transform: translateX(3px); }
-.btn-secondary {
+/* PROBLEM SECTION */
+.problem-section {
+  padding: 96px 0;
+  background: var(--color-white);
+}
+.problem-section h2 { margin-bottom: 12px; }
+.problem-intro {
+  font-size: 17px;
+  color: var(--color-gray);
+  line-height: 1.7;
+  max-width: var(--text-col);
+  margin-bottom: 36px;
+}
+.problem-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: var(--text-col);
+  margin-bottom: 36px;
+}
+.problem-list li {
+  display: flex;
+  gap: 12px;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--color-charcoal);
+  align-items: flex-start;
+}
+.problem-list li::before {
+  content: '\2022';
+  flex-shrink: 0;
+  color: var(--color-red);
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.5;
+}
+.problem-closing {
+  font-size: 20px;
+  font-weight: 600;
+  font-family: var(--font-heading);
+  color: var(--color-charcoal);
+  max-width: var(--text-col);
+}
+/* WHAT I FIX */
+.fix-section {
+  padding: 96px 0;
+  background: var(--color-dark);
+  color: var(--color-white);
+}
+.fix-section h2 {
+  color: var(--color-white);
+  margin-bottom: 16px;
+}
+.fix-intro {
+  font-size: 17px;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.7);
+  max-width: var(--text-col);
+  margin-bottom: 32px;
+}
+.fix-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-width: var(--text-col);
+  margin-bottom: 36px;
+}
+.fix-list li {
+  display: flex;
+  gap: 12px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.85);
+  align-items: flex-start;
+}
+.fix-list li::before {
+  content: '\2713';
+  flex-shrink: 0;
+  color: #8FBC8F;
+  font-weight: 700;
+  font-size: 13px;
+  margin-top: 2px;
+}
+.fix-callout {
+  margin-top: 16px;
+  padding: 28px 32px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius-lg);
+  max-width: var(--text-col);
+}
+.fix-callout p { font-size: 16px; line-height: 1.6; color: rgba(255,255,255,0.7); }
+/* THE OFFER */
+.offer-section {
+  padding: 96px 0;
+  background: var(--color-white);
+}
+.offer-section h2 { margin-bottom: 8px; }
+.offer-label {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-green);
+  margin-bottom: 16px;
+  display: block;
+}
+.offer-desc {
+  font-size: 17px;
+  color: var(--color-gray);
+  line-height: 1.7;
+  max-width: var(--text-col);
+  margin-bottom: 36px;
+}
+.offer-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  max-width: var(--narrow);
+  margin-bottom: 36px;
+}
+.offer-item {
+  display: flex;
+  gap: 12px;
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--color-charcoal);
+  align-items: flex-start;
+}
+.offer-item::before {
+  content: '\2713';
+  flex-shrink: 0;
+  font-size: 13px;
+  margin-top: 2px;
+  font-weight: 700;
+  color: var(--color-green);
+}
+.offer-note {
+  padding: 24px 32px;
+  background: var(--color-green-tint);
+  border-left: 3px solid var(--color-green);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  max-width: var(--narrow);
+}
+.offer-note p { font-size: 15px; color: var(--color-charcoal); line-height: 1.6; }
+/* PRICING */
+.pricing-section {
+  padding: 96px 0;
+  background: var(--color-cream);
+}
+.pricing-section h2 { margin-bottom: 16px; }
+.pricing-body {
+  font-size: 17px;
+  color: var(--color-gray);
+  line-height: 1.7;
+  max-width: var(--text-col);
+}
+.pricing-body p { margin-bottom: 16px; }
+/* DISCOVERY */
+.discovery-section {
+  padding: 96px 0;
+  background: var(--color-green);
+  color: var(--color-white);
+}
+.discovery-section h2 { color: var(--color-white); margin-bottom: 16px; }
+.discovery-body {
+  font-size: 17px;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.85);
+  max-width: var(--text-col);
+  margin-bottom: 12px;
+}
+.discovery-price {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  color: var(--color-white);
+  margin-bottom: 8px;
+}
+.discovery-note {
+  font-size: 15px;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 36px;
+}
+.btn-white {
   display: inline-flex;
   align-items: center;
-  background: transparent;
+  gap: 8px;
+  background: var(--color-white);
   color: var(--color-green);
   padding: 16px 32px;
   border-radius: var(--radius-pill);
   text-decoration: none;
   font-size: 15px;
   font-weight: 600;
-  border: 1.5px solid var(--color-border);
   transition: all 0.2s ease;
 }
-.btn-secondary:hover { border-color: var(--color-green); }
-.hero-proof {
-  display: flex;
-  gap: 32px;
-  padding-top: 32px;
-  border-top: 1px solid var(--color-border);
-  animation: fadeUp 0.6s 0.34s ease both;
-}
-.hero-proof-item { font-size: 13px; color: var(--color-gray); line-height: 1.5; }
-.hero-proof-item strong { display: block; color: var(--color-charcoal); font-weight: 600; font-size: 14px; }
-/* COST */
-.cost-section {
+.btn-white::after { content: '\2192'; transition: transform 0.2s ease; }
+.btn-white:hover { background: var(--color-cream); }
+.btn-white:hover::after { transform: translateX(3px); }
+/* CASE STUDIES */
+.proof-section {
   padding: 96px 0;
   background: var(--color-dark);
   color: var(--color-white);
 }
-.cost-section h2 {
-  color: var(--color-white);
-  margin-bottom: 48px;
-  max-width: var(--narrow);
+.proof-section h2 { color: var(--color-white); margin-bottom: 48px; }
+.proof-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
 }
-.pain-list {
-  display: flex;
-  flex-direction: column;
-  max-width: var(--narrow);
+.proof-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: var(--radius-lg);
+  padding: 32px;
 }
-.pain-item {
-  padding: 28px 0;
-  border-top: 1px solid rgba(255,255,255,0.08);
-}
-.pain-item:last-child { border-bottom: 1px solid rgba(255,255,255,0.08); }
-.pain-item h4 {
+.proof-card h4 {
   color: var(--color-white);
   font-family: var(--font-body);
-  font-size: 16px;
   font-weight: 600;
-  line-height: 1.5;
-  margin-bottom: 4px;
+  font-size: 16px;
+  margin-bottom: 12px;
 }
-.pain-item h4 .hl { color: #8FBC8F; }
-.pain-item p {
-  font-size: 15px;
-  color: rgba(255,255,255,0.45);
-  padding-left: 18px;
+.proof-card p {
+  font-size: 14px;
+  line-height: 1.65;
+  color: rgba(255,255,255,0.55);
+  margin-bottom: 16px;
 }
-.cost-marker {
-  display: inline-block;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--color-red);
-  margin-right: 12px;
-  vertical-align: middle;
+.proof-result {
+  font-size: 14px;
+  line-height: 1.55;
+  color: #8FBC8F;
+  font-weight: 500;
 }
-.cost-callout {
-  margin-top: 48px;
-  padding: 28px 32px;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: var(--radius-lg);
-  max-width: var(--narrow);
-}
-.cost-callout p { font-size: 17px; line-height: 1.6; color: rgba(255,255,255,0.85); }
-.cost-callout strong { color: var(--color-white); }
-/* TRANSFORMATION */
-.transform-section {
+/* WHO THIS IS FOR */
+.fit-section {
   padding: 96px 0;
   background: var(--color-white);
 }
-.transform-section h2 { margin-bottom: 12px; }
-.transform-intro {
-  font-size: 17px;
-  color: var(--color-gray);
-  line-height: 1.7;
-  max-width: var(--text-col);
-  margin-bottom: 48px;
-}
-.compare-grid {
+.fit-section h2 { margin-bottom: 48px; }
+.fit-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
-  margin-bottom: 32px;
+  max-width: var(--narrow);
 }
-.compare-card { padding: 36px; border-radius: var(--radius-lg); }
-.compare-card--before {
+.fit-card {
+  padding: 36px;
+  border-radius: var(--radius-lg);
+}
+.fit-card--yes {
+  background: var(--color-green-tint);
+  border: 1px solid var(--color-border);
+}
+.fit-card--no {
   background: var(--color-cream);
   border: 1px solid var(--color-border);
 }
-.compare-card--after {
-  background: var(--color-green);
-  color: var(--color-white);
-}
-.compare-card-label {
+.fit-card-label {
   font-size: 0.7rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
@@ -270,22 +422,24 @@ nav .container {
   margin-bottom: 24px;
   display: block;
 }
-.compare-card--before .compare-card-label { color: var(--color-gray); }
-.compare-card--after .compare-card-label { color: rgba(255,255,255,0.6); }
-.compare-list {
+.fit-card--yes .fit-card-label { color: var(--color-green); }
+.fit-card--no .fit-card-label { color: var(--color-gray); }
+.fit-list {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 14px;
 }
-.compare-list li {
+.fit-list li {
   display: flex;
-  gap: 12px;
+  gap: 10px;
   font-size: 14px;
   line-height: 1.55;
   align-items: flex-start;
 }
-.ci {
+.fit-card--yes .fit-list li { color: var(--color-charcoal); }
+.fit-card--no .fit-list li { color: var(--color-gray); }
+.fi {
   flex-shrink: 0;
   width: 20px;
   height: 20px;
@@ -296,226 +450,75 @@ nav .container {
   font-size: 11px;
   margin-top: 1px;
 }
-.compare-card--before .ci { background: rgba(155,44,44,0.1); color: var(--color-red); }
-.compare-card--after .ci { background: rgba(255,255,255,0.15); color: var(--color-white); }
-.compare-card--before .compare-list li { color: var(--color-gray); }
-.compare-card--after .compare-list li { color: rgba(255,255,255,0.85); }
-.transform-callout {
-  padding: 24px 32px;
+.fit-card--yes .fi { background: rgba(44,95,45,0.12); color: var(--color-green); }
+.fit-card--no .fi { background: rgba(155,44,44,0.1); color: var(--color-red); }
+/* ABOUT / BIO */
+.bio-section {
+  padding: 96px 0;
+  background: var(--color-cream);
+}
+.bio-inner {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 48px;
+  align-items: start;
+  max-width: var(--narrow);
+}
+.bio-photo {
+  width: 100%;
+  border-radius: var(--radius-lg);
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+.bio-inner h3 { margin-bottom: 16px; }
+.bio-inner p {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--color-gray);
+  margin-bottom: 14px;
+}
+.bio-quote {
+  padding: 24px 28px;
   background: var(--color-green-tint);
   border-left: 3px solid var(--color-green);
   border-radius: 0 var(--radius) var(--radius) 0;
+  margin-top: 20px;
 }
-.transform-callout p { font-size: 16px; color: var(--color-charcoal); }
-.transform-callout strong { color: var(--color-green); }
-/* PROCESS */
-.process-section {
-  padding: 96px 0;
-  background: var(--color-cream);
-}
-.process-section h2 { margin-bottom: 56px; }
-.process-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-}
-.process-card {
-  background: var(--color-white);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  padding: 32px;
-}
-.process-card-time {
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--color-green);
-  margin-bottom: 12px;
-  display: block;
-}
-.process-card h3 { font-size: 1.25rem; margin-bottom: 12px; }
-.process-card p { font-size: 14px; line-height: 1.65; color: var(--color-gray); }
-/* MODULES */
-.modules-section {
-  padding: 96px 0;
-  background: var(--color-dark);
-  color: var(--color-white);
-}
-.modules-section h2 { color: var(--color-white); margin-bottom: 10px; }
-.modules-intro {
-  font-size: 16px;
-  color: rgba(255,255,255,0.5);
-  line-height: 1.7;
-  margin-bottom: 48px;
-  max-width: var(--text-col);
-}
-.modules-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-}
-.module-card {
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: var(--radius-lg);
-  padding: 32px;
-  transition: all 0.2s ease;
-}
-.module-card:hover {
-  background: rgba(255,255,255,0.06);
-  border-color: rgba(255,255,255,0.14);
-}
-.module-num {
-  font-family: var(--font-heading);
-  font-size: 2.5rem;
-  color: rgba(255,255,255,0.08);
-  line-height: 1;
-  margin-bottom: 16px;
-}
-.module-card h4 {
-  color: var(--color-white);
-  font-family: var(--font-body);
-  font-weight: 600;
-  font-size: 16px;
-  margin-bottom: 10px;
-}
-.module-card p {
-  font-size: 14px;
-  line-height: 1.6;
-  color: rgba(255,255,255,0.5);
-  margin-bottom: 16px;
-}
-.module-value {
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: #8FBC8F;
-}
-/* PRICING */
-.pricing-section {
-  padding: 96px 0;
-  background: var(--color-white);
-}
-.pricing-header { text-align: center; margin-bottom: 48px; }
-.pricing-header h2 { margin-bottom: 8px; }
-.pricing-sub { font-size: 16px; color: var(--color-gray); }
-.pricing-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-  max-width: var(--narrow);
-  margin: 0 auto;
-}
-.pricing-card {
-  background: var(--color-cream);
-  border-radius: var(--radius-xl);
-  padding: 40px;
-  border: 1px solid var(--color-border);
-  position: relative;
-}
-.pricing-card--featured {
-  background: var(--color-green);
-  color: var(--color-white);
-  border-color: transparent;
-}
-.pricing-badge {
-  position: absolute;
-  top: -12px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: var(--color-charcoal);
-  color: var(--color-white);
-  padding: 5px 16px;
-  border-radius: var(--radius-pill);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-.pricing-card h3 {
-  font-family: var(--font-body);
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  margin-bottom: 12px;
-}
-.pricing-card--featured h3 { color: rgba(255,255,255,0.7); }
-.pricing-amount {
-  font-family: var(--font-heading);
-  font-size: 3rem;
-  line-height: 1;
-  letter-spacing: -0.02em;
-  margin-bottom: 24px;
-}
-.pricing-card--featured .pricing-amount { color: var(--color-white); }
-.pricing-features {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin-bottom: 32px;
-}
-.pricing-features li {
-  font-size: 14px;
-  line-height: 1.45;
-  display: flex;
-  gap: 10px;
-  align-items: flex-start;
-}
-.pricing-features li::before {
-  content: '\2713';
-  flex-shrink: 0;
-  font-size: 13px;
-  margin-top: 1px;
-  font-weight: 700;
-}
-.pricing-card:not(.pricing-card--featured) .pricing-features li::before { color: var(--color-green); }
-.pricing-card--featured .pricing-features li::before { color: #8FBC8F; }
-.pricing-card--featured .pricing-features li { color: rgba(255,255,255,0.8); }
-.pricing-btn {
-  display: block;
-  text-align: center;
-  padding: 16px;
-  border-radius: var(--radius-pill);
-  text-decoration: none;
+.bio-quote p {
   font-size: 15px;
-  font-weight: 600;
-  transition: all 0.2s ease;
-  width: 100%;
+  font-style: italic;
+  color: var(--color-charcoal);
+  margin-bottom: 0;
 }
-.pricing-btn--outline {
-  border: 1.5px solid var(--color-border);
-  color: var(--color-green);
-  background: transparent;
-}
-.pricing-btn--outline:hover {
-  border-color: var(--color-green);
-  background: var(--color-green);
-  color: var(--color-white);
-}
-.pricing-btn--filled {
+/* GUARANTEE */
+.guarantee-section {
+  padding: 64px 0;
   background: var(--color-white);
-  color: var(--color-green);
-  border: 1.5px solid transparent;
 }
-.pricing-btn--filled:hover { background: var(--color-cream); }
+.guarantee-inner {
+  padding: 32px 40px;
+  background: var(--color-green-tint);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  max-width: var(--narrow);
+}
+.guarantee-inner h4 { margin-bottom: 12px; color: var(--color-green); }
+.guarantee-inner p {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--color-gray);
+}
 /* FINAL CTA */
 .final-cta {
   padding: 96px 0;
   background: var(--color-cream);
   text-align: center;
 }
-.final-cta h2 { margin-bottom: 16px; }
-.final-cta p {
-  font-size: 17px;
+.final-cta h2 { margin-bottom: 32px; max-width: 600px; margin-left: auto; margin-right: auto; }
+.final-cta .subtext {
+  font-size: 14px;
   color: var(--color-gray);
-  max-width: 480px;
-  margin: 0 auto 32px;
-  line-height: 1.7;
+  margin-top: 16px;
 }
 /* FOOTER */
 footer {
@@ -539,8 +542,9 @@ footer a:hover { color: var(--color-white); }
 .reveal.visible { opacity: 1; transform: translateY(0); }
 /* RESPONSIVE */
 @media (max-width: 900px) {
-  .compare-grid, .process-grid, .modules-grid, .pricing-grid { grid-template-columns: 1fr; }
-  .hero-proof { flex-direction: column; gap: 16px; }
+  .proof-grid, .fit-grid, .offer-grid { grid-template-columns: 1fr; }
+  .bio-inner { grid-template-columns: 1fr; }
+  .bio-photo { max-width: 280px; }
 }
 @media (max-width: 600px) {
   .hero-actions { flex-direction: column; }
@@ -554,202 +558,190 @@ footer a:hover { color: var(--color-white); }
     <a href="https://tr3mediasolutions.com" class="nav-logo">
       <img src="assets/logos/tr3-logo-white.svg" alt="TR3 Media Solutions" class="nav-logo-img">
     </a>
-    <a href="#pricing" class="nav-cta">Enroll Now</a>
+    <a href="#discovery" class="nav-cta">Book Discovery</a>
   </div>
 </nav>
+
+<!-- SECTION 1: HERO -->
 <section class="hero">
   <div class="container">
-    <div class="hero-eyebrow">For $150K+ business owners ready to replace guesswork with a system</div>
-    <h1>Build a Revenue System That Pays for Itself.</h1>
-    <div class="hero-timeframe">In 4 weeks.</div>
-    <p>Marketing That Pays is an accelerated 4-week intensive that gives $150K+ founders the exact revenue architecture to cut wasted spend, build a measurable pipeline, and turn marketing from an expense into a compounding asset.</p>
-    <p class="hero-guarantee">If you complete the program and implement the system — your marketing pays for itself. That's not a pitch. That's the math.</p>
+    <div class="hero-eyebrow">The Leak Fix&trade; by TR3</div>
+    <h1>You don't have a marketing problem.<br>You have a system leak.</h1>
+    <p>If your business is already working but feels harder than it should, you're losing time, money, and customers somewhere in the process. I find it. I fix it.</p>
     <div class="hero-actions">
-      <a href="https://buy.stripe.com/6oU4gs9MUaaX2FH12d6Zy00" class="btn-primary">Enroll Now — Strategy + Execution — $5,000</a>
-      <a href="https://buy.stripe.com/4gMdR28IQ82P6VX9yJ6Zy01" class="btn-secondary">Enroll — Strategy Only — $3,000</a>
+      <a href="#discovery" class="btn-primary">Book a Discovery Session</a>
     </div>
   </div>
 </section>
-<section class="cost-section">
+
+<!-- SECTION 2: PROBLEM -->
+<section class="problem-section">
   <div class="container">
-    <span class="section-label" style="color:#8FBC8F">The Real Cost of Doing Nothing</span>
-    <h2>If You Can't Measure It, You Can't Scale It.</h2>
-    <div class="pain-list">
-      <div class="pain-item reveal">
-        <h4><span class="cost-marker"></span>$3K–$4K/month on marketing <span class="hl">and you can't point to a single client it brought in.</span></h4>
-        <p>That's $36K–$48K/year — gone.</p>
-      </div>
-      <div class="pain-item reveal">
-        <h4><span class="cost-marker"></span>You've hired agencies that delivered beautiful decks, slick social posts, <span class="hl">and zero pipeline.</span></h4>
-        <p>You paid for aesthetics, not outcomes.</p>
-      </div>
-      <div class="pain-item reveal">
-        <h4><span class="cost-marker"></span>15–20 hours/week on marketing tasks. <span class="hl">At your rate, that's $75K+/year in lost productivity.</span></h4>
-        <p>Doing work that isn't working.</p>
-      </div>
-      <div class="pain-item reveal">
-        <h4><span class="cost-marker"></span>Your website doesn't convert. <span class="hl">People visit. People leave.</span></h4>
-        <p>It doesn't reflect the quality of what you actually deliver.</p>
-      </div>
-      <div class="pain-item reveal">
-        <h4><span class="cost-marker"></span>Your competitor — with a worse product — <span class="hl">is fully booked, charging more than you.</span></h4>
-        <p>The difference isn't talent. It's their system.</p>
-      </div>
-      <div class="pain-item reveal">
-        <h4><span class="cost-marker"></span>You're making decisions based on hope, <span class="hl">not data.</span></h4>
-        <p>No dashboards. No conversion tracking. No idea what's actually driving revenue.</p>
-      </div>
-    </div>
-    <div class="cost-callout reveal">
-      <p>Add it up: <strong>$48K in wasted spend + $75K in lost time = $123K/year you're leaving on the table.</strong> This program costs $5,000. Do the math.</p>
+    <p class="problem-intro">You're already getting clients. You're already delivering results. But something isn't clicking.</p>
+    <ul class="problem-list">
+      <li class="reveal">Your systems don't talk to each other</li>
+      <li class="reveal">Customers hit friction trying to book or buy</li>
+      <li class="reveal">Your brand doesn't reflect what you actually do</li>
+      <li class="reveal">You're doing more work than you should to get the same result</li>
+    </ul>
+    <p class="problem-closing reveal">That's the leak.</p>
+  </div>
+</section>
+
+<!-- SECTION 3: WHAT DOM ACTUALLY FIXES -->
+<section class="fix-section">
+  <div class="container">
+    <span class="section-label" style="color:#8FBC8F">What I Actually Fix</span>
+    <h2>This isn't generic marketing.</h2>
+    <p class="fix-intro">Dom works with organizations that already have momentum &mdash; and helps them:</p>
+    <ul class="fix-list">
+      <li class="reveal">Capture revenue they're already generating but losing</li>
+      <li class="reveal">Remove friction from the customer and referral experience</li>
+      <li class="reveal">Align brand, systems, and communication</li>
+      <li class="reveal">Build structure that supports what's already working</li>
+    </ul>
+    <div class="fix-callout reveal">
+      <p>This is not strategy that sits in a Google Doc. This is operational transformation with a creative execution layer.</p>
     </div>
   </div>
 </section>
-<section class="transform-section">
+
+<!-- SECTION 4: THE OFFER -->
+<section class="offer-section">
   <div class="container">
-    <span class="section-label">The Transformation</span>
-    <h2>Here's What Changes in 4 Weeks</h2>
-    <p class="transform-intro">This isn't theory. This isn't "inspiration." This is a system you build — with me — that starts producing results before the program ends.</p>
-    <div class="compare-grid">
-      <div class="compare-card compare-card--before reveal">
-        <span class="compare-card-label">Where You Are Now</span>
-        <ul class="compare-list">
-          <li><span class="ci">&#10007;</span> $3K/month is spent — can't trace a single dollar to revenue</li>
-          <li><span class="ci">&#10007;</span> 10+ hours/week on marketing, harder and harder</li>
-          <li><span class="ci">&#10007;</span> 1–2 qualified conversations/month (if that)</li>
-          <li><span class="ci">&#10007;</span> No pipeline visibility — revenue is a guessing game</li>
-          <li><span class="ci">&#10007;</span> Decisions based on gut feelings, not data</li>
-          <li><span class="ci">&#10007;</span> Every month feels like starting over from zero</li>
+    <span class="offer-label">The Leak Fix&trade; by TR3</span>
+    <h2>A 4&ndash;6 week engagement where Dom comes in, finds the leak, and fixes the system.</h2>
+    <p class="offer-desc">What's included:</p>
+    <div class="offer-grid">
+      <div class="offer-item reveal">Revenue and system audit &mdash; we find where the money and customers are slipping</div>
+      <div class="offer-item reveal">Website, booking, intake, or customer flow fixes</div>
+      <div class="offer-item reveal">Brand and messaging alignment</div>
+      <div class="offer-item reveal">Systems and content infrastructure</div>
+      <div class="offer-item reveal">Weekly working sessions &mdash; you talk, Dom builds</div>
+      <div class="offer-item reveal">Training and handoff so you can run it yourself</div>
+      <div class="offer-item reveal">30 days async support after we're done</div>
+    </div>
+    <div class="offer-note reveal">
+      <p>This is not a website package. This is not a marketing retainer. It's organizational transformation &mdash; built around what your business actually needs.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 5: PRICING -->
+<section class="pricing-section">
+  <div class="container">
+    <span class="section-label">How Engagements Are Structured</span>
+    <h2>No tiers. No packages. No pricing grid.</h2>
+    <div class="pricing-body reveal">
+      <p>Most Leak Fix engagements run <strong>$20K&ndash;$25K</strong> depending on scope.</p>
+      <p>We start with a paid discovery session to identify exactly what needs to change. If you move forward, the discovery fee applies toward the engagement.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 6: DISCOVERY SESSION -->
+<section class="discovery-section" id="discovery">
+  <div class="container">
+    <span class="section-label" style="color:rgba(255,255,255,0.5)">Start With Discovery</span>
+    <h2>A working session &mdash; not a sales call.</h2>
+    <p class="discovery-body">The discovery session is where Dom identifies the leak, maps the friction points, and determines what the business actually needs. You leave with a clear picture of what's broken, what's working, and what comes next.</p>
+    <p class="discovery-price">Discovery session: $1,600</p>
+    <p class="discovery-note">Applied toward the engagement if you move forward.</p>
+    <a href="start.html" class="btn-white">Book a Discovery Session</a>
+  </div>
+</section>
+
+<!-- SECTION 7: PROOF / CASE STUDIES -->
+<section class="proof-section">
+  <div class="container">
+    <span class="section-label" style="color:#8FBC8F">Real Work. Real Results.</span>
+    <h2>Case Studies</h2>
+    <div class="proof-grid">
+      <div class="proof-card reveal">
+        <h4>Matrx Health &amp; Fitness</h4>
+        <p>Already had demand. Losing referrals to phone tag and broken intake flow. TR3 rebuilt the site, the referral system, and the intake infrastructure &mdash; so doctors could refer online and patients could book without friction.</p>
+        <span class="proof-result">Referrals automated. Subscriptions consolidated. Brand matches the practice.</span>
+      </div>
+      <div class="proof-card reveal">
+        <h4>Detroit Hacker House</h4>
+        <p>Real relationships, real opportunities &mdash; no structure to communicate them. TR3 redesigned the website and built the content infrastructure.</p>
+        <span class="proof-result">The redesign shifted the tone of key conversations at Wayne State, TechTown, and statewide initiatives. The organization finally looked like what it was.</span>
+      </div>
+      <div class="proof-card reveal">
+        <h4>DPSCD Foundation</h4>
+        <p>Real momentum. No production capacity to match the pace of ideas. TR3 became the strategic creative support layer &mdash; building assets fast enough to keep up with the vision.</p>
+        <span class="proof-result">Ongoing retainer. Communications infrastructure that scales.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 8: WHO THIS IS FOR -->
+<section class="fit-section">
+  <div class="container">
+    <h2>This works if you already have something real.</h2>
+    <div class="fit-grid">
+      <div class="fit-card fit-card--yes reveal">
+        <span class="fit-card-label">This is for you if</span>
+        <ul class="fit-list">
+          <li><span class="fi">&#10003;</span> You have real clients, customers, or demand</li>
+          <li><span class="fi">&#10003;</span> Something in your business feels harder than it should</li>
+          <li><span class="fi">&#10003;</span> Your brand doesn't match what you've actually built</li>
+          <li><span class="fi">&#10003;</span> Your systems aren't connected or aren't working together</li>
+          <li><span class="fi">&#10003;</span> You're ready to fix it &mdash; not just talk about it</li>
         </ul>
       </div>
-      <div class="compare-card compare-card--after reveal">
-        <span class="compare-card-label">Where You'll Be in 30 Days</span>
-        <ul class="compare-list">
-          <li><span class="ci">&#10003;</span> Cut $1,200+/month in wasted spend ($14,400/year saved)</li>
-          <li><span class="ci">&#10003;</span> 5 focused hours/week with a system doing the rest</li>
-          <li><span class="ci">&#10003;</span> A predictable entry funnel you can forecast, plan around, and replicate</li>
-          <li><span class="ci">&#10003;</span> Predictable revenue forecast you can actually plan around</li>
-          <li><span class="ci">&#10003;</span> Dashboards showing exactly what's working and what to cut</li>
-          <li><span class="ci">&#10003;</span> A compounding system that gets better every month</li>
+      <div class="fit-card fit-card--no reveal">
+        <span class="fit-card-label">This is not for you if</span>
+        <ul class="fit-list">
+          <li><span class="fi">&#10007;</span> You're still testing whether your idea works</li>
+          <li><span class="fi">&#10007;</span> You want cheap design help or a one-off deliverable</li>
+          <li><span class="fi">&#10007;</span> You need someone to run your marketing for you indefinitely</li>
+          <li><span class="fi">&#10007;</span> You're not ready to invest in fixing what's broken</li>
         </ul>
       </div>
     </div>
-    <div class="transform-callout reveal">
-      <p>The $14,400/year in recovered waste alone pays for the program <strong>nearly 3x over.</strong> Everything else is upside.</p>
-    </div>
   </div>
 </section>
-<section class="process-section">
+
+<!-- DOM BIO -->
+<section class="bio-section">
   <div class="container">
-    <span class="section-label">How It Works</span>
-    <h2>From Scattered to Systematic in 4 Weeks</h2>
-    <div class="process-grid">
-      <div class="process-card reveal">
-        <span class="process-card-time">Weeks 1–2</span>
-        <h3>Build the Machine</h3>
-        <p>We audit your spend, identify the waste, sharpen your positioning, and build the conversion infrastructure. You'll know exactly where every dollar is going — and what has to change immediately.</p>
-      </div>
-      <div class="process-card reveal">
-        <span class="process-card-time">Weeks 3–4</span>
-        <h3>Launch &amp; Optimize</h3>
-        <p>We activate your campaigns, build your sales pipeline, and set up the dashboards so you can see what's working in real time. Group calls + community keep you accountable and moving.</p>
-      </div>
-      <div class="process-card reveal">
-        <span class="process-card-time">Month 2+</span>
-        <h3>Scale What Works</h3>
-        <p>Stay in the community (Discord/Slack), clone and scale, keep refining your system, and watch it compound. Or add a private 1-on-1 line with Dom for $3,500.</p>
+    <div class="bio-inner reveal">
+      <img src="assets/images/dom-headshot.jpg" alt="Domonique Davis, Founder of TR3 Media Solutions" class="bio-photo" loading="lazy" width="280" height="280">
+      <div>
+        <span class="section-label">Meet the Founder</span>
+        <h3>Domonique Davis</h3>
+        <p>Dom Davis is the founder of TR3 Media Solutions. For over a decade, she's worked inside Detroit's nonprofit, civic, and small business ecosystem &mdash; not as an outside consultant, but as the person in the room.</p>
+        <p>She's designed the pitch decks, built the websites, set up the systems, directed the photo shoots, and trained the teams. She knows what breaks. She knows why. And she knows how to fix it without handing you a to-do list.</p>
+        <div class="bio-quote">
+          <p>"I don't teach marketing. I find the leak and fix it. Because I've been the overworked person on the other side of a broken system &mdash; and I know the difference between a plan and something that actually runs."</p>
+        </div>
+        <p style="margin-top:20px;">The Leak Fix&trade; is that work, available to organizations that are already doing something real and ready for it to work harder.</p>
       </div>
     </div>
   </div>
 </section>
-<section class="modules-section">
+
+<!-- GUARANTEE -->
+<section class="guarantee-section">
   <div class="container">
-    <span class="section-label" style="color:#8FBC8F">What You Get</span>
-    <h2>6 Modules. 4 Weeks. A Complete Conversion System.</h2>
-    <p class="modules-intro">Every module is designed to produce a specific, measurable outcome. No filler. No fluff. Just the system.</p>
-    <div class="modules-grid">
-      <div class="module-card reveal">
-        <div class="module-num">01</div>
-        <h4>The Revenue Audit</h4>
-        <p>We map every dollar you're spending and identify exactly what's producing revenue — and what isn't. Most clients find $1K–$3K/month in waste.</p>
-        <span class="module-value">Standalone Value: $3,000</span>
-      </div>
-      <div class="module-card reveal">
-        <div class="module-num">02</div>
-        <h4>Strategic Clarity &amp; Positioning</h4>
-        <p>We define your ideal client, sharpen your messaging, and align your brand to what actually triggers action — not just followers.</p>
-        <span class="module-value">Standalone Value: $2,500</span>
-      </div>
-      <div class="module-card reveal">
-        <div class="module-num">03</div>
-        <h4>Conversion Infrastructure</h4>
-        <p>We build or fix your landing pages, CTAs, and lead capture flow. Templated, tested, and optimized — no coding required.</p>
-        <span class="module-value">Standalone Value: $3,500</span>
-      </div>
-      <div class="module-card reveal">
-        <div class="module-num">04</div>
-        <h4>Campaign Engine</h4>
-        <p>You'll launch at least one ROI-driven campaign — email, social, or paid — with full tracking. A real pipeline play, built to convert.</p>
-        <span class="module-value">Standalone Value: $2,000</span>
-      </div>
-      <div class="module-card reveal">
-        <div class="module-num">05</div>
-        <h4>Dashboard &amp; Tracking</h4>
-        <p>We set up a custom analytics dashboard — no GA jargon, just the numbers that matter. You'll know what's converting and what to scale.</p>
-        <span class="module-value">Standalone Value: $2,500</span>
-      </div>
-      <div class="module-card reveal">
-        <div class="module-num">06</div>
-        <h4>Revenue Playbook</h4>
-        <p>Your complete, customized system doc — the strategy, workflows, KPIs, and templates you'll reuse for the next 12+ months.</p>
-        <span class="module-value">Standalone Value: $3,000</span>
-      </div>
+    <div class="guarantee-inner reveal">
+      <h4>The Guarantee</h4>
+      <p>If you complete the engagement and implement the system &mdash; your marketing pays for itself. That's not a pitch. That's the math.</p>
     </div>
   </div>
 </section>
-<section class="pricing-section" id="pricing">
-  <div class="container">
-    <div class="pricing-header">
-      <span class="section-label">Choose Your Track</span>
-      <h2>Invest in the System</h2>
-      <p class="pricing-sub">Two ways in. Both pay for themselves.</p>
-    </div>
-    <div class="pricing-grid">
-      <div class="pricing-card reveal">
-        <h3>Strategy Only</h3>
-        <div class="pricing-amount">$3,000</div>
-        <ul class="pricing-features">
-          <li>Full Revenue Audit (Module 1)</li>
-          <li>Strategic Clarity &amp; Positioning (Module 2)</li>
-          <li>Custom Revenue Playbook (Module 6)</li>
-          <li>Group coaching calls</li>
-          <li>Community access (Discord/Slack)</li>
-        </ul>
-        <a href="https://buy.stripe.com/4gMdR28IQ82P6VX9yJ6Zy01" class="pricing-btn pricing-btn--outline">Enroll — Strategy Only</a>
-      </div>
-      <div class="pricing-card pricing-card--featured reveal">
-        <div class="pricing-badge">Most Popular</div>
-        <h3>Strategy + Execution</h3>
-        <div class="pricing-amount">$5,000</div>
-        <ul class="pricing-features">
-          <li>Everything in Strategy Only</li>
-          <li>Conversion Infrastructure Build (Module 3)</li>
-          <li>Campaign Engine Launch (Module 4)</li>
-          <li>Dashboard &amp; Tracking Setup (Module 5)</li>
-          <li>All 6 modules — the full system</li>
-        </ul>
-        <a href="https://buy.stripe.com/6oU4gs9MUaaX2FH12d6Zy00" class="pricing-btn pricing-btn--filled">Enroll — Full System</a>
-      </div>
-    </div>
-  </div>
-</section>
+
+<!-- SECTION 9: FINAL CTA -->
 <section class="final-cta">
   <div class="container">
-    <h2>Stop Guessing. Start Compounding.</h2>
-    <p>The system pays for itself. Everything else is upside. You're already spending the money — let's make it work.</p>
-    <a href="#pricing" class="btn-primary">Build Your Revenue System</a>
+    <h2>If your business is already working but feels harder than it should &mdash; we should talk.</h2>
+    <a href="#discovery" class="btn-primary">Book a Discovery Session</a>
+    <p class="subtext">Dom reviews every inquiry personally. Response within 48 hours.</p>
   </div>
 </section>
+
 <footer>
   <div class="container">
     <p>&copy; 2026 <a href="https://tr3mediasolutions.com">TR3 Media Solutions</a> &middot; Detroit, MI &middot; Design for Organizations Doing Real Work.</p>
