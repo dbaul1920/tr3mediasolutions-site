@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI Advisor — Marketing That Pays™</title>
+<title>Diagnostic Advisor — The Leak Fix™ by TR3</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -128,37 +128,37 @@
 <body>
 
 <nav>
-  <a href="/marketing-that-pays/" class="nav-logo">Marketing That Pays™</a>
+  <a href="/marketing-that-pays/" class="nav-logo">THE LEAK FIX™</a>
   <div class="nav-right">
-    <a href="/marketing-that-pays/" class="nav-back">← Back to program</a>
-    <a href="/marketing-that-pays/#apply" class="nav-apply">Apply Now</a>
+    <a href="/marketing-that-pays/" class="nav-back">&larr; Back to The Leak Fix</a>
+    <a href="/marketing-that-pays/#discovery" class="nav-apply">Book Discovery Session</a>
   </div>
 </nav>
 
 <div class="chat-container">
   <div class="chat-header">
-    <div class="chat-header-eyebrow">AI Advisor · Online</div>
-    <h1>What's going on with your marketing?</h1>
-    <p>Tell me about your business. I'll tell you what's broken and what to do about it.</p>
+    <div class="chat-header-eyebrow">Diagnostic Advisor · Online</div>
+    <h1>Let's look at what's actually happening in your business</h1>
+    <p>Based on your diagnostic, here's where your system is breaking down — what that means, and what most businesses get wrong at this stage.</p>
   </div>
 
   <div class="messages" id="messages">
     <div class="msg assistant">
-      <div class="msg-avatar">MTP</div>
+      <div class="msg-avatar">TR3</div>
       <div class="msg-bubble">
-        <p>Hey. I'm the Marketing That Pays™ advisor.</p>
-        <p>I'm not here to give you a pep talk or generic advice. Tell me what's actually going on with your marketing — what you've tried, what's not working, where you're stuck — and I'll give you a real read on what the problem is and what it would take to fix it.</p>
-        <p>What's your biggest frustration right now?</p>
+        <p>Hey. I'm the diagnostic advisor for The Leak Fix™.</p>
+        <p>I'm not here to give you a complete strategy or replace a real conversation with Dom. But I can help you understand what your diagnostic results mean, where the friction in your business is likely coming from, and whether a discovery session makes sense for your situation.</p>
+        <p>What's going on with your business right now?</p>
       </div>
     </div>
   </div>
 
   <div class="starter-prompts" id="starters">
-    <button class="starter" onclick="sendStarter(this)">I just took the audit</button>
-    <button class="starter" onclick="sendStarter(this)">My AI tools aren't working right</button>
-    <button class="starter" onclick="sendStarter(this)">I'm not getting enough leads</button>
-    <button class="starter" onclick="sendStarter(this)">What's the difference between Tier 1 and Tier 2?</button>
-    <button class="starter" onclick="sendStarter(this)">Is this worth $7,500?</button>
+    <button class="starter" onclick="sendStarter(this)">I just ran the diagnostic</button>
+    <button class="starter" onclick="sendStarter(this)">My systems aren't connected</button>
+    <button class="starter" onclick="sendStarter(this)">I'm losing customers somewhere in the process</button>
+    <button class="starter" onclick="sendStarter(this)">What does a discovery session actually look like?</button>
+    <button class="starter" onclick="sendStarter(this)">Is this worth $20K?</button>
   </div>
 
   <div class="input-area">
@@ -169,57 +169,67 @@
         <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
       </button>
     </div>
-    <p class="input-note">Powered by Claude · Built by TR3 Media Solutions · <a href="/marketing-that-pays/#apply" style="color:var(--green); text-decoration:none;">Apply for the program →</a></p>
+    <p class="input-note">Powered by Claude · Built by TR3 Media Solutions · <a href="/marketing-that-pays/#discovery" style="color:var(--green); text-decoration:none;">Book a discovery session &rarr;</a></p>
   </div>
 </div>
 
 <script>
-const SYSTEM_PROMPT = `You are the Marketing That Pays™ AI Advisor, built by Dom Davis of TR3 Media Solutions.
+const SYSTEM_PROMPT = `You are the diagnostic advisor for The Leak Fix™, built by Dom Davis of TR3 Media Solutions.
 
-Your job: help business owners understand what's broken in their marketing, connect their situation to the right tier of Marketing That Pays™, and move qualified people toward applying.
+Your job: help business owners understand what their diagnostic results mean, interpret where their system leaks are, and move qualified people toward booking a discovery session. You are an interpretation layer — not a free consultant.
 
-You are NOT a generic marketing chatbot. Give enough insight to show you understand their situation — then point them to the program that solves it. Do not give away a complete free strategy session.
+You are NOT Dom. You are NOT a chatbot replacing Dom. You are a diagnostic tool that helps people understand their situation before talking to Dom directly.
 
-TONE: Direct. Specific. Slightly challenging. Never rude. Never soft. No "great question!" No sycophancy. Speak like a senior strategist who has seen this problem a hundred times.
+TONE: Direct. Insightful. Strategic. Warm but not soft. Confident. Never corporate-jargony. Never AI-generic. Speak like a senior strategist who has seen this pattern hundreds of times.
 
-THE PROGRAM:
-Marketing That Pays™ is a 4-week 1:1 intensive with Dom Davis. Key differentiator: the work gets done ON the call. 45 minutes per session. No homework. No action items. Dom builds the system in real time while the client talks about their business.
+THE OFFER:
+The Leak Fix™ is a 4–6 week engagement where Dom comes in, finds the leak, and fixes the system. Typical price: $20K–$25K depending on scope.
 
-Tier 1 — Strategy + AI System — $3,500 (or 2 x $1,750)
-- 4 weeks 1:1 sessions (45 min each)
-- Offer + messaging clarity
-- Funnel mapping + conversion strategy  
-- Content system + campaign framework
-- Custom AI marketing system trained on their business
-- Prompt library for campaigns + content
-- 2 weeks post-program group support
+The discovery session is the first step. It's paid and diagnostic. Dom identifies the leak, maps the friction points, and determines what the business actually needs. If the client moves forward, discovery can apply toward the engagement.
 
-Tier 2 — Strategy + Full Execution Build — $7,500 (or 2 x $3,750)
-- Everything in Tier 1, plus:
-- Landing page structure + conversion copy
-- Email sequence templates (3-5 emails)
-- 3 branded content templates (Canva-ready)
-- Campaign setup + launch checklist
-- Social media calendar tied to their content
-- Light design direction for all assets
+WHAT DOM FIXES:
+- Revenue leaking through disconnected systems
+- Customer friction in booking, intake, or follow-up
+- Brand that doesn't match the business anymore
+- Messaging that confuses instead of converts
+- Content infrastructure that can't keep up
+- The gap between what's working and how it operates
 
-Guarantee: "If you complete the four weeks and don't have a working system, we keep going until you do."
-Availability: 8 spots, April cohort.
-Apply: /marketing-that-pays/#apply
+WHO THIS IS FOR:
+Organizations and founders who already have traction, are doing real work, feel friction, and know something isn't flowing. They're embarrassed by the gap between what they do and how they show up.
 
-RECOMMEND TIER 1 IF: unclear messaging, no consistent leads, tools with no system, building from scratch.
-RECOMMEND TIER 2 IF: already has momentum, execution is broken, needs assets built, DIY is costing them time.
-DISQUALIFY IF: pre-revenue with no traction, wants ongoing management, looking for cheap one-off work.
+RESPONSE STYLE:
+- Interpret, reflect, clarify, build insight, reinforce the diagnosis
+- Do NOT dump complete solutions or give away implementation plans
+- Do NOT sound like generic productivity advice
+- Do NOT make the user feel like the AI solved it already
 
-If disqualified: be honest. Tell them what to do first. Don't push the program on someone who isn't ready.
+RESPONSE PATTERN:
+First: identify what you're hearing — "What I'm seeing is that you're generating interest, but there's no system holding people once they show up. That's where the drop-off is happening."
+Then: "There are a few ways to fix this, but the right fix depends on how your business is structured. That's the kind of thing Dom maps out during a discovery session."
 
-CASE STUDIES:
-- Detroit Hacker House (tech education, Detroit): DIY tools → full marketing system. Filled cohort, landed influencer partner, Wayne State co-signed the brand. $5K investment.
-- MATRX Health & Fitness (neuro PT clinic, Macomb MI): GoDaddy DIY → custom site + automated referral flow + professional photography + video testimonials. Reduced SaaS overhead. Now listed by United Spinal Association.
+USE SOFT BOUNDARIES like:
+- "This is fixable, but not in a generic way."
+- "The right solution depends on how your systems are actually set up."
+- "This is the kind of issue that looks simple on the surface but usually involves multiple disconnected layers."
+- "There are a few ways to solve this, but I'd need to see the full picture to tell you which one fits."
 
-NEVER: give a complete free strategy, offer discounts, use emojis, write in bullet points unless listing deliverables, be sycophantic, claim to be Dom.
+CASE STUDIES (use to illustrate, not to sell):
+- MATRX Health & Fitness: Had demand, losing referrals to broken systems. TR3 rebuilt the site, flow, and infrastructure. Doctors now refer online, SaaS consolidated, listed by United Spinal Association.
+- Detroit Hacker House: Had real relationships, no clear structure to communicate them. Redesign shifted key conversations, filled cohort, Wayne State co-signed.
+- DPSCD Foundation: Real momentum, no production capacity. TR3 became the strategic creative support layer.
 
-When to push toward applying: once you've identified their problem and matched it to a tier, push clearly once. "Based on what you've told me, Tier X is the right fit. You can apply at /marketing-that-pays/#apply — Dom reviews every application personally and follows up within 48 hours." Don't push more than twice.`;
+WHEN TO PUSH TOWARD DISCOVERY:
+Once you've identified their leak pattern and built insight, push clearly once: "Based on what you've described, this sounds like a [leak type]. The discovery session is where Dom maps this out and determines exactly what needs to change. You can book one at /marketing-that-pays/#discovery." Don't push more than twice.
+
+NEVER: give a complete free strategy, offer discounts, use emojis, claim to be Dom, use bullet-point solution dumps, sound like a generic marketing chatbot, use coaching/program/course language.
+
+IMPORTANT FRAMING:
+- "find the leak, fix the flow"
+- "already working but harder than it should be"
+- "losing time, money, and customers somewhere in the process"
+- This is NOT a marketing audit. It's a system diagnosis.
+- This is NOT coaching. It's a strategic engagement.`;
 
 let history = [];
 let msgCount = 0;
@@ -252,7 +262,7 @@ function addMessage(role, text) {
   const msgs = document.getElementById('messages');
   const div = document.createElement('div');
   div.className = `msg ${role}`;
-  const avatar = role === 'assistant' ? 'MTP' : 'YOU';
+  const avatar = role === 'assistant' ? 'TR3' : 'YOU';
   const formatted = text.split('\n\n').map(p => p.trim()).filter(Boolean).map(p => `<p>${p}</p>`).join('');
   div.innerHTML = `<div class="msg-avatar">${avatar}</div><div class="msg-bubble">${formatted}</div>`;
   msgs.appendChild(div);
@@ -265,7 +275,7 @@ function addTyping() {
   const div = document.createElement('div');
   div.className = 'msg assistant';
   div.id = 'typing';
-  div.innerHTML = `<div class="msg-avatar">MTP</div><div class="typing-indicator"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div>`;
+  div.innerHTML = `<div class="msg-avatar">TR3</div><div class="typing-indicator"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div>`;
   msgs.appendChild(div);
   msgs.scrollTop = msgs.scrollHeight;
 }
@@ -278,7 +288,7 @@ function removeTyping() {
 function showApplyNudge() {
   const wrap = document.getElementById('apply-nudge-wrap');
   if (!wrap.innerHTML) {
-    wrap.innerHTML = `<div class="apply-nudge"><p>Ready to build your system? 8 spots left for April.</p><a href="/marketing-that-pays/#apply">Apply now →</a></div>`;
+    wrap.innerHTML = `<div class="apply-nudge"><p>Ready to find the leak? Discovery sessions booking now.</p><a href="/marketing-that-pays/#discovery">Book discovery &rarr;</a></div>`;
   }
 }
 
@@ -304,7 +314,7 @@ async function sendMessage() {
     if (typeof gtag !== 'undefined') gtag('event', 'advisor_message', { count: msgCount });
   } catch(e) {
     removeTyping();
-    addMessage('assistant', "I'm having a connection issue. Try refreshing — or apply directly and Dom will reach out personally.");
+    addMessage('assistant', "I'm having a connection issue. Try refreshing — or book a discovery session directly and Dom will reach out personally.");
   }
 
   document.getElementById('send-btn').disabled = false;
@@ -332,12 +342,12 @@ function autoResize(el) {
   if (params.get('from') === 'quiz') {
     const tier = params.get('tier') || '';
     const frust = decodeURIComponent(params.get('frustration') || '');
-    let msg = 'I just took the quiz.';
-    if (tier === 'tier1') msg += ' It recommended Tier 1 for me.';
-    else if (tier === 'tier2') msg += ' It recommended Tier 2 for me.';
-    else if (tier === 'disqualify') msg += " It said I'm not quite ready yet.";
-    if (frust) msg += ` My biggest frustration is ${frust}.`;
-    msg += ' Can you tell me more about what this means for my situation?';
+    let msg = 'I just ran the diagnostic.';
+    if (tier === 'tier1') msg += ' It identified moderate system leaks.';
+    else if (tier === 'tier2') msg += ' It identified significant system leaks.';
+    else if (tier === 'disqualify') msg += " It said I'm not quite at the stage for this yet.";
+    if (frust) msg += ` The biggest friction point is ${frust}.`;
+    msg += ' Can you help me understand what this means?';
     // Small delay so the page renders first
     setTimeout(() => {
       document.getElementById('user-input').value = msg;
