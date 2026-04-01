@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diagnostic Advisor — The Leak Fix™ by TR3</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --dark: #2A2A2A;
+    --charcoal: #333333;
+    --cream: #F5F0E8;
+    --cream-deep: #EDE8DF;
+    --green: #2C5F2D;
+    --green-hover: #1E4A1F;
+    --rust: #8B3A1F;
+    --mid: #575753;
+    --border: rgba(44,95,45,0.15);
+    --border-dark: rgba(245,240,232,0.12);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--dark); color: var(--cream); display: flex; flex-direction: column; }
+
+  nav {
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.1rem 4vw;
+    background: rgba(42,42,42,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-dark);
+  }
+  .nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; letter-spacing: 0.12em; color: var(--green); text-decoration: none; }
+  .nav-right { display: flex; align-items: center; gap: 1.5rem; }
+  .nav-back { font-size: 0.78rem; color: rgba(245,240,232,0.5); text-decoration: none; }
+  .nav-back:hover { color: var(--cream); }
+  .nav-apply {
+    font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+    background: var(--green); color: var(--cream); padding: 0.5rem 1.1rem; text-decoration: none;
+    transition: background 0.2s;
+  }
+  .nav-apply:hover { background: var(--green-hover); }
+
+  .chat-container { flex: 1; display: flex; flex-direction: column; max-width: 760px; width: 100%; margin: 0 auto; padding: 0 4vw; overflow: hidden; }
+
+  .chat-header { padding: 1.75rem 0 1.25rem; border-bottom: 1px solid var(--border-dark); flex-shrink: 0; }
+  .chat-header-eyebrow { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--green); margin-bottom: 0.4rem; display: flex; align-items: center; gap: 0.5rem; }
+  .chat-header-eyebrow::before { content: ''; width: 6px; height: 6px; background: var(--green); border-radius: 50%; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
+  .chat-header h1 { font-family: 'DM Serif Display', serif; font-size: 1.15rem; color: var(--cream); font-weight: 400; }
+  .chat-header p { font-size: 0.8rem; color: rgba(245,240,232,0.5); margin-top: 0.25rem; line-height: 1.5; }
+
+  .messages { flex: 1; overflow-y: auto; padding: 1.5rem 0; display: flex; flex-direction: column; gap: 1.25rem; }
+  .messages::-webkit-scrollbar { width: 4px; }
+  .messages::-webkit-scrollbar-track { background: transparent; }
+  .messages::-webkit-scrollbar-thumb { background: var(--border-dark); border-radius: 2px; }
+
+  .msg { display: flex; gap: 0.85rem; max-width: 88%; }
+  .msg.user { align-self: flex-end; flex-direction: row-reverse; }
+  .msg.assistant { align-self: flex-start; }
+
+  .msg-avatar {
+    width: 30px; height: 30px; border-radius: 50%; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.65rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;
+    margin-top: 2px;
+  }
+  .msg.assistant .msg-avatar { background: var(--green); color: var(--cream); }
+  .msg.user .msg-avatar { background: rgba(245,240,232,0.12); color: rgba(245,240,232,0.7); font-size: 0.7rem; }
+
+  .msg-bubble {
+    padding: 0.9rem 1.1rem;
+    font-size: 0.92rem; line-height: 1.75;
+    border-radius: 2px;
+  }
+  .msg.assistant .msg-bubble { background: rgba(245,240,232,0.06); color: rgba(245,240,232,0.88); border: 1px solid var(--border-dark); }
+  .msg.user .msg-bubble { background: var(--green); color: var(--cream); }
+
+  .msg-bubble p { margin-bottom: 0.65rem; }
+  .msg-bubble p:last-child { margin-bottom: 0; }
+  .msg-bubble strong { color: var(--cream); font-weight: 500; }
+
+  .typing-indicator { display: flex; gap: 5px; align-items: center; padding: 0.9rem 1.1rem; background: rgba(245,240,232,0.06); border: 1px solid var(--border-dark); border-radius: 2px; }
+  .typing-dot { width: 6px; height: 6px; background: rgba(245,240,232,0.4); border-radius: 50%; animation: typing 1.2s infinite; }
+  .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+  .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes typing { 0%,60%,100% { opacity: 0.3; transform: translateY(0); } 30% { opacity: 1; transform: translateY(-4px); } }
+
+  .starter-prompts { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 1rem; }
+  .starter { padding: 0.5rem 1rem; border: 1px solid var(--border-dark); background: transparent; color: rgba(245,240,232,0.6); font-size: 0.8rem; font-family: inherit; cursor: pointer; transition: all 0.15s; border-radius: 2px; }
+  .starter:hover { border-color: var(--green); color: var(--cream); background: rgba(44,95,45,0.1); }
+
+  .input-area { flex-shrink: 0; padding: 1rem 0 1.5rem; border-top: 1px solid var(--border-dark); }
+  .input-row { display: flex; gap: 10px; align-items: flex-end; }
+  .input-field {
+    flex: 1; padding: 0.85rem 1rem;
+    background: rgba(245,240,232,0.06); border: 1px solid var(--border-dark);
+    color: var(--cream); font-family: inherit; font-size: 0.92rem;
+    resize: none; outline: none; transition: border-color 0.2s; border-radius: 2px;
+    line-height: 1.5; max-height: 140px; min-height: 46px;
+  }
+  .input-field:focus { border-color: var(--green); }
+  .input-field::placeholder { color: rgba(245,240,232,0.3); }
+  .send-btn {
+    width: 46px; height: 46px; background: var(--green); border: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    transition: background 0.15s; border-radius: 2px;
+  }
+  .send-btn:hover { background: var(--green-hover); }
+  .send-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+  .send-btn svg { width: 18px; height: 18px; fill: none; stroke: white; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+  .input-note { font-size: 0.72rem; color: rgba(245,240,232,0.3); margin-top: 0.5rem; }
+
+  .apply-nudge {
+    margin: 0.5rem 0;
+    padding: 1rem 1.25rem;
+    background: rgba(44,95,45,0.12);
+    border: 1px solid rgba(44,95,45,0.3);
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem;
+    border-radius: 2px;
+  }
+  .apply-nudge p { font-size: 0.85rem; color: rgba(245,240,232,0.75); }
+  .apply-nudge a { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--green); text-decoration: none; white-space: nowrap; }
+  .apply-nudge a:hover { color: #5a9e5b; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/marketing-that-pays/" class="nav-logo">THE LEAK FIX™</a>
+  <div class="nav-right">
+    <a href="/marketing-that-pays/" class="nav-back">&larr; Back to The Leak Fix</a>
+    <a href="/marketing-that-pays/#discovery" class="nav-apply">Book Discovery Session</a>
+  </div>
+</nav>
+
+<div class="chat-container">
+  <div class="chat-header">
+    <div class="chat-header-eyebrow">Diagnostic Advisor · Online</div>
+    <h1>Let's look at what's actually happening in your business</h1>
+    <p>Based on your diagnostic, here's where your system is breaking down — what that means, and what most businesses get wrong at this stage.</p>
+  </div>
+
+  <div class="messages" id="messages">
+    <div class="msg assistant">
+      <div class="msg-avatar">TR3</div>
+      <div class="msg-bubble">
+        <p>Hey. I'm the diagnostic advisor for The Leak Fix™.</p>
+        <p>I'm not here to give you a complete strategy or replace a real conversation with Dom. But I can help you understand what your diagnostic results mean, where the friction in your business is likely coming from, and whether a discovery session makes sense for your situation.</p>
+        <p>What's going on with your business right now?</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="starter-prompts" id="starters">
+    <button class="starter" onclick="sendStarter(this)">I just ran the diagnostic</button>
+    <button class="starter" onclick="sendStarter(this)">My systems aren't connected</button>
+    <button class="starter" onclick="sendStarter(this)">I'm losing customers somewhere in the process</button>
+    <button class="starter" onclick="sendStarter(this)">What does a discovery session actually look like?</button>
+    <button class="starter" onclick="sendStarter(this)">Is this worth $20K?</button>
+  </div>
+
+  <div class="input-area">
+    <div id="apply-nudge-wrap"></div>
+    <div class="input-row">
+      <textarea class="input-field" id="user-input" placeholder="Tell me about your business..." rows="1" onkeydown="handleKey(event)" oninput="autoResize(this)"></textarea>
+      <button class="send-btn" id="send-btn" onclick="sendMessage()">
+        <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+      </button>
+    </div>
+    <p class="input-note">Powered by Claude · Built by TR3 Media Solutions · <a href="/marketing-that-pays/#discovery" style="color:var(--green); text-decoration:none;">Book a discovery session &rarr;</a></p>
+  </div>
+</div>
+
+<script>
+const SYSTEM_PROMPT = `You are the diagnostic advisor for The Leak Fix™, built by Dom Davis of TR3 Media Solutions.
+
+Your job: help business owners understand what their diagnostic results mean, interpret where their system leaks are, and move qualified people toward booking a discovery session. You are an interpretation layer — not a free consultant.
+
+You are NOT Dom. You are NOT a chatbot replacing Dom. You are a diagnostic tool that helps people understand their situation before talking to Dom directly.
+
+TONE: Direct. Insightful. Strategic. Warm but not soft. Confident. Never corporate-jargony. Never AI-generic. Speak like a senior strategist who has seen this pattern hundreds of times.
+
+THE OFFER:
+The Leak Fix™ is a 4–6 week engagement where Dom comes in, finds the leak, and fixes the system. Typical price: $20K–$25K depending on scope.
+
+The discovery session is the first step. It's paid and diagnostic. Dom identifies the leak, maps the friction points, and determines what the business actually needs. If the client moves forward, discovery can apply toward the engagement.
+
+WHAT DOM FIXES:
+- Revenue leaking through disconnected systems
+- Customer friction in booking, intake, or follow-up
+- Brand that doesn't match the business anymore
+- Messaging that confuses instead of converts
+- Content infrastructure that can't keep up
+- The gap between what's working and how it operates
+
+WHO THIS IS FOR:
+Organizations and founders who already have traction, are doing real work, feel friction, and know something isn't flowing. They're embarrassed by the gap between what they do and how they show up.
+
+RESPONSE STYLE:
+- Interpret, reflect, clarify, build insight, reinforce the diagnosis
+- Do NOT dump complete solutions or give away implementation plans
+- Do NOT sound like generic productivity advice
+- Do NOT make the user feel like the AI solved it already
+
+RESPONSE PATTERN:
+First: identify what you're hearing — "What I'm seeing is that you're generating interest, but there's no system holding people once they show up. That's where the drop-off is happening."
+Then: "There are a few ways to fix this, but the right fix depends on how your business is structured. That's the kind of thing Dom maps out during a discovery session."
+
+USE SOFT BOUNDARIES like:
+- "This is fixable, but not in a generic way."
+- "The right solution depends on how your systems are actually set up."
+- "This is the kind of issue that looks simple on the surface but usually involves multiple disconnected layers."
+- "There are a few ways to solve this, but I'd need to see the full picture to tell you which one fits."
+
+CASE STUDIES (use to illustrate, not to sell):
+- MATRX Health & Fitness: Had demand, losing referrals to broken systems. TR3 rebuilt the site, flow, and infrastructure. Doctors now refer online, SaaS consolidated, listed by United Spinal Association.
+- Detroit Hacker House: Had real relationships, no clear structure to communicate them. Redesign shifted key conversations, filled cohort, Wayne State co-signed.
+- DPSCD Foundation: Real momentum, no production capacity. TR3 became the strategic creative support layer.
+
+WHEN TO PUSH TOWARD DISCOVERY:
+Once you've identified their leak pattern and built insight, push clearly once: "Based on what you've described, this sounds like a [leak type]. The discovery session is where Dom maps this out and determines exactly what needs to change. You can book one at /marketing-that-pays/#discovery." Don't push more than twice.
+
+NEVER: give a complete free strategy, offer discounts, use emojis, claim to be Dom, use bullet-point solution dumps, sound like a generic marketing chatbot, use coaching/program/course language.
+
+IMPORTANT FRAMING:
+- "find the leak, fix the flow"
+- "already working but harder than it should be"
+- "losing time, money, and customers somewhere in the process"
+- This is NOT a marketing audit. It's a system diagnosis.
+- This is NOT coaching. It's a strategic engagement.`;
+
+let history = [];
+let msgCount = 0;
+
+const PROXY_URL = 'https://tr3mediasolutions.com/mtp-proxy/api/chat';
+
+async function callClaude(userMessage) {
+  history.push({ role: 'user', content: userMessage });
+
+  const response = await fetch(PROXY_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      system: SYSTEM_PROMPT,
+      messages: history
+    })
+  });
+
+  if (!response.ok) {
+    throw new Error('Proxy error ' + response.status);
+  }
+
+  const data = await response.json();
+  const reply = data.content?.[0]?.text || "Something went wrong. Please try again.";
+  history.push({ role: 'assistant', content: reply });
+  return reply;
+}
+
+function addMessage(role, text) {
+  const msgs = document.getElementById('messages');
+  const div = document.createElement('div');
+  div.className = `msg ${role}`;
+  const avatar = role === 'assistant' ? 'TR3' : 'YOU';
+  const formatted = text.split('\n\n').map(p => p.trim()).filter(Boolean).map(p => `<p>${p}</p>`).join('');
+  div.innerHTML = `<div class="msg-avatar">${avatar}</div><div class="msg-bubble">${formatted}</div>`;
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+  return div;
+}
+
+function addTyping() {
+  const msgs = document.getElementById('messages');
+  const div = document.createElement('div');
+  div.className = 'msg assistant';
+  div.id = 'typing';
+  div.innerHTML = `<div class="msg-avatar">TR3</div><div class="typing-indicator"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div>`;
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function removeTyping() {
+  const t = document.getElementById('typing');
+  if (t) t.remove();
+}
+
+function showApplyNudge() {
+  const wrap = document.getElementById('apply-nudge-wrap');
+  if (!wrap.innerHTML) {
+    wrap.innerHTML = `<div class="apply-nudge"><p>Ready to find the leak? Discovery sessions booking now.</p><a href="/marketing-that-pays/#discovery">Book discovery &rarr;</a></div>`;
+  }
+}
+
+async function sendMessage() {
+  const input = document.getElementById('user-input');
+  const text = input.value.trim();
+  if (!text) return;
+
+  document.getElementById('starters').style.display = 'none';
+  input.value = '';
+  input.style.height = 'auto';
+  document.getElementById('send-btn').disabled = true;
+
+  addMessage('user', text);
+  addTyping();
+
+  try {
+    const reply = await callClaude(text);
+    removeTyping();
+    addMessage('assistant', reply);
+    msgCount++;
+    if (msgCount >= 3) showApplyNudge();
+    if (typeof gtag !== 'undefined') gtag('event', 'advisor_message', { count: msgCount });
+  } catch(e) {
+    removeTyping();
+    addMessage('assistant', "I'm having a connection issue. Try refreshing — or book a discovery session directly and Dom will reach out personally.");
+  }
+
+  document.getElementById('send-btn').disabled = false;
+  input.focus();
+}
+
+function sendStarter(btn) {
+  document.getElementById('user-input').value = btn.textContent;
+  document.getElementById('starters').style.display = 'none';
+  sendMessage();
+}
+
+function handleKey(e) {
+  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
+}
+
+function autoResize(el) {
+  el.style.height = 'auto';
+  el.style.height = Math.min(el.scrollHeight, 140) + 'px';
+}
+
+// Auto-send context when arriving from quiz
+(function() {
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('from') === 'quiz') {
+    const tier = params.get('tier') || '';
+    const frust = decodeURIComponent(params.get('frustration') || '');
+    let msg = 'I just ran the diagnostic.';
+    if (tier === 'tier1') msg += ' It identified moderate system leaks.';
+    else if (tier === 'tier2') msg += ' It identified significant system leaks.';
+    else if (tier === 'disqualify') msg += " It said I'm not quite at the stage for this yet.";
+    if (frust) msg += ` The biggest friction point is ${frust}.`;
+    msg += ' Can you help me understand what this means?';
+    // Small delay so the page renders first
+    setTimeout(() => {
+      document.getElementById('user-input').value = msg;
+      document.getElementById('starters').style.display = 'none';
+      sendMessage();
+    }, 600);
+  }
+})();
+</script>
+</body>
+</html>
