@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Leak Diagnosis Tool — The Leak Fix™ by TR3</title>
+<title>Marketing Diagnosis — Marketing That Pays™</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -164,15 +164,15 @@
 <body>
 
 <nav>
-  <a href="/marketing-that-pays/" class="nav-logo">THE LEAK FIX&#8482;</a>
-  <a href="/marketing-that-pays/" class="nav-back">&larr; Back to The Leak Fix</a>
+  <a href="/marketing-that-pays/" class="nav-logo">Marketing That Pays™</a>
+  <a href="/marketing-that-pays/" class="nav-back">← Back to program</a>
 </nav>
 
 <div class="audit-wrap">
   <div class="audit-intro" id="intro-block">
-    <div class="audit-eyebrow">Free &middot; 3 minutes</div>
-    <h1>Find Where Your Business Is<br><em>Leaking Revenue</em></h1>
-    <p>You don't need more marketing. You need to see where your current system is breaking down. This diagnostic helps identify where you're losing time, money, and customers — based on how your business actually operates.</p>
+    <div class="audit-eyebrow">Free · 3 minutes</div>
+    <h1>Find out why your<br>marketing <em>isn't converting</em></h1>
+    <p>9 questions. A brutally honest diagnosis. A clear recommendation on what to fix first — and whether Marketing That Pays™ is the right move.</p>
     <div class="time-badge">Takes 3 minutes</div>
   </div>
 
@@ -188,8 +188,8 @@
     <div class="q-text" id="q-text"></div>
     <div class="options" id="options"></div>
     <div class="nav-btns">
-      <button class="btn-back-q" id="btn-back" onclick="goBack()">&larr; Back</button>
-      <button class="btn-next-q" id="btn-next" onclick="goNext()" disabled>Continue &rarr;</button>
+      <button class="btn-back-q" id="btn-back" onclick="goBack()">← Back</button>
+      <button class="btn-next-q" id="btn-next" onclick="goNext()" disabled>Continue →</button>
     </div>
   </div>
 
@@ -198,43 +198,43 @@
     <div id="diag-block" class="diag-block"></div>
     <div class="findings-block" id="findings-block"></div>
     <div class="rec-block" id="rec-block"></div>
-    <div class="cta-block" id="cta-block">
+    <div class="cta-block">
       <div class="email-field">
-        <label>Get your full diagnosis + next steps</label>
+        <label>Get your full diagnosis + next steps — enter your email</label>
         <input type="email" id="email-in" placeholder="your@email.com">
       </div>
-      <button class="cta-apply" id="cta-apply" onclick="applyNow()">Book a Discovery Session &rarr;</button>
+      <button class="cta-apply" id="cta-apply" onclick="applyNow()">See what the right plan looks like →</button>
       <div style="display:flex; align-items:center; gap:0.75rem; margin:1rem 0 0.75rem;">
         <div style="flex:1; height:1px; background:var(--border);"></div>
         <span style="font-size:0.72rem; color:var(--mid); text-transform:uppercase; letter-spacing:0.12em; font-weight:600;">or</span>
         <div style="flex:1; height:1px; background:var(--border);"></div>
       </div>
-      <a id="cta-advisor" class="cta-advisor" onclick="goToAdvisor(); return false;" href="#">Talk through your results with the advisor &rarr;</a>
-      <p class="cta-note" id="cta-note">Dom reviews every request personally. Response within 48 hours.</p>
+      <a id="cta-advisor" class="cta-advisor" onclick="goToAdvisor(); return false;" href="#">Not ready to commit? Pick Dom's brain right now →</a>
+      <p class="cta-note" id="cta-note">8 spots available · April cohort · Dom reviews every application personally</p>
     </div>
   </div>
 </div>
 
 <footer>
-  <p><a href="/marketing-that-pays/">The Leak Fix&#8482;</a> &middot; A <a href="/">TR3 Media Solutions</a> Engagement &middot; &copy; 2026</p>
+  <p><a href="/marketing-that-pays/">Marketing That Pays™</a> · A <a href="/">TR3 Media Solutions</a> Program · © 2026</p>
 </footer>
 
 <script>
 const qs = [
-  { text: "What does your business primarily deliver?", opts: ["Service or consulting","Programs or experiences","Physical products","Mix of the above"], scores: [2,2,1,2] },
-  { text: "What\u2019s your monthly revenue right now?", opts: ["Not yet / pre-revenue","Under $5K/month","$5K\u2013$20K/month","$20K+/month"], scores: [0,1,2,3] },
-  { text: "What happens to people who show interest but don\u2019t convert right away?", opts: ["We have a system that follows up automatically","Someone follows up manually, sometimes","We lose track of most of them","There\u2019s no follow-up process"], scores: [3,2,1,0] },
-  { text: "How easy is it for someone to go from interest to booking or buying without friction?", opts: ["Very easy \u2014 clear path, minimal steps","It works but there are unnecessary steps","It\u2019s confusing \u2014 people ask how to buy","There\u2019s no clear path"], scores: [3,2,1,0] },
-  { text: "Are your systems actually connected to each other?", opts: ["Yes \u2014 CRM, website, email, booking all talk to each other","Some are connected, some aren\u2019t","They\u2019re mostly separate tools","Nothing is connected"], scores: [3,2,1,0] },
-  { text: "Does your brand actually reflect what you do now?", opts: ["Yes \u2014 messaging, site, and materials match the business","Mostly, but parts are outdated","There\u2019s a real gap between how we show up and what we do","Our online presence is embarrassing"], scores: [3,2,1,0] },
-  { text: "When someone is referred to you, what\u2019s their experience?", opts: ["Smooth \u2014 they can learn about us and take action easily","They Google us and it\u2019s fine but not great","They\u2019d have to ask us directly for most info","Honestly, the referral experience isn\u2019t good"], scores: [3,1,1,0] },
-  { text: "What\u2019s the biggest source of friction in your business right now?", opts: ["Losing potential revenue I know is there","Too many manual processes","Can\u2019t keep up with demand because systems are broken","Don\u2019t know where the problem actually is"], scores: [1,2,2,1] },
-  { text: "What happens if this doesn\u2019t change in 90 days?", opts: ["I lose real money","I stay stuck at this level","Growth stalls","Probably nothing changes"], scores: [3,2,2,0] }
+  { text: "What are you primarily selling?", opts: ["Service or consulting","Program or course","Physical product","Mix of the above"], scores: [2,2,1,2] },
+  { text: "What's your monthly revenue right now?", opts: ["Not yet / pre-revenue","Under $5K/month","$5K–$20K/month","$20K+/month"], scores: [0,1,2,3] },
+  { text: "Do you currently get consistent leads?", opts: ["Yes, predictably","Sometimes — hit or miss","Rarely","Basically never"], scores: [3,2,1,0] },
+  { text: "Do you have an offer that converts cold traffic?", opts: ["Yes, people buy without much explanation","Warm leads convert, cold don't","Not really","No clear offer"], scores: [3,2,1,0] },
+  { text: "Do you have a funnel — not just a website?", opts: ["Yes, built intentionally","Some pieces exist, not connected","Not really","No"], scores: [3,2,1,0] },
+  { text: "How would you describe your marketing right now?", opts: ["Structured and consistent","I post but it's random","I overthink and don't post","I'm stuck and avoiding it"], scores: [3,2,1,0] },
+  { text: "Are you getting real value from your AI tools?", opts: ["Yes — saves me time","I use them but rewrite everything","Inconsistent","Not really"], scores: [3,1,1,0] },
+  { text: "What's your biggest frustration right now?", opts: ["Not getting enough leads","Leads aren't converting","Too much manual work","Don't know what's working"], scores: [1,2,2,1] },
+  { text: "What happens if this doesn't change in 90 days?", opts: ["I lose real money","I stay stuck","My growth stalls","Probably nothing"], scores: [3,2,2,0] }
 ];
 
 let cur = 0, answers = [], sel = null;
 
-const frustLabels = ["losing revenue you know is there","too many manual processes","broken systems can\u2019t keep up with demand","not knowing where the problem is"];
+const frustLabels = ["getting enough leads","converting the leads you get","too much manual work","knowing what's actually working"];
 
 function render() {
   const q = qs[cur];
@@ -257,7 +257,7 @@ function render() {
   sel = answers[cur] !== undefined ? answers[cur] : null;
   document.getElementById('btn-next').disabled = sel === null;
   document.getElementById('btn-back').style.visibility = cur === 0 ? 'hidden' : 'visible';
-  document.getElementById('btn-next').textContent = cur === qs.length - 1 ? 'See my results \u2192' : 'Continue \u2192';
+  document.getElementById('btn-next').textContent = cur === qs.length - 1 ? 'See my results →' : 'Continue →';
 }
 
 function pick(i) {
@@ -292,49 +292,49 @@ function showResult() {
 
   const s = totalScore();
   const tier = getTier(s);
-  const frust = frustLabels[answers[7]] || 'unclear friction';
+  const frust = frustLabels[answers[7]] || 'unclear conversion';
 
   const db = document.getElementById('diag-block');
   db.className = `diag-block ${tier}`;
 
   if (tier === 'disqualify') {
-    db.innerHTML = `<div class="diag-eyebrow">Honest assessment</div><div class="diag-headline">You\u2019re not quite at the stage where this applies.</div><div class="diag-body">The Leak Fix is built for businesses that already have revenue and demand flowing through their systems. Right now, your highest-leverage move is getting consistent revenue first. When you have momentum but it\u2019s harder than it should be \u2014 that\u2019s when we can help.</div>`;
+    db.innerHTML = `<div class="diag-eyebrow">Honest diagnosis</div><div class="diag-headline">Not quite ready — but that's fixable.</div><div class="diag-body">Marketing That Pays™ is built for businesses already operating with revenue coming in. Right now, your highest-leverage move is validating your offer and landing your first consistent clients. Come back when you're generating revenue — the system will work harder for you then.</div>`;
     document.getElementById('findings-block').style.display = 'none';
     document.getElementById('rec-block').style.display = 'none';
     document.getElementById('cta-apply').style.display = 'none';
     document.getElementById('email-in').closest('.email-field').style.display = 'none';
-    document.getElementById('cta-advisor').textContent = 'Explore what to focus on first \u2192';
+    document.getElementById('cta-advisor').textContent = 'Talk to the advisor about what to focus on first →';
     document.getElementById('cta-note').style.display = 'none';
   } else {
     const isT2 = tier === 'tier2';
     db.innerHTML = `
-      <div class="diag-eyebrow">${isT2 ? '\u2B51 ' : ''}Your diagnosis</div>
-      <div class="diag-headline">${isT2 ? 'You have real momentum. You\u2019re losing revenue in the gaps.' : 'Your systems have leaks. They\u2019re costing you more than you think.'}</div>
+      <div class="diag-eyebrow">${isT2 ? '⭑ ' : ''}Your diagnosis</div>
+      <div class="diag-headline">${isT2 ? 'You have momentum. You\'re leaving money on the table.' : 'Your marketing isn\'t broken. It\'s disconnected.'}</div>
       <div class="diag-body">${isT2
-        ? `You\u2019re already doing the work \u2014 but your operation has structural leaks. The effort is there. The system connecting it to revenue isn\u2019t. Right now that gap is costing you on ${frust}.`
-        : `You have a real business and real effort behind it \u2014 but your systems aren\u2019t connected in a way that captures the revenue you\u2019re generating. The core friction right now is ${frust}. That\u2019s not a marketing problem. It\u2019s a system problem.`
+        ? `You're already doing things — but your execution layer is fragmented. The effort is there. The system connecting it to revenue isn't. Right now that gap is costing you on ${frust}.`
+        : `You have tools, effort, and a real business — but nothing connecting them to consistent revenue. The core gap right now is ${frust}. That's not a content problem. It's a system problem.`
       }</div>`;
 
     const findData = {
       tier1: [
-        ['Demand Without Capture','People are showing interest but there\u2019s no system holding them. Leads slip through because nothing follows up.'],
-        ['Disconnected Systems','Your tools don\u2019t talk to each other. Every handoff requires you to be in the loop manually.'],
-        ['Brand Misalignment','What people see online doesn\u2019t match the business you\u2019ve actually built. The gap is costing you credibility.'],
+        ['Messaging clarity','Cold traffic doesn\'t understand your offer fast enough to act.'],
+        ['Funnel structure','There\'s no clear path from awareness to conversion.'],
+        ['AI leverage','Your tools aren\'t trained on your business — so the output doesn\'t sound like you.'],
       ],
       tier2: [
-        ['Revenue Leakage','You\u2019re generating demand but your systems aren\u2019t capturing it. Money is being left on the table at multiple points.'],
-        ['Conversion Friction','The path from interest to purchase has too many steps, too many gaps, or too much confusion. People drop off.'],
-        ['Operational Overload','Too much relies on you manually. Your systems can\u2019t handle the volume your business is generating.'],
+        ['Execution gaps','Strategy exists but the execution layer — copy, pages, templates — isn\'t fully built.'],
+        ['Conversion infrastructure','Your funnel has holes. Traffic comes in but doesn\'t convert consistently.'],
+        ['System dependency','Too much relies on you manually. Nothing runs without you in the loop.'],
       ]
     };
 
     document.getElementById('findings-block').innerHTML = `
-      <div class="findings-title">Where the leaks are</div>
-      ${findData[tier].map(([t,d]) => `<div class="finding"><div class="find-arrow">\u2192</div><div class="find-content"><h4>${t}</h4><p>${d}</p></div></div>`).join('')}`;
+      <div class="findings-title">What's breaking your results</div>
+      ${findData[tier].map(([t,d]) => `<div class="finding"><div class="find-arrow">→</div><div class="find-content"><h4>${t}</h4><p>${d}</p></div></div>`).join('')}`;
 
     const recData = {
-      tier1: { label: 'Recommended next step', name: 'Discovery Session', price: 'Paid diagnostic \u00B7 Applied toward engagement', desc: 'A focused session where Dom maps your system leaks, identifies what\u2019s costing you, and determines exactly what needs to change. If The Leak Fix is right for you, discovery applies toward the engagement.' },
-      tier2: { label: '\u2B51 Recommended next step', name: 'Discovery Session \u2192 The Leak Fix\u2122', price: 'Engagements from $20K\u2013$25K \u00B7 4\u20136 weeks', desc: 'Based on what you\u2019ve described, this isn\u2019t a small fix \u2014 it\u2019s a structural repair. The Leak Fix is a 4\u20136 week engagement where Dom comes in, finds every leak, and rebuilds the flow. Discovery is the first step.' }
+      tier1: { label: 'Recommended: Tier 1', name: 'Strategy + AI System', price: '$3,500 · or 2 payments of $1,750', desc: 'Four weeks, 1:1 with Dom. We build your messaging, funnel strategy, and a custom AI marketing system trained on your business. You leave with something that runs — not a plan to execute later.' },
+      tier2: { label: '⭑ Recommended: Tier 2', name: 'Strategy + Full Execution Build', price: '$7,500 · or 2 payments of $3,750', desc: 'Everything in Tier 1 plus the full execution layer — landing page copy, email sequences, branded templates, social calendar, and design direction. The complete system, built and deployed.' }
     };
     const r = recData[tier];
     document.getElementById('rec-block').innerHTML = `<div class="rec-tier">${r.label}</div><div class="rec-name">${r.name}</div><div class="rec-price">${r.price}</div><div class="rec-desc">${r.desc}</div>`;
@@ -365,9 +365,9 @@ function saveQuizData(email) {
 function applyNow() {
   const email = document.getElementById('email-in').value;
   saveQuizData(email);
-  if (typeof gtag !== 'undefined') gtag('event', 'quiz_to_discovery', { tier: window.auditTier, email: !!email });
+  if (typeof gtag !== 'undefined') gtag('event', 'quiz_to_landing', { tier: window.auditTier, email: !!email });
   const tier = window.auditTier || 'tier1';
-  window.location.href = '/marketing-that-pays/#discovery?from=quiz&tier=' + tier + '&score=' + (window.auditScore || 0);
+  window.location.href = '/marketing-that-pays/?from=quiz&tier=' + tier + '&score=' + (window.auditScore || 0) + '#' + (tier === 'tier2' ? 'tier2' : 'tier1');
 }
 
 function goToAdvisor() {

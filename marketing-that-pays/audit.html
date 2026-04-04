@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Leak Audit — TR3 Media Solutions</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --dark: #2A2A2A;
+      --charcoal: #333333;
+      --cream: #F5F0E8;
+      --cream-deep: #EDE8DF;
+      --green: #2C5F2D;
+      --green-hover: #1E4A1F;
+      --green-tint: rgba(44,95,45,0.07);
+      --rust: #8B3A1F;
+      --mid: #575753;
+      --border: rgba(44,95,45,0.15);
+      --border-on-dark: rgba(245,240,232,0.12);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--charcoal);
+      overflow-x: hidden;
+    }
+
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 4vw;
+      background: rgba(245,240,232,0.94);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem;
+      letter-spacing: 0.12em;
+      color: var(--green);
+      text-decoration: none;
+    }
+
+    .nav-cta {
+      background: var(--green);
+      color: var(--cream);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.7rem 1.4rem;
+      text-decoration: none;
+      transition: background 0.2s ease;
+    }
+
+    .nav-cta:hover { background: var(--green-hover); }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 120px 4vw 80px;
+      background: var(--dark);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 55% 50% at 85% 50%, rgba(44,95,45,0.14) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 60% at 5% 80%, rgba(44,95,45,0.07) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 920px;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 2rem;
+      padding: 0.45rem 1rem;
+      border: 1px solid rgba(44,95,45,0.45);
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      width: 24px;
+      height: 1px;
+      background: var(--green);
+    }
+
+    h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3.2rem, 8vw, 7rem);
+      line-height: 0.95;
+      letter-spacing: 0.02em;
+      color: var(--cream);
+      margin-bottom: 1.5rem;
+    }
+
+    h1 em {
+      color: var(--green);
+      font-style: normal;
+      display: block;
+    }
+
+    .hero-sub {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      font-weight: 300;
+      line-height: 1.75;
+      color: rgba(245,240,232,0.74);
+      max-width: 620px;
+      margin-bottom: 1rem;
+    }
+
+    .hero-sub strong {
+      color: var(--cream);
+      font-weight: 500;
+    }
+
+    .hero-note {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: rgba(245,240,232,0.58);
+      max-width: 600px;
+      margin-bottom: 2.25rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+      margin-bottom: 3rem;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      background: var(--green);
+      color: var(--cream);
+      font-size: 0.86rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 1rem 2rem;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .btn-primary:hover {
+      background: var(--green-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-ghost {
+      color: rgba(245,240,232,0.72);
+      font-size: 0.85rem;
+      font-weight: 500;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(245,240,232,0.25);
+      padding-bottom: 0.2rem;
+      transition: all 0.2s ease;
+    }
+
+    .btn-ghost:hover {
+      color: var(--green);
+      border-color: var(--green);
+    }
+
+    .hero-points {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.25rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border-on-dark);
+      max-width: 900px;
+    }
+
+    .hero-point {
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: rgba(245,240,232,0.74);
+    }
+
+    .hero-point strong {
+      display: block;
+      color: var(--cream);
+      font-size: 1rem;
+      margin-bottom: 0.35rem;
+      font-weight: 600;
+    }
+
+    section {
+      padding: 6rem 4vw;
+    }
+
+    .section-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .section-label::after {
+      content: "";
+      width: 40px;
+      height: 1px;
+      background: var(--green);
+    }
+
+    h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2rem, 4vw, 3.3rem);
+      line-height: 1.15;
+      margin-bottom: 1rem;
+      color: var(--charcoal);
+    }
+
+    h2 em {
+      color: var(--green);
+      font-style: italic;
+    }
+
+    .lead {
+      font-size: 1.08rem;
+      line-height: 1.8;
+      color: var(--mid);
+      max-width: 700px;
+    }
+
+    .problem {
+      background: var(--cream-deep);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .problem-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 2px;
+      background: var(--border);
+      margin-top: 3rem;
+    }
+
+    .problem-card {
+      background: var(--cream);
+      padding: 2rem;
+    }
+
+    .problem-card h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.25rem;
+      margin-bottom: 0.75rem;
+      color: var(--charcoal);
+    }
+
+    .problem-card p {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: var(--mid);
+    }
+
+    .audit-scope {
+      background: var(--dark);
+      color: var(--cream);
+    }
+
+    .audit-scope h2 { color: var(--cream); }
+
+    .audit-scope .lead {
+      color: rgba(245,240,232,0.68);
+    }
+
+    .scope-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 2px;
+      background: var(--border-on-dark);
+      margin-top: 3rem;
+    }
+
+    .scope-card {
+      background: rgba(255,255,255,0.03);
+      padding: 2rem;
+    }
+
+    .scope-card h3 {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 0.75rem;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    .scope-card p {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: rgba(245,240,232,0.75);
+    }
+
+    .pricing {
+      background: var(--cream);
+    }
+
+    .price-wrap {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 3rem;
+      margin-top: 3rem;
+      align-items: start;
+    }
+
+    .price-card {
+      background: var(--cream-deep);
+      border: 1px solid var(--border);
+      padding: 2.5rem;
+    }
+
+    .price-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 1rem;
+    }
+
+    .price-amount {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(4rem, 10vw, 7rem);
+      line-height: 0.9;
+      color: var(--charcoal);
+      margin-bottom: 1rem;
+    }
+
+    .price-card p {
+      font-size: 1rem;
+      line-height: 1.75;
+      color: var(--mid);
+      margin-bottom: 1rem;
+    }
+
+    .price-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+      margin: 1.5rem 0 2rem;
+    }
+
+    .price-list li {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: var(--charcoal);
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+    }
+
+    .price-list li::before {
+      content: "✓";
+      color: var(--green);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .price-note {
+      font-size: 0.88rem;
+      color: var(--mid);
+      line-height: 1.7;
+    }
+
+    .faq-block {
+      background: white;
+      border: 1px solid var(--border);
+      padding: 2rem;
+    }
+
+    .faq-item + .faq-item {
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .faq-item h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.1rem;
+      color: var(--charcoal);
+      margin-bottom: 0.5rem;
+    }
+
+    .faq-item p {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: var(--mid);
+    }
+
+    .cta-final {
+      background: var(--green-hover);
+      text-align: center;
+      padding: 6rem 4vw;
+    }
+
+    .cta-final h2 {
+      color: var(--cream);
+      margin-bottom: 1rem;
+    }
+
+    .cta-final p {
+      color: rgba(245,240,232,0.72);
+      font-size: 1.02rem;
+      line-height: 1.8;
+      max-width: 620px;
+      margin: 0 auto 2rem;
+    }
+
+    .cta-final .micro {
+      margin-top: 1rem;
+      font-size: 0.85rem;
+      color: rgba(245,240,232,0.52);
+    }
+
+    footer {
+      background: var(--dark);
+      padding: 2.5rem 4vw;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+      border-top: 1px solid var(--border-on-dark);
+    }
+
+    .footer-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.2rem;
+      letter-spacing: 0.12em;
+      color: var(--green);
+    }
+
+    .footer-copy {
+      font-size: 0.82rem;
+      color: rgba(245,240,232,0.38);
+    }
+
+    @media (max-width: 900px) {
+      .hero-points,
+      .problem-grid,
+      .scope-grid,
+      .price-wrap {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="/marketing-that-pays/" class="nav-logo">Marketing That Pays™</a>
+    <a href="https://buy.stripe.com/9B63cocZ6erd0xzbGR6Zy03" class="nav-cta">Purchase the Audit</a>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-eyebrow">Leak Audit — Paid Working Session</div>
+      <h1>Find the leak.<br><em>Fix the flow.</em></h1>
+      <p class="hero-sub">
+        This is not a sales call. This is a <strong>paid operator-level audit</strong> for businesses that already have momentum but know revenue, leads, or time are slipping somewhere in the system.
+      </p>
+      <p class="hero-sub">
+        We map the customer journey, identify what is breaking down between attention and conversion, and fix 1–2 high-impact issues immediately.
+      </p>
+      <p class="hero-note">
+        Payment comes first. Once your purchase is complete, you’ll schedule your audit session.
+      </p>
+
+      <div class="hero-actions">
+        <a href="https://buy.stripe.com/9B63cocZ6erd0xzbGR6Zy03" class="btn-primary">Purchase the Leak Audit — $2,000</a>
+        <a href="/marketing-that-pays/" class="btn-ghost">Go back to the overview</a>
+      </div>
+
+      <div class="hero-points">
+        <div class="hero-point">
+          <strong>$2,000 flat</strong>
+          One paid working session with clear next steps and immediate action.
+        </div>
+        <div class="hero-point">
+          <strong>Real diagnosis</strong>
+          Not vague advice. We identify the actual friction in your system.
+        </div>
+        <div class="hero-point">
+          <strong>Fixes included</strong>
+          You leave with 1–2 high-impact issues already addressed.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="problem">
+    <div class="section-inner">
+      <div class="section-label">What this is for</div>
+      <h2>You don’t need another consult.<br><em>You need a real diagnosis.</em></h2>
+      <p class="lead">
+        Most businesses are not stuck because they need more ideas. They’re stuck because their systems are leaking. The website doesn’t convert. The handoff breaks. Leads are handled manually. Follow-up falls off. Money leaves quietly.
+      </p>
+
+      <div class="problem-grid">
+        <div class="problem-card">
+          <h3>Your website gets traffic, but action is weak</h3>
+          <p>You know people are finding you, but the path from visit to inquiry to revenue is unclear, inconsistent, or broken.</p>
+        </div>
+        <div class="problem-card">
+          <h3>You’re doing too much by hand</h3>
+          <p>Referrals, forms, follow-up, and intake still rely on memory, email threads, or you personally keeping the whole thing moving.</p>
+        </div>
+        <div class="problem-card">
+          <h3>Your message and your system are out of sync</h3>
+          <p>Your business may be stronger than your brand communicates, and your backend may be weaker than your front-end suggests.</p>
+        </div>
+        <div class="problem-card">
+          <h3>You know there’s revenue being missed</h3>
+          <p>You can feel the drag. You just need someone to show you where it is and start correcting it with you.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="audit-scope">
+    <div class="section-inner">
+      <div class="section-label">What happens in the audit</div>
+      <h2>Paid working session.<br><em>Not a discovery call.</em></h2>
+      <p class="lead">
+        The Leak Audit is the first real step in this funnel. We do the strategic diagnosis work and start correcting what’s hurting you most.
+      </p>
+
+      <div class="scope-grid">
+        <div class="scope-card">
+          <h3>Map the journey</h3>
+          <p>We walk through how people find you, where they go next, what they see, what slows them down, and where momentum is getting lost.</p>
+        </div>
+        <div class="scope-card">
+          <h3>Identify the leaks</h3>
+          <p>We isolate breakdowns in messaging, conversion, intake, follow-up, systems, or customer flow that are costing you leads, revenue, or time.</p>
+        </div>
+        <div class="scope-card">
+          <h3>Fix what we can now</h3>
+          <p>We address 1–2 high-impact issues immediately and outline the right next move: stop at the audit, move into a focused fix, or go into a full rebuild.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pricing">
+    <div class="section-inner">
+      <div class="section-label">Investment</div>
+      <h2>The paid first step.<br><em>Before any scheduling happens.</em></h2>
+      <p class="lead">
+        If you’re serious about fixing what’s broken, this is where we start.
+      </p>
+
+      <div class="price-wrap">
+        <div class="price-card">
+          <div class="price-label">Leak Audit</div>
+          <div class="price-amount">$2,000</div>
+          <p>This is a paid working session for businesses that want an actual diagnosis and immediate movement, not another “pick my brain” conversation.</p>
+
+          <ul class="price-list">
+            <li>Customer journey and conversion review</li>
+            <li>System and workflow leak diagnosis</li>
+            <li>Revenue friction analysis</li>
+            <li>1–2 high-impact fixes addressed immediately</li>
+            <li>Clear recommendation on the right next step</li>
+          </ul>
+
+          <a href="https://buy.stripe.com/9B63cocZ6erd0xzbGR6Zy03" class="btn-primary">Purchase the Leak Audit — $2,000</a>
+
+          <p class="price-note">
+            Once payment is complete, you’ll be sent to the next step to schedule your audit session.
+          </p>
+        </div>
+
+        <div class="faq-block">
+          <div class="faq-item">
+            <h3>Is this a sales call?</h3>
+            <p>No. This is the paid diagnosis step. We are working, not chatting.</p>
+          </div>
+          <div class="faq-item">
+            <h3>Can I book before paying?</h3>
+            <p>No. Payment comes first. Scheduling opens after purchase so only qualified, ready clients enter the calendar.</p>
+          </div>
+          <div class="faq-item">
+            <h3>What happens after the audit?</h3>
+            <p>You may not need more than the audit. If you do, I’ll prescribe the right path: a focused fix or a larger rebuild.</p>
+          </div>
+          <div class="faq-item">
+            <h3>Who is this best for?</h3>
+            <p>Businesses and organizations with something real already working, but too much friction between attention, demand, and actual revenue.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-final">
+    <h2>If you already know something’s leaking,<br><em>stop circling it.</em></h2>
+    <p>
+      Pay for the audit. We’ll identify the breakdown, fix what we can immediately, and decide what comes next from a position of clarity.
+    </p>
+    <a href="https://buy.stripe.com/9B63cocZ6erd0xzbGR6Zy03" class="btn-primary">Purchase the Leak Audit — $2,000</a>
+    <p class="micro">Scheduling happens after payment.</p>
+  </section>
+
+  <footer>
+    <div class="footer-logo">Marketing That Pays™</div>
+    <div class="footer-copy">A TR3 Media Solutions Program · © 2026</div>
+  </footer>
+
+</body>
+</html>
