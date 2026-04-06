@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ADA Title II Accessibility Readiness — TR3 Media Solutions</title>
+  <meta name="description" content="Is your government website ready for ADA Title II WCAG 2.1 AA compliance? TR3 Media Solutions helps state and local organizations audit, remediate, and govern digital accessibility.">
+  <meta property="og:title" content="ADA Title II Accessibility Readiness — TR3 Media Solutions">
+  <meta property="og:description" content="Is your government website ready for ADA Title II WCAG 2.1 AA compliance? TR3 Media Solutions helps state and local organizations audit, remediate, and govern digital accessibility.">
+  <meta property="og:image" content="assets/logos/apple-touch-icon.png">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="TR3 Media Solutions">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/logos/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/logos/apple-touch-icon.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <!-- HEADER -->
+  <header class="site-header" role="banner">
+    <div class="container">
+      <a href="index.html" class="site-header__logo" aria-label="TR3 Media Solutions — Home">
+        <img src="assets/logos/tr3-logo-white.svg" alt="TR3 Media Solutions">
+      </a>
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" onclick="document.querySelector('.site-nav').classList.toggle('site-nav--open'); document.querySelector('.nav-overlay').classList.toggle('nav-overlay--visible'); this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+      </button>
+      <div class="nav-overlay" onclick="document.querySelector('.site-nav').classList.remove('site-nav--open'); document.querySelector('.nav-overlay').classList.remove('nav-overlay--visible'); document.querySelector('.nav-toggle').setAttribute('aria-expanded', 'false');"></div>
+      <nav class="site-nav" role="navigation" aria-label="Primary navigation">
+        <ul class="site-nav__list">
+          <li><a href="about.html" class="site-nav__link">About</a></li>
+          <li><a href="services.html" class="site-nav__link">Services</a></li>
+          <li><a href="work.html" class="site-nav__link">Work</a></li>
+          <li><a href="how-we-work.html" class="site-nav__link">How We Work</a></li>
+          <li><a href="insights.html" class="site-nav__link">Insights</a></li>
+          <li><a href="contact.html" class="site-nav__link">Contact</a></li>
+        </ul>
+        <div class="site-nav__cta">
+          <a href="start.html" class="btn btn--header">Start a Project <span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main id="main">
+
+    <!-- Hero -->
+    <section class="page-hero page-hero--plain">
+      <div class="container">
+        <h1 class="page-hero__title">ADA Title II Accessibility Readiness</h1>
+      </div>
+    </section>
+
+    <!-- Intro -->
+    <section class="section" aria-label="Accessibility readiness overview">
+      <div class="container">
+        <div style="max-width: 720px;">
+          <span class="section__eyebrow">WCAG 2.1 AA Compliance</span>
+          <h2>The compliance deadline is real. Is your website ready?</h2>
+          <div class="content-block" style="margin-top: 1.5rem;">
+            <p>The DOJ's ADA Title II final rule (published April 24, 2024) requires state and local government web content and mobile apps to meet <strong>WCAG 2.1 Level AA</strong> standards. Larger entities face a two-year compliance window. Smaller entities have three years.</p>
+            <p>This is not optional. It applies to websites, PDFs, forms, videos, third-party tools embedded on your site, and mobile applications. If your organization serves the public digitally, your digital presence must be accessible.</p>
+            <p>TR3 Media Solutions already builds to WCAG 2.1 AA standards on every project. We can help you understand where you stand today and build a clear path to compliance.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- What's at stake -->
+    <section class="section section--tinted" aria-labelledby="risk-heading">
+      <div class="container">
+        <div style="max-width: 720px;">
+          <span class="section__eyebrow">What's at Stake</span>
+          <h2 id="risk-heading">Non-compliance is a legal, reputational, and operational risk.</h2>
+          <div class="content-block" style="margin-top: 1.5rem;">
+            <ul class="engagement-triggers">
+              <li><strong>Legal exposure:</strong> DOJ enforcement actions, complaints filed by advocacy organizations, and private lawsuits are increasing across state and local government</li>
+              <li><strong>Constituent exclusion:</strong> Inaccessible websites prevent residents with disabilities from accessing public services, information, and programs they are entitled to</li>
+              <li><strong>Procurement risk:</strong> Federal and state funding increasingly require digital accessibility documentation as a condition of grants and contracts</li>
+              <li><strong>Reputational harm:</strong> Public-facing organizations that fail accessibility standards risk erosion of community trust</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- What we do -->
+    <section class="section" aria-labelledby="services-heading">
+      <div class="container">
+        <div style="max-width: 720px;">
+          <span class="section__eyebrow">How We Help</span>
+          <h2 id="services-heading">Accessibility audit, remediation, and governance.</h2>
+        </div>
+        <div class="grid grid--2" style="margin-top: 2rem;">
+          <div class="pillar-card pillar-card--numbered">
+            <span class="pillar-card__number">01</span>
+            <h3 class="pillar-card__title">Accessibility Readiness Audit</h3>
+            <p class="pillar-card__text">A structured review of your website against WCAG 2.1 AA success criteria. We test across pages, forms, PDFs, embedded tools, and media. You receive a prioritized report with specific issues, severity ratings, and remediation guidance.</p>
+          </div>
+          <div class="pillar-card pillar-card--numbered">
+            <span class="pillar-card__number">02</span>
+            <h3 class="pillar-card__title">Remediation Sprint</h3>
+            <p class="pillar-card__text">Hands-on fixes to address critical and high-priority accessibility issues. This includes HTML/CSS corrections, ARIA implementation, color contrast adjustments, image alt text, form labeling, keyboard navigation, and document remediation.</p>
+          </div>
+          <div class="pillar-card pillar-card--numbered">
+            <span class="pillar-card__number">03</span>
+            <h3 class="pillar-card__title">Accessibility Governance Plan</h3>
+            <p class="pillar-card__text">A documented framework your team can follow to maintain compliance over time. Includes content authoring guidelines, testing checklists, vendor requirements, and a review cadence so new content stays compliant after launch.</p>
+          </div>
+          <div class="pillar-card pillar-card--numbered">
+            <span class="pillar-card__number">04</span>
+            <h3 class="pillar-card__title">Ongoing Monitoring Partnership</h3>
+            <p class="pillar-card__text">Quarterly accessibility reviews, staff training sessions, and priority support for new content and features. Designed for organizations that publish frequently and need a reliable compliance partner.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Who this is for -->
+    <section class="section section--dark" aria-labelledby="who-heading">
+      <div class="container">
+        <div style="max-width: 720px;">
+          <span class="section__eyebrow">Who This Is For</span>
+          <h2 id="who-heading">State and local government. Foundations. Public-serving organizations.</h2>
+          <div class="content-block" style="margin-top: 1.5rem;">
+            <p>This service is designed for organizations that serve the public and are subject to ADA Title II requirements, including:</p>
+            <ul class="engagement-triggers" style="margin-top: 1rem;">
+              <li>School districts and education foundations</li>
+              <li>City and county government departments</li>
+              <li>Public libraries, transit authorities, and utilities</li>
+              <li>Nonprofits operating public-facing programs with government funding</li>
+              <li>Any state or local entity with a public website or digital service</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mini-audit opt-in -->
+    <section class="section" aria-labelledby="optin-heading">
+      <div class="container">
+        <div style="max-width: 600px; margin: 0 auto;">
+          <div style="text-align: center;">
+            <span class="section__eyebrow">Free Assessment</span>
+            <h2 id="optin-heading">Get a WCAG 2.1 AA Readiness Check</h2>
+            <p style="color: var(--color-gray-600); margin-top: 1rem; margin-bottom: 2rem;">Tell us about your organization and we'll send you a one-page summary of your biggest accessibility risk areas, plus a short follow-up with next steps.</p>
+          </div>
+
+          <form id="ada-readiness-form" action="https://formspree.io/f/xlgwkbol" method="POST">
+            <input type="hidden" name="_subject" value="ADA Readiness Check Request">
+            <input type="hidden" name="form-type" value="ada-readiness">
+
+            <div class="form-group">
+              <label for="ada-name" class="form-label">Your name</label>
+              <input type="text" id="ada-name" name="name" class="form-input" placeholder="Full name" required>
+            </div>
+
+            <div class="form-group">
+              <label for="ada-email" class="form-label">Email</label>
+              <input type="email" id="ada-email" name="email" class="form-input" placeholder="you@organization.gov" required>
+            </div>
+
+            <div class="form-group">
+              <label for="ada-org" class="form-label">Organization</label>
+              <input type="text" id="ada-org" name="organization" class="form-input" placeholder="Organization name" required>
+            </div>
+
+            <div class="form-group">
+              <label for="ada-org-type" class="form-label">Organization type</label>
+              <select id="ada-org-type" name="org-type" class="form-select" required>
+                <option value="">Select one</option>
+                <option value="school-district">School District or Education</option>
+                <option value="city-county">City or County Government</option>
+                <option value="state-agency">State Agency</option>
+                <option value="foundation">Foundation or Nonprofit</option>
+                <option value="public-entity">Other Public Entity</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="ada-website" class="form-label">Website URL</label>
+              <input type="url" id="ada-website" name="website" class="form-input" placeholder="https://www.yourorganization.gov">
+            </div>
+
+            <fieldset class="form-fieldset">
+              <legend class="form-label">Does your site include any of the following?</legend>
+              <div class="form-options">
+                <label class="form-option">
+                  <input type="checkbox" name="site-features" value="pdfs">
+                  <span class="form-option__text">Downloadable PDFs</span>
+                </label>
+                <label class="form-option">
+                  <input type="checkbox" name="site-features" value="forms">
+                  <span class="form-option__text">Online forms or applications</span>
+                </label>
+                <label class="form-option">
+                  <input type="checkbox" name="site-features" value="video">
+                  <span class="form-option__text">Video or audio content</span>
+                </label>
+                <label class="form-option">
+                  <input type="checkbox" name="site-features" value="third-party">
+                  <span class="form-option__text">Third-party tools (payments, scheduling, maps)</span>
+                </label>
+                <label class="form-option">
+                  <input type="checkbox" name="site-features" value="portal">
+                  <span class="form-option__text">Resident or parent portal</span>
+                </label>
+              </div>
+            </fieldset>
+
+            <div class="form-submit">
+              <button type="submit" class="btn btn--primary btn--large">Request Readiness Check</button>
+              <p style="margin-top: 0.75rem; font-size: 0.875rem; color: var(--color-gray-600);">We'll respond within two business days with your assessment.</p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-banner" aria-labelledby="ada-cta-heading">
+      <div class="container">
+        <div class="cta-banner__inner">
+          <h2 class="cta-banner__title" id="ada-cta-heading">Need a full accessibility remediation?</h2>
+          <p class="cta-banner__subtitle">If you already know your site needs work, skip the readiness check and start a project inquiry. We'll scope an audit and remediation plan tailored to your compliance timeline.</p>
+          <div class="cta-banner__actions">
+            <a href="start.html" class="btn btn--primary btn--large">Start a Project Inquiry <span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
+            <a href="contact.html#book-call" class="btn btn--outline-white btn--large">Book a 15-Min Fit Call</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="site-footer__top">
+        <div class="site-footer__brand">
+          <img src="assets/logos/tr3-logo-white.svg" alt="TR3 Media Solutions">
+          <p>We specialize in branding, web design, and on-call creative support built on 11+ years of experience and integrity.</p>
+          <img src="assets/images/Goldman-Sachs-Small-Business-Alumni.png" alt="Goldman Sachs 10,000 Small Businesses Alumni" class="site-footer__gs-badge">
+        </div>
+        <div>
+          <h3 class="site-footer__nav-title">Navigation</h3>
+          <ul class="site-footer__nav-list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="work.html">Portfolio</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="site-footer__nav-title">Contact Info</h3>
+          <p class="site-footer__contact-label">Email</p>
+          <p class="site-footer__contact-value">hello@tr3mediasolutions.com</p>
+          <p class="site-footer__contact-label">Phone</p>
+          <p class="site-footer__contact-value">(313) 575-8272</p>
+          <p class="site-footer__contact-label">Location</p>
+          <p class="site-footer__contact-value">440 Burroughs St, Suite 140, Detroit, MI 48202</p>
+        </div>
+        <div>
+          <h3 class="site-footer__nav-title">Our Socials</h3>
+          <div class="site-footer__socials">
+            <a href="https://www.facebook.com/Tr3MediaSolutions" class="site-footer__social-icon" aria-label="Follow TR3 Media Solutions on Facebook" target="_blank" rel="noopener noreferrer">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/tr3media/" class="site-footer__social-icon" aria-label="Follow TR3 Media Solutions on Instagram" target="_blank" rel="noopener noreferrer">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="site-footer__bottom">
+        <p>&copy; 2026 TR3 Media Solutions. All Rights Reserved.</p>
+        <div class="site-footer__utilities">
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="terms.html">Terms of Use</a>
+          <a href="accessibility.html">Accessibility</a>
+          <a href="brand-guide.html">Brand Guide</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Form submission
+    document.getElementById('ada-readiness-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      var form = e.target;
+      var btn = form.querySelector('button[type="submit"]');
+      btn.disabled = true;
+      btn.textContent = 'Submitting...';
+
+      fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      }).then(function(response) {
+        if (response.ok) {
+          form.innerHTML = '<div style="text-align: center; padding: 3rem 0;"><h3 style="color: var(--color-green); margin-bottom: 1rem;">Request received.</h3><p>We\'ll review your organization\'s website and send your readiness assessment within two business days.</p></div>';
+        } else {
+          btn.disabled = false;
+          btn.textContent = 'Request Readiness Check';
+          alert('Something went wrong. Please try again or email us directly at hello@tr3mediasolutions.com');
+        }
+      }).catch(function() {
+        btn.disabled = false;
+        btn.textContent = 'Request Readiness Check';
+        alert('Something went wrong. Please try again or email us directly at hello@tr3mediasolutions.com');
+      });
+    });
+  </script>
+</body>
+</html>

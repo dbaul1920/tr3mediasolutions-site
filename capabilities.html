@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TR3 Media Solutions — Capabilities Statement</title>
+  <meta name="description" content="Capabilities statement for TR3 Media Solutions — strategic creative services for foundations, school districts, and civic organizations.">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/logos/favicon-32.png">
+  <style>
+    @page { size: letter; margin: 0.5in; }
+
+    :root {
+      --green-dark: #2C5F2D;
+      --green-mid: #5E8D4E;
+      --green-light: #EAF0E6;
+      --charcoal: #1A1A1A;
+      --gray-800: #333333;
+      --gray-600: #555555;
+      --gray-400: #888888;
+      --gray-200: #E0DDD8;
+      --cream: #FAFAF7;
+      --white: #FFFFFF;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { font-size: 14px; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+      line-height: 1.5;
+      color: var(--charcoal);
+      background: var(--cream);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page {
+      max-width: 8.5in;
+      min-height: 11in;
+      margin: 0 auto;
+      padding: 0.5in;
+      background: var(--white);
+      box-shadow: 0 0 20px rgba(0,0,0,0.08);
+    }
+
+    /* ===== Header ===== */
+    .doc-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      padding-bottom: 1rem;
+      border-bottom: 3px solid var(--green-dark);
+      margin-bottom: 1.25rem;
+    }
+
+    .doc-header__brand h1 {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--green-dark);
+      line-height: 1.1;
+      margin-bottom: 0.25rem;
+    }
+
+    .doc-header__brand p {
+      font-size: 0.8125rem;
+      color: var(--gray-600);
+      font-weight: 500;
+      letter-spacing: 0.02em;
+    }
+
+    .doc-header__meta {
+      text-align: right;
+      font-size: 0.75rem;
+      color: var(--gray-600);
+      line-height: 1.5;
+    }
+
+    .doc-header__meta strong {
+      display: block;
+      color: var(--charcoal);
+      font-size: 0.8125rem;
+      margin-bottom: 0.125rem;
+    }
+
+    /* ===== Section ===== */
+    section { margin-bottom: 1.125rem; }
+
+    h2 {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 0.9375rem;
+      font-weight: 700;
+      color: var(--green-dark);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.5rem;
+      padding-bottom: 0.25rem;
+      border-bottom: 1px solid var(--gray-200);
+    }
+
+    h3 {
+      font-size: 0.8125rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      margin-bottom: 0.25rem;
+    }
+
+    p { font-size: 0.8125rem; line-height: 1.55; color: var(--gray-800); }
+
+    /* ===== Core Competencies grid ===== */
+    .competencies {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem 1.5rem;
+    }
+
+    .competency {
+      font-size: 0.8125rem;
+      line-height: 1.5;
+    }
+
+    .competency strong {
+      color: var(--green-dark);
+      display: block;
+      margin-bottom: 0.125rem;
+    }
+
+    /* ===== Differentiators ===== */
+    .diff-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.4rem 1.5rem;
+    }
+
+    .diff-list li {
+      font-size: 0.8125rem;
+      padding-left: 1rem;
+      position: relative;
+      color: var(--gray-800);
+    }
+
+    .diff-list li::before {
+      content: "\2713";
+      position: absolute;
+      left: 0;
+      color: var(--green-dark);
+      font-weight: 700;
+    }
+
+    /* ===== Past Performance ===== */
+    .clients {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem 1.5rem;
+    }
+
+    .client {
+      font-size: 0.8125rem;
+      padding-left: 0.75rem;
+      border-left: 3px solid var(--green-light);
+    }
+
+    .client strong {
+      color: var(--charcoal);
+      display: block;
+      font-size: 0.875rem;
+    }
+
+    .client span {
+      color: var(--gray-600);
+      font-size: 0.75rem;
+      font-style: italic;
+    }
+
+    /* ===== Two-column layout ===== */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    /* ===== Contact ===== */
+    .contact-block {
+      background: var(--green-light);
+      padding: 0.875rem 1rem;
+      border-left: 4px solid var(--green-dark);
+      margin-top: 0.75rem;
+    }
+
+    .contact-block p {
+      font-size: 0.8125rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .contact-block strong { color: var(--green-dark); }
+
+    /* ===== Footer ===== */
+    .doc-footer {
+      margin-top: 1.25rem;
+      padding-top: 0.75rem;
+      border-top: 1px solid var(--gray-200);
+      text-align: center;
+      font-size: 0.6875rem;
+      color: var(--gray-400);
+    }
+
+    /* ===== Print button (screen only) ===== */
+    .print-bar {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      z-index: 100;
+    }
+
+    .print-bar button {
+      background: var(--green-dark);
+      color: white;
+      border: none;
+      padding: 0.625rem 1.25rem;
+      font-size: 0.875rem;
+      font-weight: 600;
+      border-radius: 4px;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .print-bar button:hover { background: #1E4A1F; }
+
+    @media print {
+      body { background: white; }
+      .page { box-shadow: none; padding: 0; max-width: 100%; }
+      .print-bar { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="print-bar">
+    <button onclick="window.print()">Print / Save as PDF</button>
+  </div>
+
+  <div class="page">
+
+    <!-- Header -->
+    <header class="doc-header">
+      <div class="doc-header__brand">
+        <h1>TR3 Media Solutions</h1>
+        <p>Capabilities Statement</p>
+      </div>
+      <div class="doc-header__meta">
+        <strong>Detroit, Michigan</strong>
+        tr3mediasolutions.com<br>
+        hello@tr3mediasolutions.com<br>
+        (313) 575-8272
+      </div>
+    </header>
+
+    <!-- Company Overview -->
+    <section>
+      <h2>Company Overview</h2>
+      <p>TR3 Media Solutions is a strategic creative partner for foundations, school districts, civic organizations, and mission-driven teams. We help public-facing organizations align brand, messaging, and digital execution so their work is clear, accessible, and built to last. Based in Detroit, Michigan, TR3 has over a decade of experience supporting civic and nonprofit initiatives, with a particular focus on stakeholder-heavy environments where design must function under scrutiny, scale with capacity, and communicate with intention.</p>
+    </section>
+
+    <!-- Core Competencies -->
+    <section>
+      <h2>Core Competencies</h2>
+      <div class="competencies">
+        <div class="competency">
+          <strong>Brand Architecture &amp; Messaging</strong>
+          Positioning, voice, narrative systems, and visual standards for organizations with complex stakeholder landscapes.
+        </div>
+        <div class="competency">
+          <strong>Digital Experience Strategy</strong>
+          Websites and digital platforms built for clarity, accessibility (WCAG 2.1 AA), and long-term maintainability.
+        </div>
+        <div class="competency">
+          <strong>Campaign &amp; Communications</strong>
+          Cohesive campaign systems across print, digital, and experiential channels for launches, galas, and initiatives.
+        </div>
+        <div class="competency">
+          <strong>Accessibility &amp; Compliance</strong>
+          ADA Title II readiness, WCAG 2.1 AA audits, remediation, and ongoing governance for state and local entities.
+        </div>
+        <div class="competency">
+          <strong>Print &amp; Event Design</strong>
+          Annual reports, donor collateral, event branding, signage, and production-ready files with vendor coordination.
+        </div>
+        <div class="competency">
+          <strong>Creative Direction Retainer</strong>
+          Ongoing senior-level creative partnership with embedded institutional knowledge and brand stewardship.
+        </div>
+      </div>
+    </section>
+
+    <!-- Differentiators -->
+    <section>
+      <h2>Differentiators</h2>
+      <ul class="diff-list">
+        <li>Strategy-first methodology — alignment before design</li>
+        <li>WCAG 2.1 AA accessibility on every digital engagement</li>
+        <li>11+ years supporting civic and nonprofit initiatives</li>
+        <li>Experience with public-sector procurement workflows</li>
+        <li>Systems designed for frequent updates by internal teams</li>
+        <li>Documented governance for long-term brand consistency</li>
+        <li>Goldman Sachs 10,000 Small Businesses Alumni</li>
+        <li>Detroit-based; community-rooted; Michigan-registered</li>
+      </ul>
+    </section>
+
+    <!-- Past Performance -->
+    <section>
+      <h2>Past Performance</h2>
+      <div class="clients">
+        <div class="client">
+          <strong>DPSCD Foundation</strong>
+          <span>Website redesign &amp; content system — stakeholder-heavy, accessibility-compliant</span>
+        </div>
+        <div class="client">
+          <strong>City of Detroit</strong>
+          <span>Creative direction &amp; communications support</span>
+        </div>
+        <div class="client">
+          <strong>ArtWorks Detroit</strong>
+          <span>Digital-first fundraising campaign &mdash; six-figure gala outcomes</span>
+        </div>
+        <div class="client">
+          <strong>Hall of Fame Alumni Gala</strong>
+          <span>Event + experience system across print, digital, experiential</span>
+        </div>
+        <div class="client">
+          <strong>Grey Box Properties</strong>
+          <span>Brand and digital identity</span>
+        </div>
+        <div class="client">
+          <strong>Hacker House Detroit</strong>
+          <span>Brand system and digital presence</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Two column: Procurement + Who We Serve -->
+    <div class="two-col">
+      <section>
+        <h2>Procurement-Ready</h2>
+        <p style="font-size: 0.75rem; line-height: 1.5;">
+          <strong style="display:block;">Business Type:</strong> LLC, Michigan<br>
+          <strong style="display:block;margin-top:0.25rem;">Headquarters:</strong> 440 Burroughs St, Suite 140, Detroit, MI 48202<br>
+          <strong style="display:block;margin-top:0.25rem;">Insurance:</strong> General liability available upon request<br>
+          <strong style="display:block;margin-top:0.25rem;">W-9 / COI:</strong> Available upon request<br>
+          <strong style="display:block;margin-top:0.25rem;">UEI / CAGE:</strong> Available upon request<br>
+          <strong style="display:block;margin-top:0.25rem;">NAICS Codes:</strong> 541430 (Graphic Design), 541511 (Custom Computer Programming), 541613 (Marketing Consulting), 541810 (Advertising Agencies)
+        </p>
+      </section>
+
+      <section>
+        <h2>Who We Serve</h2>
+        <ul style="font-size: 0.75rem; line-height: 1.6; list-style: none;">
+          <li>&middot; Foundations and endowed nonprofits</li>
+          <li>&middot; School districts and education foundations</li>
+          <li>&middot; Municipal and county departments</li>
+          <li>&middot; State agencies and public-serving entities</li>
+          <li>&middot; Civic and community development organizations</li>
+          <li>&middot; Social-impact businesses with public responsibility</li>
+        </ul>
+      </section>
+    </div>
+
+    <!-- Contact -->
+    <section>
+      <h2>Contact</h2>
+      <div class="contact-block">
+        <p><strong>Domonique Davis</strong> — Founder &amp; Creative Director</p>
+        <p>Email: hello@tr3mediasolutions.com &nbsp;|&nbsp; Phone: (313) 575-8272</p>
+        <p>440 Burroughs St, Suite 140, Detroit, MI 48202</p>
+        <p>Web: tr3mediasolutions.com</p>
+      </div>
+    </section>
+
+    <footer class="doc-footer">
+      &copy; 2026 TR3 Media Solutions. All Rights Reserved. &middot; Capabilities Statement &middot; Version 1.0
+    </footer>
+
+  </div>
+
+</body>
+</html>
