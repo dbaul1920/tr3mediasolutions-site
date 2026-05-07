@@ -146,6 +146,11 @@
     transition: background 0.2s; margin-bottom: 0.75rem;
   }
   .cta-apply:hover { background: var(--green-hover); }
+  .cta-apply:disabled { background: var(--mid); cursor: not-allowed; opacity: 0.7; }
+  .cta-status { font-size: 0.85rem; text-align: center; margin: 0.25rem 0 0.5rem; padding: 0.65rem 0.75rem; line-height: 1.45; }
+  .cta-status--loading { color: var(--mid); }
+  .cta-status--error { color: #9b2c2c; background: rgba(155,44,44,0.08); border: 1px solid rgba(155,44,44,0.25); }
+  .cta-status a { color: inherit; text-decoration: underline; }
   .cta-advisor {
     display: block; width: 100%; padding: 0.85rem;
     background: none; color: var(--mid);
@@ -204,6 +209,7 @@
         <input type="email" id="email-in" placeholder="your@email.com">
       </div>
       <button class="cta-apply" id="cta-apply" onclick="applyNow()">See what the right plan looks like →</button>
+      <div class="cta-status" id="cta-status" role="status" aria-live="polite" hidden></div>
       <div style="display:flex; align-items:center; gap:0.75rem; margin:1rem 0 0.75rem;">
         <div style="flex:1; height:1px; background:var(--border);"></div>
         <span style="font-size:0.72rem; color:var(--mid); text-transform:uppercase; letter-spacing:0.12em; font-weight:600;">or</span>
@@ -355,16 +361,36 @@ function saveQuizData(email) {
     answers: answers,
     frustration: frustLabels[answers[7]] || ''
   };
-  fetch(BACKEND_URL, {
+  return fetch(BACKEND_URL, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data)
-  }).catch(() => {});
+  });
 }
 
-function applyNow() {
+async function applyNow() {
   const email = document.getElementById('email-in').value;
-  saveQuizData(email);
+  const btn = document.getElementById('cta-apply');
+  const status = document.getElementById('cta-status');
+
+  btn.disabled = true;
+  status.hidden = false;
+  status.className = 'cta-status cta-status--loading';
+  status.textContent = 'Saving your result…';
+
+  try {
+    const resp = await saveQuizData(email);
+    if (!resp.ok) throw new Error('HTTP ' + resp.status);
+    const json = await resp.json();
+    if (!json || json.ok !== true) throw new Error('Unexpected response');
+  } catch (err) {
+    console.error('[audit] saveQuizData failed:', err);
+    btn.disabled = false;
+    status.className = 'cta-status cta-status--error';
+    status.innerHTML = 'Your quiz result is ready, but your email didn’t submit. Please try again, or email <a href="mailto:hello@tr3mediasolutions.com">hello@tr3mediasolutions.com</a>.';
+    return;
+  }
+
   if (typeof gtag !== 'undefined') gtag('event', 'quiz_to_landing', { tier: window.auditTier, email: !!email });
   const tier = window.auditTier || 'tier1';
   window.location.href = '/marketing-that-pays/?from=quiz&tier=' + tier + '&score=' + (window.auditScore || 0) + '#' + (tier === 'tier2' ? 'tier2' : 'tier1');
