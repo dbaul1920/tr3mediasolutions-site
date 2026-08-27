@@ -21,7 +21,7 @@
   <header class="site-header" role="banner">
     <div class="container">
       <a href="index.html" class="site-header__logo" aria-label="TR3 Media Solutions — Home">
-        <img src="assets/logos/tr3-logo-white.svg" alt="TR3 Media Solutions">
+        <img src="assets/logos/tr3-logo-white.svg" alt="">
       </a>
       <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" onclick="document.querySelector('.site-nav').classList.toggle('site-nav--open'); document.querySelector('.nav-overlay').classList.toggle('nav-overlay--visible'); this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
         <span class="nav-toggle__bar"></span>
@@ -63,6 +63,7 @@
           <p style="color: var(--color-gray-600); line-height: 1.7; margin-bottom: 3rem;">This form is for organizations interested in working with TR3 Media Solutions. We review every submission and follow up within two business days.</p>
 
           <form id="intake-form">
+      <p class="form-required-note"><span aria-hidden="true">*</span> indicates a required field</p>
 
             <!-- About You -->
             <div class="form-section">
@@ -70,28 +71,28 @@
 
               <div class="form-row">
                 <div class="form-group">
-                  <label for="contact-name" class="form-label">Your name</label>
+                  <label for="contact-name" class="form-label form-label--required">Your name</label>
                   <input type="text" id="contact-name" name="name" class="form-input" placeholder="Full name" required>
                 </div>
                 <div class="form-group">
-                  <label for="contact-email" class="form-label">Email</label>
+                  <label for="contact-email" class="form-label form-label--required">Email</label>
                   <input type="email" id="contact-email" name="email" class="form-input" placeholder="you@organization.org" required>
                 </div>
               </div>
 
               <div class="form-row">
                 <div class="form-group">
-                  <label for="org-name" class="form-label">Organization</label>
+                  <label for="org-name" class="form-label form-label--required">Organization</label>
                   <input type="text" id="org-name" name="organization" class="form-input" placeholder="Organization name" required>
                 </div>
                 <div class="form-group">
-                  <label for="your-role" class="form-label">Your role</label>
+                  <label for="your-role" class="form-label form-label--required">Your role</label>
                   <input type="text" id="your-role" name="role" class="form-input" placeholder="e.g. Executive Director" required>
                 </div>
               </div>
 
               <div class="form-group">
-                <label for="org-type" class="form-label">Organization type</label>
+                <label for="org-type" class="form-label form-label--required">Organization type</label>
                 <select id="org-type" name="org-type" class="form-select" required>
                   <option value="">Select one</option>
                   <option value="nonprofit">Nonprofit or Foundation</option>
@@ -102,7 +103,7 @@
               </div>
 
               <div class="form-group">
-                <fieldset class="form-fieldset"><legend class="form-label">Are you the primary decision-maker?</legend>
+                <fieldset class="form-fieldset"><legend class="form-label--required form-label">Are you the primary decision-maker?</legend>
                 <div class="form-options">
                   <label class="form-option">
                     <input type="radio" name="decision-maker" value="yes" required>
@@ -154,7 +155,7 @@
               </fieldset>
 
               <div class="form-group">
-                <label for="problem" class="form-label">Describe the problem you're trying to solve</label>
+                <label for="problem" class="form-label form-label--required">Describe the problem you're trying to solve</label>
                 <textarea id="problem" name="problem" class="form-textarea" placeholder="Focus on the challenge, not the deliverables." required></textarea>
               </div>
             </div>
@@ -164,7 +165,7 @@
               <h2 class="form-section__title">Timing &amp; Budget</h2>
 
               <div class="form-group">
-                <label for="timeframe" class="form-label">Ideal start timeframe</label>
+                <label for="timeframe" class="form-label form-label--required">Ideal start timeframe</label>
                 <select id="timeframe" name="timeframe" class="form-select" required>
                   <option value="">Select one</option>
                   <option value="immediately">Immediately</option>
@@ -175,7 +176,7 @@
               </div>
 
               <div class="form-group">
-                <fieldset class="form-fieldset"><legend class="form-label">Is funding allocated?</legend>
+                <fieldset class="form-fieldset"><legend class="form-label--required form-label">Is funding allocated?</legend>
                 <div class="form-options">
                   <label class="form-option">
                     <input type="radio" name="funding" value="yes" required>
@@ -196,7 +197,7 @@
               </fieldset>
 
               <div class="form-group">
-                <fieldset class="form-fieldset"><legend class="form-label">Anticipated investment</legend>
+                <fieldset aria-describedby="investment-help" class="form-fieldset"><legend class="form-label--required form-label">Anticipated investment</legend>
                 <div class="form-options">
                   <label class="form-option">
                     <input type="radio" name="investment" value="under-10k" required>
@@ -219,7 +220,7 @@
                     <span class="form-option__text">$100,000+</span>
                   </label>
                 </div>
-                <p class="form-helper">Budgets help us recommend the right approach.</p>
+                <p class="form-helper" id="investment-help">Budgets help us recommend the right approach.</p>
               </fieldset>
             </div>
 
@@ -228,7 +229,7 @@
               <h2 class="form-section__title">Working Style</h2>
 
               <div class="form-group">
-                <fieldset class="form-fieldset"><legend class="form-label">How do you prefer to work?</legend>
+                <fieldset class="form-fieldset"><legend class="form-label--required form-label">How do you prefer to work?</legend>
                 <div class="form-options">
                   <label class="form-option">
                     <input type="radio" name="working-style" value="strategic-partner" required>
@@ -246,7 +247,7 @@
               </fieldset>
 
               <div class="form-group">
-                <label for="why-tr3" class="form-label">Why do you want to work with TR3 Media specifically?</label>
+                <label for="why-tr3" class="form-label form-label--required">Why do you want to work with TR3 Media specifically?</label>
                 <textarea id="why-tr3" name="why-tr3" class="form-textarea" placeholder="What drew you to us?" required></textarea>
               </div>
             </div>
@@ -270,7 +271,7 @@
     <div class="container">
       <div class="site-footer__top">
         <div class="site-footer__brand">
-          <img src="assets/logos/tr3-logo-white.svg" alt="TR3 Media Solutions">
+          <img src="assets/logos/tr3-logo-white.svg" alt="">
           <p>We specialize in branding, web design, and on-call creative support built on 11+ years of experience and integrity.</p>
           <img src="assets/images/Goldman-Sachs-Small-Business-Alumni.png" alt="Goldman Sachs 10,000 Small Businesses Alumni" class="site-footer__gs-badge">
         </div>

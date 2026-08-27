@@ -21,7 +21,7 @@
   <header class="site-header" role="banner">
     <div class="container">
       <a href="index.html" class="site-header__logo" aria-label="TR3 Media Solutions — Home">
-        <img src="assets/logos/tr3-logo-white.svg" alt="TR3 Media Solutions">
+        <img src="assets/logos/tr3-logo-white.svg" alt="">
       </a>
       <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" onclick="document.querySelector('.site-nav').classList.toggle('site-nav--open'); document.querySelector('.nav-overlay').classList.toggle('nav-overlay--visible'); this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');">
         <span class="nav-toggle__bar"></span>
@@ -74,12 +74,23 @@
         </ul>
 
         <h2>Known Limitations</h2>
-        <p>We are continuously working to improve accessibility. If you encounter any barriers while using our website, we want to know about it so we can address the issue.</p>
+        <p>We are continuously working to improve accessibility. In the interest of transparency, these are the gaps we are currently aware of:</p>
+        <ul>
+          <li><strong>Form error messages.</strong> Validation currently relies on the browser's built-in messages. We have not yet added in-page error text that is announced to screen readers and moves focus to the first field needing attention.</li>
+          <li><strong>Capabilities Statement page.</strong> This page is formatted for printing and does not include the site's main navigation. Links back to the main site are provided at the top and bottom.</li>
+          <li><strong>Testing coverage.</strong> Our testing to date covers keyboard navigation and colour contrast. We have not yet completed formal testing across every screen reader and browser combination.</li>
+        </ul>
+        <p>If you encounter a barrier that is not listed here, we want to know about it so we can address it.</p>
 
         <h2>Feedback</h2>
         <p>If you experience difficulty accessing any part of this website, or if you have suggestions for improvement, please contact us:</p>
-        <p><strong>Email:</strong> <a href="mailto:hello@tr3mediasolutions.com">hello@tr3mediasolutions.com</a></p>
+        <p><strong>Email:</strong> <a href="mailto:hello@tr3mediasolutions.com">hello@tr3mediasolutions.com</a><br>
+        <strong>Phone:</strong> <a href="tel:+13135758272">(313) 575-8272</a></p>
         <p>We take accessibility feedback seriously and will respond within 5 business days.</p>
+
+        <h2>Review Schedule</h2>
+        <p>This statement was last reviewed on <strong>25 August 2026</strong>. We review it, and re-test the site, at least twice a year and after any significant change to the site.</p>
+        <p>Conformance target: WCAG 2.1 Level AA. Current status: partially conformant, with the exceptions listed above.</p>
 
       </div>
     </section>
@@ -92,7 +103,7 @@
     <div class="container">
       <div class="site-footer__top">
         <div class="site-footer__brand">
-          <img src="assets/logos/tr3-logo-white.svg" alt="TR3 Media Solutions">
+          <img src="assets/logos/tr3-logo-white.svg" alt="">
           <p>We specialize in branding, web design, and on-call creative support built on 11+ years of experience and integrity.</p>
           <img src="assets/images/Goldman-Sachs-Small-Business-Alumni.png" alt="Goldman Sachs 10,000 Small Businesses Alumni" class="site-footer__gs-badge">
         </div>

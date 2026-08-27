@@ -20,6 +20,7 @@
   --color-gray-600: #555555;          /* 5.7:1 on cream — AAA large, AA normal */
   --color-gray-400: #6B6B6B;          /* 4.0:1 on cream — AA large text only */
   --color-gray-200: #E0DDD8;
+  --color-border-input: #8C8880;
   --color-gray-100: #F0EDE8;
   --color-white: #FFFFFF;
   --color-cream: #F5F0E8;             /* Warm Cream */
@@ -843,7 +844,15 @@ ul, ol { padding-left: 1.5em; }
 }
 
 .form-label--required::after {
-  content: "";
+  content: " *";
+  color: var(--color-green-dark);
+  font-weight: 700;
+}
+
+.form-required-note {
+  font-size: 0.8125rem;
+  color: var(--color-gray-600);
+  margin-bottom: var(--space-md);
 }
 
 .form-helper {
@@ -863,7 +872,7 @@ ul, ol { padding-left: 1.5em; }
   color: var(--color-dark);
   background: transparent;
   border: none;
-  border-bottom: 1px solid var(--color-gray-200);
+  border-bottom: 1px solid var(--color-border-input);
   border-radius: 0;
   transition: border-color 0.3s ease;
   line-height: 1.5;
@@ -885,7 +894,7 @@ ul, ol { padding-left: 1.5em; }
 .form-textarea {
   min-height: 120px;
   resize: vertical;
-  border: 1px solid var(--color-gray-200);
+  border: 1px solid var(--color-border-input);
   border-radius: 12px;
   padding: 16px 20px;
   background: var(--color-white);
